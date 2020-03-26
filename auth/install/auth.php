@@ -350,16 +350,6 @@ function register_auth_provider()
                 }
             ];
 
-        case "2020.02":
-            return [
-                "function" => function($shared_module_info) {
-                    $return = new stdClass();
-                    $return->yield = new stdClass();
-                    $return->success = true;
-                    $return->yield->title = _("Auth Module");
-                    return $return;
-                }
-            ];
 
 
 				/**
