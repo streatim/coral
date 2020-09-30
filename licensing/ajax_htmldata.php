@@ -860,7 +860,7 @@ switch ($_GET['action']) {
 				echo "<td $classAdd>";
 				if (!$user->isRestricted()) {
 					if ($document->documentURL != ""){
-						echo "<a href='documents/" . $document->documentURL . "' target='_blank'><img id='View' class='AdminViewIcon' src='images/view.gif' title= '"._("View")."' /></a><br />";
+						echo "<a href='documents/" . $document->documentURL . "' target='_blank'>"._("view document")."</a><br />";
 					}else{
 						echo _("(none uploaded)")."<br />";
 					}
