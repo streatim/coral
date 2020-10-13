@@ -98,12 +98,12 @@ Date.format = '<?php echo return_datepicker_date_format(); ?>';
 <div style="text-align:left;">
 
 <center>
-    
+
 <table class="titleTable" style="width:1024px;text-align:left;">
 
     <tr style='vertical-align:top;'>
         <td style='height:53px;' colspan='3'>
-                
+
             <div id="main-title">
                 <img src="images/title-icon-management.png" />
                 <span id="main-title-text"><?php echo _("Management"); ?></span>
@@ -188,10 +188,10 @@ echo '</div>';
             <img src="images/menu/icon-admin.png" />
             <span><?php echo _("Admin");?></span>
         </div>
-    </a>   
+    </a>
 
 <?php }else if ($user->canEdit()){ ?>
-	
+
     <a href='index.php'>
         <div class="main-menu-link <?php if ($currentPage == 'index.php') { echo "active"; } ?>">
             <img src="images/menu/icon-home.png" />
@@ -284,7 +284,7 @@ if ((file_exists($util->getCORALPath() . "index.php")) || ($config->settings->or
             setLanguage($("#lang").val());
             location.reload();
         });
-        
+
         function setLanguage(lang) {
 			var wl = window.location, now = new Date(), time = now.getTime();
             var cookievalid=2592000000; // 30 days (1000*60*60*24*30)

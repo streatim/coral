@@ -724,14 +724,16 @@
 							foreach($noteArray as $currentNote)
 							{
                                 if (isset($proceed)) {
-                                    $noteObj = new ResourceNote();
-                                    $noteObj->entityID = $resource->primaryKey;
-                                    $noteObj->noteTypeID = $note['noteType'];
-                                    $noteObj->updateLoginID = '';
-                                    $noteObj->updateDate = date('Y-m-d H:i:s');
-                                    $noteObj->noteText = $currentNote;
-                                    $noteObj->tabName = 'Product';
-                                    $noteObj->save();
+									if (!empty($currentNote)) {
+										$noteObj = new ResourceNote();
+										$noteObj->entityID = $resource->primaryKey;
+										$noteObj->noteTypeID = $note['noteType'];
+										$noteObj->updateLoginID = $loginID;
+										$noteObj->updateDate = date('Y-m-d H:i:s');
+										$noteObj->noteText = $currentNote;
+										$noteObj->tabName = 'Product';
+										$noteObj->save();
+									}
                                 }
 								$noteInserted++;
 							}

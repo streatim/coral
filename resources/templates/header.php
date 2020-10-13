@@ -105,7 +105,7 @@ Date.format = '<?php echo return_datepicker_date_format(); ?>';
 
     <tr style='vertical-align:top;'>
         <td style='height:53px;' colspan='3'>
-                
+
             <div id="main-title">
                 <img src="images/title-icon-resources.png" />
                 <span id="main-title-text"><?php echo _("Resources"); ?></span>
@@ -252,7 +252,7 @@ if ((file_exists($util->getCORALPath() . "index.php")) || ($config->settings->li
             setLanguage($("#lang").val());
             location.reload();
         });
-        
+
         function setLanguage(lang) {
 			var wl = window.location, now = new Date(), time = now.getTime();
             var cookievalid=2592000000; // 30 days (1000*60*60*24*30)

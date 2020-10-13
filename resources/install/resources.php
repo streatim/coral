@@ -271,7 +271,18 @@ function register_resources_provider()
             }
           ];
 
-       case "2020.02":
+        case "2020.02":
+            return [
+                "function" => function($shared_module_info) {
+                    $return = new stdClass();
+                    $return->yield = new stdClass();
+                    $return->success = true;
+                    $return->yield->title = _("Resources Module");
+                    return $return;
+                }
+            ];
+
+        case "2020.09":
             return [
                 "function" => function($shared_module_info) {
                     $return = new stdClass();

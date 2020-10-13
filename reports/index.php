@@ -43,7 +43,7 @@ include 'templates/header.php';
 		            </div>
                     <?php $lang_name->getLanguageSelector(); ?>
 					<span id="help-span">
-						<a href="https://js-erm-helps.bc.sirsidynix.net" target="_blank">
+						<a href="http://docs.coral-erm.org/" target="_blank">
 							<?php echo _("Help");?>
 						</a><span id='divider'> | </span>
 					</span>
