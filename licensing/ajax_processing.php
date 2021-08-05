@@ -504,7 +504,8 @@ switch ($_GET['action']) {
 				<td colspan='2'><br /><span class='headerText'><?php echo $response; ?></span><br /></td>
 				</tr>
 				<tr>
-				<td colspan='2'><p><a href='#' onclick='window.parent.tb_remove(); window.parent.location=("license.php?licenseID=<?php echo $licenseID; ?>"); return false'><?php echo _("Continue");?></a></td>
+			<!--	<td colspan='2'><p><a href='javascript:void(0)' onclick='window.parent.tb_remove(); window.parent.location=("license.php?licenseID=<?php echo $licenseID; ?>"); return false'><?php echo _("Continue");?></a></td> -->
+			-	<td colspan='2'><p><a href='javascript:void(0)' onclick='myCloseDialog("#newlicnese"); window.parent.location=("license.php?licenseID=<?php echo $licenseID; ?>"); return false'><?php echo _("Continue");?></a></td>
 				</tr>
 
 				</table>
@@ -516,7 +517,7 @@ switch ($_GET['action']) {
 				<td colspan='2'><br /><span class='headerText'><?php echo _("SQL Insert Failed.");?> <?php echo $e->getMessage(); ?>  <?php echo _("Please make sure everything is filled out correctly.");?></span><br /></td>
 				</tr>
 				<tr>
-				<td colspan='2'><p><a href='#' onclick='window.parent.tb_remove(); return false'><?php echo _("Continue");?></a></td>
+				<td colspan='2'><p><a href='javascript:void(0)' onclick='myCloseDialog(""); return false'><?php echo _("Continue");?></a></td>
 				</tr>
 
 				</table>
@@ -529,7 +530,7 @@ switch ($_GET['action']) {
 			<td colspan='2'><br /><span class='headerText'><?php echo _("SQL Insert Failed.");?> <?php echo $e->getMessage(); ?>  <?php echo _("Please make sure everything is filled out correctly.");?></span><br /></td>
 			</tr>
 			<tr>
-			<td colspan='2'><p><a href='#' onclick='window.parent.tb_remove(); return false'><?php echo _("Continue");?></a></td>
+			<td colspan='2'><p><a href='javascript:void(0)' onclick='myCloseDialog(""); return false'><?php echo _("Continue");?></a></td>
 			</tr>
 
 			</table>
