@@ -539,6 +539,11 @@ switch ($action) {
 				<td><input type='text' id='customerID' name='customerID' value="<?php if ($sushiServiceID) echo $sushiService->customerID; ?>" style='width:330px;' /></td>
 			</tr>
 			<tr>
+				<td style='vertical-align:top;text-align:right;width:135px;'><label for='platform'><b><?php echo _("Platform:");?></b></label></td>
+				<td><input type='text' id='platform' name='platform' value="<?php if ($sushiServiceID) echo $sushiService->platform; ?>" style='width:330px;' />
+					<span class="smallDarkRedText"><?php echo _("(optional)") . " " . _("only needed when required by vendor");?></span></td>
+			</tr>
+			<tr>
 				<td style='vertical-align:top;text-align:right;width:135px;'><label for='security'><b><?php echo _("Security Type:");?></b></label></td>
 				<td><input type='text' id='security' name='security' value="<?php if ($sushiServiceID) echo $sushiService->security; ?>" style='width:150px;' />
 					<span class="smallDarkRedText"><?php echo _("(optional)");?><br /><?php echo _("can be: HTTP Basic, WSSE Authentication");?></span>

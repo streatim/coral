@@ -466,6 +466,7 @@ switch ($action) {
 			echo "<tr><td>" . _("Requestor ID") . "</td><td>" . $sushiService->requestorID . "</td></tr>";
       echo "<tr><td>" . _("API Key") . "</td><td>" . $sushiService->apiKey . "</td></tr>";
 			echo "<tr><td>" . _("Customer ID") . "</td><td>" . $sushiService->customerID . "</td></tr>";
+			echo "<tr><td>" . _("Platform") . "</td><td>" . $sushiService->platform . "</td></tr>";
 			echo "<tr><td>" . _("Security") . "</td><td>" . $sushiService->security . "</td></tr>";
 			echo "<tr><td>" . _("Login") . "</td><td>" . $sushiService->login . "</td></tr>";
 			echo "<tr><td>" . _("Password") . "</td><td>" . $sushiService->password . "</td></tr>";
