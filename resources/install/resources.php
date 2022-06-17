@@ -293,6 +293,17 @@ function register_resources_provider()
                 }
             ];
 
+        case "2022.04":
+            return [
+                "function" => function($shared_module_info) {
+                    $return = new stdClass();
+                    $return->yield = new stdClass();
+                    $return->success = true;
+                    $return->yield->title = _("Resources Module");
+                    return $return;
+                }
+            ];
+
 				default:
 					return null;
 			}

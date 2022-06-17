@@ -227,6 +227,7 @@ switch ($action) {
 		$sushiService->requestorID = $_POST['requestorID'];
     $sushiService->apiKey = $_POST['apiKey'];
 		$sushiService->customerID = $_POST['customerID'];
+		$sushiService->platform = $_POST['platform'];
 		$sushiService->security = $_POST['security'];
 		$sushiService->reportLayouts = $_POST['reportLayouts'];
 		$sushiService->releaseNumber = $_POST['releaseNumber'];

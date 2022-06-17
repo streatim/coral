@@ -373,6 +373,10 @@ class SushiService extends DatabaseObject
       $params['include_parent_details'] = 'true';
     }
 
+    if ($this->platform) {
+      $params['platform'] = $this->platform;
+    }
+
     // setup curl client
     $trailingSlash = substr($this->serviceURL, -1) == '/' ? '' : '/';
     $endpoint = $this->serviceURL . $trailingSlash . 'reports/' . strtolower($reportLayout) . '?' . http_build_query($params);
