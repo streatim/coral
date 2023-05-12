@@ -67,7 +67,7 @@
 					echo "<td>" . $atName . "</td>";
 					echo "<td>" . $rfName . "</td>";
 					echo "<td>" . $rtName . "</td>";
-					echo "<td><a href='javascript:void(0)' onclick='javascript:myDialog(\"ajax_forms.php?action=getAdminWorkflowForm&workflowID=" . $wf[workflowID] . "\",528,750)' class='thickbox'><img src='images/edit.gif' alt='"._("edit")."' title='"._("edit")."'></a></td>";
+					echo "<td><a href='javascript:void(0)' onclick='javascript:myDialog(\"ajax_forms.php?action=getAdminWorkflowForm&workflowID=" . $wf['workflowID'] . "\",528,750)' class='thickbox'><img src='images/edit.gif' alt='"._("edit")."' title='"._("edit")."'></a></td>";
 					echo "<td><a href='javascript:duplicateWorkflow(" . $wf['workflowID'] . ")'><img src='images/notes.gif' alt='"._("duplicate")."' title='"._("duplicate")."'></a></td>"; 
 					echo "<td><a href='javascript:deleteWorkflow(\"Workflow\", " . $wf['workflowID'] . ");'><img src='images/cross.gif' alt='"._("remove")."' title='"._("remove")."'></a></td>";
 					echo "</tr>";
