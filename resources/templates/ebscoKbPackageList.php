@@ -46,14 +46,14 @@
                         </a>
                     <?php else: ?>
                         <i class="fa fa-ban text-danger" title="<?php echo _('Not selected in EBSCOhost'); ?>"></i>
-                        <a href="ajax_forms.php?action=getEbscoKbRemoveConfirmation&height=700&width=730&modal=true&resourceID=<?php echo $item->resource->primaryKey; ?>&page=<?php echo $page ?>"
+                        <a href='javascript:void(0)' onclick='javascript:myDialog("ajax_forms.php?action=getEbscoKbRemoveConfirmation&height=700&width=730&modal=true&resourceID=<?php echo $item->resource->primaryKey; ?>&page=<?php echo $page ?>",740,780)'
                             class="thickbox">
                             <?php echo _('Delete from Coral'); ?>
                         </a>
                     <?php endif; ?>
                 <?php elseif ($item->selectedCount): ?>
                     <i class="fa fa-exclamation-triangle text-warning" title="<?php echo _('Selected but not Imported'); ?>"></i>
-                    <a href="ajax_forms.php?action=getEbscoKbPackageImportForm&height=700&width=730&modal=true&vendorId=<?php echo $item->vendorId; ?>&packageId=<?php echo $item->packageId; ?>"
+                    <a href='javascript:void(0)' onclick='javascript:myDialog("ajax_forms.php?action=getEbscoKbPackageImportForm&height=700&width=730&modal=true&vendorId=<?php echo $item->vendorId; ?>&packageId=<?php echo $item->packageId; ?>",740,780)'
                        class="thickbox">
                         <?php echo _('Import Package'); ?>
                     </a>

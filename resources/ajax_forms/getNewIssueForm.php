@@ -63,6 +63,14 @@ if ($config->settings->organizationsModule == 'Y') {
 				<input type="hidden" name="orgModuleUrl" id="orgModuleUrl" value="<?php echo $util->getCoralUrl();?>organizations/" />
 				<a id="getCreateContactForm" href="#"><?php echo _("add contact");?></a>
 				<div id="inlineContact"></div>
+                <script>
+				    $("#getCreateContactForm").on("click",function(e) {
+				        e.preventDefault();
+				        $(this).fadeOut(250, function() {
+				            getInlineContactForm();
+				        });
+				    });
+				</script>
 			</td>
 		</tr>
 <?php

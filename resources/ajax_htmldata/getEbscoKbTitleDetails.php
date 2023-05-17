@@ -93,7 +93,7 @@ $title->loadResource();
                         <i class="fa fa-info"></i> <?php echo _('This title has been imported into Coral'); ?>
                     </h3>
                     <p style="margin-top: 6px;">
-                        <a href="ajax_forms.php?action=getEbscoKbRemoveConfirmation&height=700&width=730&modal=true&resourceID=<?php echo $title->resource->primaryKey; ?>&fallbackTitleId=<?php echo $titleId; ?>&page=<?php echo $page; ?>"
+                        <a href='javascript:void(0)' onclick='javascript:myDialog("ajax_forms.php?action=getEbscoKbRemoveConfirmation&height=700&width=730&modal=true&resourceID=<?php echo $title->resource->primaryKey; ?>&fallbackTitleId=<?php echo $titleId; ?>&page=<?php echo $page; ?>",740,780)'
                            class="btn thickbox">
                             <?php echo _('delete from Coral'); ?>
                         </a>
@@ -136,7 +136,7 @@ $title->loadResource();
                                                 <span class="text-danger">
                                                         <i class="fa fa-ban"></i> <?php echo _('Package is NOT selected in EBSCOhost'); ?>
                                                     </span>
-                                                <a href="ajax_forms.php?action=getEbscoKbRemoveConfirmation&height=700&width=730&modal=true&resourceID=<?php echo $package->resource->primaryKey; ?>&fallbackTitleId=<?php echo $titleId; ?>"
+                                                <a href='javascript:void(0)' onclick='javascript:myDialog("ajax_forms.php?action=getEbscoKbRemoveConfirmation&height=700&width=730&modal=true&resourceID=<?php echo $package->resource->primaryKey; ?>&fallbackTitleId=<?php echo $titleId; ?>",740,780)'
                                                    class="thickbox">
                                                     (<?php echo _('delete from Coral'); ?>)
                                                 </a>
@@ -145,7 +145,7 @@ $title->loadResource();
                                             <span class="text-warning">
                                                     <i class="fa fa-exclamation-triangle"></i> <?php echo _('Package is Selected but not Imported '); ?>
                                                 </span>
-                                            <a href="ajax_forms.php?action=getEbscoKbPackageImportForm&height=700&width=730&modal=true&vendorId=<?php echo $package->vendorId; ?>&packageId=<?php echo $package->packageId; ?>&fallbackTitleId=<?php echo $titleId; ?>"
+                                            <a href='javascript:void(0)' onclick='javascript:myDialog("ajax_forms.php?action=getEbscoKbPackageImportForm&height=700&width=730&modal=true&vendorId=<?php echo $package->vendorId; ?>&packageId=<?php echo $package->packageId; ?>&fallbackTitleId=<?php echo $titleId; ?>",740,780)'
                                                class="thickbox">
                                                 (<?php echo _('import package'); ?>)
                                             </a>
@@ -232,7 +232,7 @@ $title->loadResource();
         <div class="row" style="margin-top: 1em;">
             <div class="col-12">
                 <a
-                    href="ajax_forms.php?action=getEbscoKbTitleImportForm&height=700&width=730&modal=true&titleId=<?php echo $title->titleId; ?>"
+                    href=javascript:void(0)' onclick='javascript:myDialog("ajax_forms.php?action=getEbscoKbTitleImportForm&height=700&width=730&modal=true&titleId=<?php echo $title->titleId; ?>",740,780)'
                     class="thickbox btn btn-primary">
                     <?php echo _('import'); ?>
                 </a>

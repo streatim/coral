@@ -19,7 +19,7 @@
 					}
 
 					if ($user->canEdit()){ ?>
-						<a href='ajax_forms.php?action=getAccountForm&height=314&width=403&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='newAccount'><?php echo _("add new account");?></a>
+						<a href='javascript:void(0)' onclick='javascript:myDialog("ajax_forms.php?action=getAccountForm&height=314&width=403&modal=true&resourceID=<?php echo $resourceID; ?>",350,450)' class='thickbox' id='newAccount'><?php echo _("add new account");?></a>
 						<br /><br /><br />
 					<?php
 					}
@@ -43,7 +43,7 @@
 					if ($user->canEdit() &&
                        (!array_key_exists('organizationName', $externalLogin) || (array_key_exists('organizationName', $externalLogin) && $externalLogin['organizationName'] == ''))) { ?>
 
-						<a href='ajax_forms.php?action=getAccountForm&height=314&width=403&modal=true&resourceID=<?php echo $resourceID; ?>&externalLoginID=<?php echo $externalLogin['externalLoginID']; ?>' class='thickbox'><img src='images/edit.gif' alt='<?php echo _("edit");?>' title='<?php echo _("edit account");?>'></a>  <a href='javascript:void(0);' class='removeAccount' id='<?php echo $externalLogin['externalLoginID']; ?>'><img src='images/cross.gif' alt='<?php echo _("remove account");?>' title='<?php echo _("remove account");?>'></a>
+						<a href='javascript:void(0)' onclick='javascript:myDialog("ajax_forms.php?action=getAccountForm&height=314&width=403&modal=true&resourceID=<?php echo $resourceID; ?>&externalLoginID=<?php echo $externalLogin['externalLoginID']; ?>",350,450)' class='thickbox'><img src='images/edit.gif' alt='<?php echo _("edit");?>' title='<?php echo _("edit account");?>'></a>  <a href='javascript:void(0);' class='removeAccount' id='<?php echo $externalLogin['externalLoginID']; ?>'><img src='images/cross.gif' alt='<?php echo _("remove account");?>' title='<?php echo _("remove account");?>'></a>
 						<?php
 					}else{
 						echo "&nbsp;";
@@ -118,7 +118,7 @@
 		}
 
 		if ($user->canEdit() && ($orgELFlag == 0)){ ?>
-			<a href='ajax_forms.php?action=getAccountForm&height=314&width=403&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='newAccount'><?php echo _("add new account");?></a>
+			<a href='javascript:void(0)' onclick='javascript:myDialog("ajax_forms.php?action=getAccountForm&height=314&width=403&modal=true&resourceID=<?php echo $resourceID; ?>",350,450)' class='thickbox' id='newAccount'><?php echo _("add new account");?></a>
 			<br /><br /><br />
 		<?php
 		}
