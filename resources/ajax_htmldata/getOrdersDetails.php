@@ -117,12 +117,12 @@ if ($resourceAcquisitionID) {
 
 			</table>
 			<?php if ($user->canEdit()){ ?>
-				<a href='javscript:void(0)' onclick='javascript:myDialog("ajax_forms.php?action=getOrderForm&resourceID=<?php echo $resourceAcquisition->resourceID; ?>",500,500)' class='thickbox'><?php echo _("create new order");?></a> - 
+				<a href='javascript:void(0)' onclick='javascript:myDialog("ajax_forms.php?action=getOrderForm&resourceID=<?php echo $resourceAcquisition->resourceID; ?>",500,500)' class='thickbox'><?php echo _("create new order");?></a> - 
 				<a href='javascript:void(0)' onclick='javascript:myDialog("ajax_forms.php?action=getOrderForm&resourceAcquisitionID=<?php echo $resourceAcquisition->resourceAcquisitionID; ?>&resourceID=<?php echo $resourceAcquisition->resourceID; ?>&op=clone", 500,500)' class='thickbox'><?php echo _("clone order");?></a> - 
 				<a href='javascript:void(0)' onclick='javascript:myDialog("ajax_forms.php?action=getOrderForm&resourceAcquisitionID=<?php echo $resourceAcquisition->resourceAcquisitionID; ?>&resourceID=<?php echo $resourceAcquisition->resourceID; ?>",500,500)' class='thickbox'><?php echo _("edit order information");?></a>
 			<?php } ?>
 <?php } else {
-echo _("This resource does not seem to have an order. It should have one. Please "); ?><a href='ajax_forms.php?action=getOrderForm&height=400&width=440&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox'><?php echo _("create an order");?></a>
+echo _("This resource does not seem to have an order. It should have one. Please "); ?><a href='javascript:void(0)' onclick='javascript:myDialog("ajax_forms.php?action=getOrderForm&height=400&width=440&modal=true&resourceID=<?php echo $resourceID; ?>",430,480)' class='thickbox'><?php echo _("create an order");?></a>
 <?php
 }
 ?>

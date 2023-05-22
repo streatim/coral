@@ -26,7 +26,7 @@ function generateDowntimeHTML($downtime,$associatedEntities=null) {
 	if ($downtime->endDate != null) {
 		$html .= $downtime->endDate;
 	} else {
-		$html .= "<a class=\"thickbox\" href=\"ajax_forms.php?action=getResolveDowntimeForm&height=363&width=345&modal=true&downtimeID={$downtime->downtimeID}\">Resolve</a>";
+		$html .= "<a class=\"thickbox\" href='javascript:void(0)' onclick='javascript:myDialog(\"ajax_forms.php?action=getResolveDowntimeForm&height=363&width=345&modal=true&downtimeID={$downtime->downtimeID}\",400,400)'>Resolve</a>";
 	}
 	$html .= '</dd>';
 

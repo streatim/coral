@@ -18,7 +18,7 @@
 $("#reportID").change(function(){
 	//updateParms;
 	if ($("#reportID").val() != "") {
-		genericGetById('div_parm').innerHTML = "<br><label for=''>&nbsp;</label><img src='images/circle.gif'>  " . _("Refreshing Contents...");
+		genericGetById('div_parm').innerHTML = "<br><label for=''>&nbsp;</label><img src='images/circle.gif'>  " + _("Refreshing Contents...");
 		$.ajax({
 		 type:       "GET",
 		 url:        "ajax_htmldata.php",

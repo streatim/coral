@@ -149,7 +149,6 @@ if ($user->isAdmin()) { ?>
         </div>
     </a>
 
-   <!--  <a href='ajax_forms.php?action=getLicenseForm&height=265&width=260&modal=true&newLicenseID=' class='thickbox' id='newLicense'> -->
    <a href='javascript:void(0)' onclick='javascript:myDialog("ajax_forms.php?action=getLicenseForm&newlicenseID=",265,280)'  class='thickbox' id='newLicense'>
 	<div class="main-menu-link">
             <img src="images/menu/icon-plus-square.png" />
@@ -205,7 +204,7 @@ else if ($user->canEdit()) { ?>
         </div>
     </a>
 
-    <a href='ajax_forms.php?action=getLicenseForm&height=265&width=260&modal=true&newLicenseID=' class='thickbox' id='newLicense'>
+    <a href='javascript:void(0)' onclick='javascript:myDialog("ajax_forms.php?action=getLicenseForm&height=265&width=260&modal=true&newLicenseID=",300,300)' class='thickbox' id='newLicense'>
         <div class="main-menu-link">
             <img src="images/menu/icon-plus-square.png" />
             <span><?php echo _("New License");?></span>
@@ -253,7 +252,7 @@ else { ?>
         </div>
     </a>
 
-    <a href='ajax_forms.php?action=getLicenseForm&height=265&width=260&modal=true&newLicenseID=' class='thickbox' id='newLicense'>
+    <a href='javascript:void(0)' onclick='javascript:myDialog("ajax_forms.php?action=getLicenseForm&height=265&width=260&modal=true&newLicenseID=",300,300)' class='thickbox' id='newLicense'>
         <div class="main-menu-link">
             <img src="images/menu/icon-plus-square.png" />
             <span><?php echo _("New License");?></span>

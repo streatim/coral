@@ -226,6 +226,13 @@
 			</tr>
 			</table>
 
+			<script>
+			    //for performing excel output
+			    $("#export").on('click', function () {
+			        window.open('export.php');
+			        return false;
+			    });
+			</script>
 			<?php
 		}
 
