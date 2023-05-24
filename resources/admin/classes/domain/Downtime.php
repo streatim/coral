@@ -48,13 +48,13 @@ class Downtime extends DatabaseObject {
 		}
 	}
 
-	public function save() {
+	public function save($new = 0) {
 		//remove any overloadedKeys before attempting to save
 		foreach ($this->overloadKeys as $attributeName) {
 			unset($this->attributes[$attributeName]);
 			unset($this->attributeNames[$attributeName]);
 		}
-		parent::save();
+		parent::save($new);
 	}
 
 	public function getDowntimeTypesArray() {
