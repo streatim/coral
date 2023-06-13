@@ -154,7 +154,7 @@ table.surroundBox {
 	border-color: #e6e5e9;
 	border-collapse: collapse;
 	border-spacing: 0;
-	font-size:100%;
+	font-size:90%;
 	width: 100% !important;
 }
 
@@ -441,4 +441,8 @@ p.fontText {
 #login-content {
     border: solid 1px #306d9c;
     padding: 20px;
+}
+
+.no-titlebar .ui-dialog-titlebar {
+    display: none;
 }
