@@ -779,12 +779,12 @@ switch ($_GET['action']) {
 		</tr>
 
 		<?php foreach ($issueLogArray as $issueLog){
-			if (($issueLog['issueStartDate'] != '') && ($issueLog['issueStartDate'] != "0000-00-00")) {
+			if (($issueLog['issueStartDate']) && ($issueLog['issueStartDate'] != "0000-00-00")) {
 				$issueStartDate= format_date($issueLog['issueStartDate']);
 			}else{
 				$issueStartDate='';
 			}
-      if (($issueLog['issueEndDate'] != '') && ($issueLog['issueEndDate'] != "0000-00-00")) {
+      if (($issueLog['issueEndDate']) && ($issueLog['issueEndDate'] != "0000-00-00")) {
 				$issueEndDate= format_date($issueLog['issueEndDate']);
 			}else{
 				$issueEndDate='';

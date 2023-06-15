@@ -17,8 +17,7 @@
 				<div class='addElement'>
 					<?php
 					if (count($userGroupArray) >0){
-						// echo "<a href='javascript:void(0)' onclick='javascript:myDialog("ajax_forms.php?action=getAdminWorkflowForm.php&workflowID=",528,750)' class='thickbox'><img id='addWorflowSetup' src='images/plus.gif' title='"._("add workflow")."' /></a>";
-						echo "<a href='javascript:void(0)' onclick='javascript:myDialog(\"ajax_forms.php?action=getAdminWorkflowForm.php&workflowID=\",528,750)'  class='thickbox'><img id='addWorflowSetup' src='images/plus.gif' title='"._("add workflow")."' /></a>";
+						echo "<a href='javascript:void(0)' onclick='javascript:myDialog(\"ajax_forms.php?action=getAdminWorkflowForm&workflowID=\",528,750)'  class='thickbox'><img id='addWorflowSetup' src='images/plus.gif' title='"._("add workflow")."' /></a>";
 
 
 					}else{

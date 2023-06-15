@@ -553,7 +553,7 @@ if ($organization->name){
 		</tr>
 
 		<?php foreach ($issueLogArray as $issueLog){
-			if (($issueLog['issueDate'] != '') && ($issueLog['issueDate'] != "0000-00-00")) {
+			if (($issueLog['issueDate']) && ($issueLog['issueDate'] != "0000-00-00")) {
 				$issueDate= format_date($issueLog['issueDate']);
 			}else{
 				$issueDate='';

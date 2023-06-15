@@ -60,7 +60,7 @@
 
 				<td <?php echo $classAdd; ?> ><?php echo $resourceStep->stepName; ?></td>
 				<td <?php echo $classAdd; ?> ><?php if (is_null_date($resourceStep->stepEndDate)){
-						echo "<a href='javascript:void(0)' onclick='javascript:myDialog(\"ajax_forms.php?action=getResourceStepForm&amp;resourceStepID=.$resourceStep->resourceStepID\", 300, 800)' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit'></a>";
+						echo "<a href='javascript:void(0)' onclick='javascript:myDialog(\"ajax_forms.php?action=getResourceStepForm&amp;resourceStepID=".$resourceStep->resourceStepID."\", 400, 800)' class='thickbox'><img src='images/edit.gif' alt='edit' title='edit'></a>";
 					} ?></td>
 				<td <?php echo $classAdd; ?> ><?php echo $userGroup->groupName; ?></td>
 				<td <?php echo $classAdd; ?> ><?php if ($resourceStep->stepStartDate) { echo format_date($resourceStep->stepStartDate); } ?></td>

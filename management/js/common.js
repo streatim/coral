@@ -234,6 +234,9 @@ if (!Array.prototype.indexOf)
 }
 
 function myDialog(loadForm, h,w){
+       if (h < 800) h = 'auto';
+       if (w < 800) w = w * 1.2;
+
        $('<div/>').dialog({
             modal: true,
             open: function ()

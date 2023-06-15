@@ -148,6 +148,12 @@ if ($config->settings->organizationsModule == 'Y') {
 			<td style='text-align:right'><input type='button' value='<?php echo _("cancel");?>' onclick="myCloseDialog()" class='cancel-button'></td>
 		</tr>
 	</table>
+    <script>
+    $("#submitNewIssue").on("click", function(e) {
+        e.preventDefault();
+        submitNewIssue();
+    });
+	</script>
 
 </form>
 
