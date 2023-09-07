@@ -71,67 +71,6 @@
 		$(this).removeClass("focusField").addClass("idleField");
 	});
 
-
-	$(".moveArrow").on('click', function () {
-
-	    var dir = $(this).attr('direction')
-
-	    //first flip the rows
-	    var movingKey = parseInt($(this).parent('.seqOrder').attr('key'));
-	    var movingKeyHTML = $(this).parent().parent().html();
-
-
-	    //this is the key we're switching places with
-	    if (dir == 'up'){
-	    	var nextKey = movingKey - 1;
-	    }else{
-	    	var nextKey = movingKey + 1;
-	    }
-
-	    var nextKeyHTML = $(".seqOrder[key='" + nextKey + "']").parent().html();
-
-
-	    //hold the 3 fields so after the html is flipped we can reset them
-	    var movingKeyStepName = $(this).parent().parent().children().children('.stepName').val();
-	    var nextKeyStepName = $(".seqOrder[key='" + nextKey + "']").parent().children().children('.stepName').val();
-	    var movingKeyUserGroupID = $(this).parent().parent().children().children('.userGroupID').val();
-	    var nextKeyUserGroupID = $(".seqOrder[key='" + nextKey + "']").parent().children().children('.userGroupID').val();
-	    var movingKeyPriorStepID = $(this).parent().parent().children().children('.priorStepID').val();
-	    var nextKeyPriorStepID = $(".seqOrder[key='" + nextKey + "']").parent().children().children('.priorStepID').val();
-
-	    //flip the html
-	    $(".seqOrder[key='" + nextKey + "']").parent().html(movingKeyHTML);
-	    $(this).parent().parent().html(nextKeyHTML);
-
-	    //now put those values back
-	    $(".seqOrder[key='" + movingKey + "']").parent().children().children('.stepName').val(movingKeyStepName);
-	    $(".seqOrder[key='" + nextKey + "']").parent().children().children('.stepName').val(nextKeyStepName);
-
-	    $(".seqOrder[key='" + movingKey + "']").parent().children().children('.userGroupID').val(movingKeyUserGroupID);
-	    $(".seqOrder[key='" + nextKey + "']").parent().children().children('.userGroupID').val(nextKeyUserGroupID);
-
-	    $(".seqOrder[key='" + movingKey + "']").parent().children().children('.priorStepID').val(movingKeyPriorStepID);
-	    $(".seqOrder[key='" + nextKey + "']").parent().children().children('.priorStepID').val(nextKeyPriorStepID);
-
-
-	    //flip the key values
-  	    $(".seqOrder[key='" + nextKey + "']").attr('key',  function() {
-  			return 'hold';
-		});
-  	    $(".seqOrder[key='" + movingKey + "']").attr('key',  function() {
-  			return nextKey;
-		});
-  	    $(".seqOrder[key='hold']").attr('key',  function() {
-  			return movingKey;
-		});
-
-
-	    setArrows();
-	    return false;
-	});
-
-
-
 	$(".removeStep").on('click', function () {
 
 	    var removedKey = parseInt($(this).parent().parent().parent().children('.seqOrder').attr('key'));
@@ -351,13 +290,69 @@ function setArrows(){
 		}
 
 	});
-
+  attachClickEventsToArrows();
 
 }
 
+function attachClickEventsToArrows() {
+  $(".moveArrow").on('click', function () {
+
+    var dir = $(this).attr('direction')
+
+    //first flip the rows
+    var movingKey = parseInt($(this).parent('.seqOrder').attr('key'));
+    var movingKeyHTML = $(this).parent().parent().html();
 
 
+    //this is the key we're switching places with
+    if (dir == 'up'){
+      var nextKey = movingKey - 1;
+    }else{
+      var nextKey = movingKey + 1;
+    }
 
+    var nextKeyHTML = $(".seqOrder[key='" + nextKey + "']").parent().html();
+
+
+    //hold the 3 fields so after the html is flipped we can reset them
+    var movingKeyStepName = $(this).parent().parent().children().children('.stepName').val();
+    var nextKeyStepName = $(".seqOrder[key='" + nextKey + "']").parent().children().children('.stepName').val();
+    var movingKeyUserGroupID = $(this).parent().parent().children().children('.userGroupID').val();
+    var nextKeyUserGroupID = $(".seqOrder[key='" + nextKey + "']").parent().children().children('.userGroupID').val();
+    var movingKeyPriorStepID = $(this).parent().parent().children().children('.priorStepID').val();
+    var nextKeyPriorStepID = $(".seqOrder[key='" + nextKey + "']").parent().children().children('.priorStepID').val();
+
+    //flip the html
+    $(".seqOrder[key='" + nextKey + "']").parent().html(movingKeyHTML);
+    $(this).parent().parent().html(nextKeyHTML);
+
+    //now put those values back
+    $(".seqOrder[key='" + movingKey + "']").parent().children().children('.stepName').val(movingKeyStepName);
+    $(".seqOrder[key='" + nextKey + "']").parent().children().children('.stepName').val(nextKeyStepName);
+
+    $(".seqOrder[key='" + movingKey + "']").parent().children().children('.userGroupID').val(movingKeyUserGroupID);
+    $(".seqOrder[key='" + nextKey + "']").parent().children().children('.userGroupID').val(nextKeyUserGroupID);
+
+    $(".seqOrder[key='" + movingKey + "']").parent().children().children('.priorStepID').val(movingKeyPriorStepID);
+    $(".seqOrder[key='" + nextKey + "']").parent().children().children('.priorStepID').val(nextKeyPriorStepID);
+
+
+    //flip the key values
+    $(".seqOrder[key='" + nextKey + "']").attr('key',  function() {
+      return 'hold';
+    });
+    $(".seqOrder[key='" + movingKey + "']").attr('key',  function() {
+      return nextKey;
+    });
+    $(".seqOrder[key='hold']").attr('key',  function() {
+      return movingKey;
+    });
+
+
+    setArrows();
+    return false;
+  });
+}
 
 
  function validateWorkflow (){
