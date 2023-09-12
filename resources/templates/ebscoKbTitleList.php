@@ -20,7 +20,7 @@ if(empty($page)) {
         <tr>
             <td>
                 <a
-                    href="ajax_htmldata.php?action=getEbscoKbTitleDetails&height=700&width=730&modal=true&titleId=<?php echo $item->titleId; ?>"
+                    href='javascript:void(0)' onclick='javascript:myDialog("ajax_htmldata.php?action=getEbscoKbTitleDetails&height=700&width=730&modal=true&titleId=<?php echo $item->titleId; ?>",740,780)'
                     class="thickbox">
                     <?php echo $item->titleName; ?>
                 </a>
@@ -54,7 +54,7 @@ if(empty($page)) {
             </td>
             <td style="text-align: center;">
                 <a
-                    href="ajax_htmldata.php?action=getEbscoKbTitleDetails&height=700&width=730&modal=true&titleId=<?php echo $item->titleId; ?>&page=<?php echo $page; ?>"
+                    href='javascript:void(0)' onclick='javascript:myDialog("ajax_htmldata.php?action=getEbscoKbTitleDetails&height=700&width=730&modal=true&titleId=<?php echo $item->titleId; ?>&page=<?php echo $page; ?>",740,780)'
                     class="thickbox btn btn-primary">
                     <?php echo _('manage'); ?>
                 </a>

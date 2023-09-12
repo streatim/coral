@@ -35,6 +35,9 @@
 
 				?>
 			</table>
+
+            <script>$('.removeData').on('click', function () { deleteData($(this).attr("cn"), $(this).attr("id")); });</script>
+
 			<?php
 
 		}else{

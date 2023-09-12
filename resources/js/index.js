@@ -83,14 +83,6 @@ $(document).ready(function(){
 	});
 
 
-
-	//for performing excel output
-	$("#export").on('click', function () {
-		window.open('export.php');
-		return false;
-	});
-
-
 	//bind change event to Records Per Page drop down
 	$("#numberRecordsPerPage").on('change', function () {
 	  setNumberOfRecords($(this).val())

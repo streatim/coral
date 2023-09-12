@@ -23,7 +23,7 @@
 		<tr>
 		<td>
 
-			<table class='noBorder' style='width:310px; margin:10px 15px;'>
+			<table class='noBorder thickboxTable' style='width:310px; margin:10px 15px;'>
 
 			<tr>
 			<td style='vertical-align:top;text-align:left;'><label for='shortName'><b><?php echo _("Name:");?></b></label></td>

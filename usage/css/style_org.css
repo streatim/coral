@@ -336,6 +336,7 @@ table.thickboxTable{
 }
 
 table.thickboxTable td{
+  text-align: left;
   padding:1px;
 }
 

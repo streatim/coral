@@ -155,3 +155,31 @@ function postwith (to,p) {
   myForm.submit() ;
   document.body.removeChild(myForm) ;
 }
+
+
+function myDialog(loadForm, h,w){
+       if (h < 800) h = 'auto';
+       if (w < 800) w = w * 1.2;
+
+       $('<div/>').dialog({
+            modal: true,
+            open: function ()
+            {
+            if ($(this).is(':empty')) {
+                $(this).load(loadForm);
+                }
+            },
+            height: h,
+            width: w,
+        //    title:"JQuery Dialog"
+           dialogClass: "no-titlebar"
+        });
+}
+
+function myCloseDialog(){
+        //$(this).dialog('close')
+//$(this).closest('.ui-dialog-content').dialog('close');
+//      $(formName).dialog( "close" )
+     $('.ui-dialog-content').dialog('destroy');
+}
+
