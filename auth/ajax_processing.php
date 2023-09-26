@@ -52,7 +52,7 @@ if (($user->isAdmin) && ($user->getOpenSession())){
 				$sUser->passwordPrefix	= $prefix;
 			}
 
-			if ($_POST['adminInd'] == "1"){
+			if ($_POST['adminInd'] == "1" || $_POST['adminInd'] == "Y"){
 				$sUser->adminInd 		= "Y";
 			}else{
 				$sUser->adminInd 		= "N";

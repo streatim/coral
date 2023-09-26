@@ -86,7 +86,7 @@ if (!Array.prototype.indexOf)
 }
 
 function getCheckboxValue(field){
-	if ($('#' + field + ':checked').attr('checked')) {
+	if ($('#' + field)[0].checked) {
 		return 1;
 	}else{
 		return 0;
