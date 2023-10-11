@@ -16,3 +16,7 @@ tests/_support/_generated/
 
 # Custom terms tool branding
 licensing/css/custom.css
+
+# Ignore docker image files
+Dockerfile
+docker-compose.yml

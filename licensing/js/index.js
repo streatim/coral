@@ -47,7 +47,7 @@ function updateSearch(){
          type:       "GET",
          url:        "ajax_htmldata.php",
          cache:      false,
-         data:       "action=getSearchLicenses&organizationID=" + $("#organizationID").val() + "&consortiumID=" + $("#consortiumID").val() + "&shortName=" + $("#searchName").val() + "&statusID=" + $("#statusID").val() + "&documentTypeID=" + $("#documentTypeID").val() + "&expressionTypeID=" + $("#expressionTypeID").val() + "&qualifierID=" + $("#qualifierID").val() + "&termsToolIndOn=" + getCheckboxValue('termsToolIndOn') + "&termsToolIndOff=" + getCheckboxValue('termsToolIndOff') + "&orderBy=" + orderBy + "&pageStart=" + pageStart + "&numberOfRecords=" + numberOfRecords + "&startWith=" + startWith,
+         data:       "action=getSearchLicenses&organizationID=" + $("#organizationID").val() + "&consortiumID=" + $("#consortiumID").val() + "&shortName=" + $("#searchName").val() + "&statusID=" + $("#statusID").val() + "&documentTypeID=" + $("#documentTypeID").val() + "&expressionTypeID=" + $("#expressionTypeID").val() + "&qualifierID=" + $("#qualifierID").val() + "&orderBy=" + orderBy + "&pageStart=" + pageStart + "&numberOfRecords=" + numberOfRecords + "&startWith=" + startWith,
          success:    function(html) {
          	$("#div_feedback").html("&nbsp;");
          	$('#searchResults').html(html);
