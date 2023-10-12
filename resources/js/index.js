@@ -84,13 +84,13 @@ $(document).ready(function(){
 
 
 	//bind change event to Records Per Page drop down
-	$("#numberRecordsPerPage").on('change', function () {
+	$(document).on('change', '#numberRecordsPerPage', function () {
 	  setNumberOfRecords($(this).val())
 	});
 
 
 	//bind change event to each of the page start
-	$(".setPage").on('click', function () {
+	$(document).on('click', '.setPage', function () {
 		setPageStart($(this).attr('id'));
 	});
 
