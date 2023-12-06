@@ -2068,3 +2068,7 @@ div.downtime, div.issue {
 .no-titlebar .ui-dialog-titlebar {
     display: none;
 }
+
+.max-with-100 {
+  max-width: 100%;
+}
