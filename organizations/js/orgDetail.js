@@ -153,31 +153,30 @@
     submitNewResourceIssue();
   });
 
-	$("#submitNewDowntime").click(function(e) {
-		e.preventDefault();
+  $(document).on('click', '#submitNewDowntime', function (e) {
+    e.preventDefault();
 
-		var errors = [];
+    const errors = [];
 
-		if($("#startDate").val()=="") {
-			errors.push({
-				message: _("Must set a date."),
-				target: '#span_error_startDate'
-			});
-		}
+    if($("#startDate").val()==="") {
+      errors.push({
+        message: _("Must set a date."),
+        target: '#span_error_startDate'
+      });
+    }
 
-		if(errors.length == 0) {
-			submitNewDowntime();
-		} else {
+    if(errors.length === 0) {
+      submitNewDowntime();
+    } else {
 
-			$(".addDowntimeError").html("");
+      $(".addDowntimeError").html("");
 
-			for(var index in errors) {
-				error = errors[index];
-				$(error.target).html(error.message);
-			}
-		}
-
-	});
+      for(var index in errors) {
+        error = errors[index];
+        $(error.target).html(error.message);
+      }
+    }
+  });
 
 	$("#submitUpdatedDowntime").click(function(e) {
 		e.preventDefault();

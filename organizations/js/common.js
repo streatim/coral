@@ -291,6 +291,9 @@ function myDialog(loadForm, h,w){
             {
             if ($(this).is(':empty')) {
                 $(this).load(loadForm);
+                setTimeout(() => {
+                  $('.date-pick').datePicker({startDate:'01/01/1996'});
+                }, 100)
                 }
             },
             height: h,
