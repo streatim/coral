@@ -236,6 +236,9 @@ class SushiService extends DatabaseObject
     return implode("\r\n", $detailsForOutput);
   }
 
+  /**
+   * @throws Exception
+   */
   public function run($reportLayout, $serviceProvider, $overwritePlatform) {
     $this->statusLog = array();
     $this->detailLog = array();
@@ -284,7 +287,7 @@ class SushiService extends DatabaseObject
     },$report['header']['months']);
     $header = array_merge($layoutColumns,$monthColumns);
 
-    $txtOut .= implode($header, "\t") . "\n";
+    $txtOut .= implode("\t", $header) . "\n";
     $this->log("Layout validated successfully against layouts.ini : " . $layoutCode);
 
 
@@ -298,7 +301,7 @@ class SushiService extends DatabaseObject
       foreach($row['months'] as $m) {
         $finalArray[] = $m;
       }
-      $txtOut .= implode($finalArray,"\t") . "\n";
+      $txtOut .= implode("\t", $finalArray) . "\n";
     }
 
     #Save final text delimited "file" and log output on server
@@ -902,10 +905,11 @@ class SushiService extends DatabaseObject
         }
       }
 
-
-      // identifiers
-      foreach ($resource['Item_ID'] as $id) {
-        $row[$this->r5Attr($id['Type'])] = $id['Value'];
+      if (array_key_exists('Item_ID', $resource)) {
+        // identifiers
+        foreach ($resource['Item_ID'] as $id) {
+          $row[$this->r5Attr($id['Type'])] = $id['Value'];
+        }
       }
 
       // Get all possible metric types for the resource
