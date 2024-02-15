@@ -258,12 +258,12 @@ switch ($_GET['action']) {
 		<div style="display:inline-block;vertical-align:top;width:42%;">
 			<div class="form-element">
 				<label for="contactAddName">Name</label>
-				<input type='text' id='contactAddName' name='contactName' /><br />
+				<input type='text' id='contactAddName' class='max-with-100' name='contactName' /><br />
 				<span id='span_error_contactAddName' class='smallDarkRedText'></span>
 			</div>
 			<div class="form-element">
 				<label for="emailAddress">Email</label>
-				<input type='text' id='emailAddress' name='emailAddress' />
+				<input type='text' id='emailAddress' class='max-with-100' name='emailAddress' />
 				<span id='span_error_contactEmailAddress' class='smallDarkRedText'></span>
 			</div>
 		</div>
@@ -655,7 +655,7 @@ switch ($_GET['action']) {
 		<tr>
 			<td><label><?php echo _("Body:");?>&nbsp;&nbsp;<span class='bigDarkRedText'>*</span></label></td>
 			<td>
-				<textarea id='bodyText' name='issue[bodyText]' value='' />
+        <textarea id='bodyText' name='issue[bodyText]' class="max-with-100"></textarea>
 				<span id='span_error_bodyText' class='error smallDarkRedText'></span>
 			</td>
 		</tr>

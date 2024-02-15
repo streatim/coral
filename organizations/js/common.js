@@ -283,7 +283,6 @@ function postwith (to,p) {
 }
 
 function myDialog(loadForm, h,w){
-       if (h < 800) h = 'auto';
        if (w < 800) w = w * 1.2;
 
        $('<div/>').dialog({
@@ -292,6 +291,9 @@ function myDialog(loadForm, h,w){
             {
             if ($(this).is(':empty')) {
                 $(this).load(loadForm);
+                setTimeout(() => {
+                  $('.date-pick').datePicker({startDate:'01/01/1996'});
+                }, 100)
                 }
             },
             height: h,

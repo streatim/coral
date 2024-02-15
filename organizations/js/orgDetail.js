@@ -16,10 +16,10 @@
 */
 
  $(document).ready(function(){
-	 
-	 
-	 
-	 
+
+
+
+
  	updateOrganization();
  	updateAliases();
  	updateContacts();
@@ -149,35 +149,34 @@
 		submitCloseResourceIssue();
 	});
 
-	$("#submitNewResourceIssue").click(function() {
-		submitNewResourceIssue();
-	});
+  $(document).on('click', '#submitNewResourceIssue', function () {
+    submitNewResourceIssue();
+  });
 
-	$("#submitNewDowntime").click(function(e) {
-		e.preventDefault();
+  $(document).on('click', '#submitNewDowntime', function (e) {
+    e.preventDefault();
 
-		var errors = [];
+    const errors = [];
 
-		if($("#startDate").val()=="") {
-			errors.push({
-				message: _("Must set a date."),
-				target: '#span_error_startDate'
-			});
-		}
+    if($("#startDate").val()==="") {
+      errors.push({
+        message: _("Must set a date."),
+        target: '#span_error_startDate'
+      });
+    }
 
-		if(errors.length == 0) {
-			submitNewDowntime();
-		} else {
+    if(errors.length === 0) {
+      submitNewDowntime();
+    } else {
 
-			$(".addDowntimeError").html("");
+      $(".addDowntimeError").html("");
 
-			for(var index in errors) {
-				error = errors[index];
-				$(error.target).html(error.message);
-			}
-		}
-
-	});
+      for(var index in errors) {
+        error = errors[index];
+        $(error.target).html(error.message);
+      }
+    }
+  });
 
 	$("#submitUpdatedDowntime").click(function(e) {
 		e.preventDefault();
@@ -223,12 +222,12 @@
 
 	});
 
-	$("#getCreateContactForm").click(function(e) {
-		e.preventDefault();
-		$(this).fadeOut(250, function() {
-			getInlineContactForm();
-		});
-	});
+  $(document).on('click', '#getCreateContactForm', function (e) {
+    e.preventDefault();
+    $(this).fadeOut(250, function() {
+      getInlineContactForm();
+    });
+  });
 
 	$("#addEmail").click(function(e) {
 		e.preventDefault();
@@ -512,42 +511,42 @@ function updateIssues(){
 
 }
 
-$("#createContact").click(function(e) {
-	e.preventDefault();
+$(document).on('click', '#createContact', function (e) {
+  e.preventDefault();
 
-	var errors = [];
+  var errors = [];
 
-	if($("#contactAddName").val() == "") {
-		errors.push({
-			message: _("New contact must have a name."),
-			target: '#span_error_contactAddName'
-		});
-	}
+  if($("#contactAddName").val() == "") {
+    errors.push({
+      message: _("New contact must have a name."),
+      target: '#span_error_contactAddName'
+    });
+  }
 
-	if(!validateEmail($("#emailAddress").val())) {
-		errors.push({
-			message: _("CC must be a valid email."),
-			target: '#span_error_contactEmailAddress'
-		});
-	}
+  if(!validateEmail($("#emailAddress").val())) {
+    errors.push({
+      message: _("CC must be a valid email."),
+      target: '#span_error_contactEmailAddress'
+    });
+  }
 
-	if(errors.length == 0) {
-		var roles = new Array();
-		$(".check_roles:checked").each(function() {
-			roles.push($(this).val());
-		});
-		//create the contact and update the contact list
-		createOrganizationContact({"organizationID":$("#organizationID").val(),"name":$("#contactAddName").val(),"emailAddress":$("#emailAddress").val(),"contactRoles":roles});
-	} else {
+  let error;
+  if (errors.length === 0) {
+    var roles = new Array();
+    $(".check_roles:checked").each(function () {
+      roles.push($(this).val());
+    });
+    //create the contact and update the contact list
+    createOrganizationContact({"organizationID": $("#organizationID").val(), "name": $("#contactAddName").val(), "emailAddress": $("#emailAddress").val(), "contactRoles": roles});
+  } else {
 
-		$(".addContactError").html("");
+    $(".addContactError").html("");
 
-		for(var index in errors) {
-			error = errors[index];
-			$(error.target).html(error.message);
-		}
-	}
-
+    for (var index in errors) {
+      error = errors[index];
+      $(error.target).html(error.message);
+    }
+  }
 });
 
 

@@ -265,7 +265,7 @@ switch ($_GET['action']) {
 		<?php
 		}
 
-        if ($organization->ilsID){ 
+        if ($organization->ilsID){
             $ilsClient = (new ILSClientSelector())->select();
         ?>
 			<tr>
@@ -666,7 +666,7 @@ switch ($_GET['action']) {
 				<th><?php echo _("Issues/Problems");?></th>
 			</tr>
 			<tr>
-				<td><a id="createIssueBtn" class="thickbox" href="javascript:void(0)" onclick='myDialog("ajax_forms.php?action=getNewIssueForm&organizationID=<?php echo $organizationID; ?>&modal=true",300,350)'><?php echo _("report new issue");?></a></td>
+				<td><a id="createIssueBtn" class="thickbox" href="javascript:void(0)" onclick='myDialog("ajax_forms.php?action=getNewIssueForm&organizationID=<?php echo $organizationID; ?>&modal=true",600,500)'><?php echo _("report new issue");?></a></td>
 			</tr>
 			<tr>
 				<td>
