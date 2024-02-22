@@ -385,8 +385,10 @@ class SushiService extends DatabaseObject
     $endpoint = $this->serviceURL . $trailingSlash . 'reports/' . strtolower($reportLayout) . '?' . http_build_query($params);
     $ch = curl_init($endpoint);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-    if (preg_match("/http/i", $this->security)) {
-      curl_setopt($ch, CURLOPT_USERPWD, $this->login . ":" . $this->password);
+    if ($this->security) {
+      if (preg_match("/http/i", $this->security)) {
+        curl_setopt($ch, CURLOPT_USERPWD, $this->login . ":" . $this->password);
+      }
     }
     curl_setopt($ch, CURLOPT_TIMEOUT, 600);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
@@ -838,8 +840,10 @@ class SushiService extends DatabaseObject
       }
 
       // Publisher ID
-      if (is_array($resource['Publisher_ID']) && count($resource['Publisher_ID'] > 0)) {
-        $row['publisherID'] = strtolower($resource['Publisher_ID'][0]['Type']) . '=' . $resource['Publisher_ID'][0]['Value'];
+      if (is_array($resource) && array_key_exists('Publisher_ID', $resource)) {
+        if (count($resource['Publisher_ID'])) {
+          $row['publisherID'] = strtolower($resource['Publisher_ID'][0]['Type']) . '=' . $resource['Publisher_ID'][0]['Value'];
+        }
       }
 
       // all string values
