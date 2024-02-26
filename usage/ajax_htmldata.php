@@ -287,7 +287,7 @@ switch ($action) {
 					$orgArray = $publisherPlatform->getOrganizationExternalLogins();
 					$externalLoginArray = $publisherPlatform->getExternalLogins();
 
-					if ((count($orgArray) > 0) || (count($externalLoginArray) > 0)){
+					if ((is_array($orgArray) && count($orgArray) > 0) || (is_array($externalLoginArray) && count($externalLoginArray) > 0)){
 						$pub = new Publisher(new NamedArguments(array('primaryKey' => $publisherPlatform->publisherID)));
 						$pubArray[$publisherPlatform->publisherID] = $pub->name;
 					}
