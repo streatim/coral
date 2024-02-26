@@ -122,10 +122,10 @@
 		return false;
 	});
 
-  	$(".downtimeBtn").click(function(e) {
-		e.preventDefault();
-		getDowntime($(this));
-	});
+   $(document).on('click', '.downtimeBtn', function (e) {
+     e.preventDefault();
+     getDowntime($(this));
+   });
 
 	  $(".showLicenses").click(function () {
 		if (viewAll == 0){
