@@ -17,27 +17,26 @@
 
  $(function(){
 
-
-	 $("#submitPublisherNoteForm").click(function () {
-	 	submitPublisherNote();
-	 });
+   $(document).on('click', '#submitPublisherNoteForm', function (e) {
+     submitPublisherNote();
+   });
 
 
 
 	//do submit if enter is hit
-	$('#startYear').keyup(function(e) {
-	      if(e.keyCode == 13) {
-		submitPublisherNote();
-	      }
+   $(document).on('keyup', '#startYear', function (e) {
+     if(e.keyCode === 13) {
+       submitPublisherNote();
+     }
 	});
 
 
 	//do submit if enter is hit
-	$('#endYear').keyup(function(e) {
-	      if(e.keyCode == 13) {
-		submitPublisherNote();
-	      }
-	});
+   $(document).on('keyup', '#endYear', function (e) {
+     if(e.keyCode === 13) {
+       submitPublisherNote();
+     }
+   });
 
 
 

@@ -17,26 +17,23 @@
 
  $(function(){
 
-
-	 $("#submitPlatformNoteForm").click(function () {
-	 	submitPlatformNotes();
+   $(document).on('click', '#submitPlatformNoteForm', function () {
+     submitPlatformNotes();
 	 });
 
-
-
 	//do submit if enter is hit
-	$('#startYear').keyup(function(e) {
-	      if(e.keyCode == 13) {
-		submitPlatformNotes();
-	      }
+   $(document).on('keyup', '#startYear', function (e) {
+     if(e.keyCode === 13) {
+       submitPlatformNotes();
+     }
 	});
 
 
 	//do submit if enter is hit
-	$('#endYear').keyup(function(e) {
-	      if(e.keyCode == 13) {
-		submitPlatformNotes();
-	      }
+   $(document).on('keyup', '#endYear', function (e) {
+     if(e.keyCode === 13) {
+       submitPlatformNotes();
+     }
 	});
 
 
