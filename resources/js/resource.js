@@ -36,7 +36,7 @@ $(document).ready(function(){
 	  $('.resource_tab_content').hide();
 		$('#div_orders').show();
 		$('#div_fullRightPanel').show();
-		updateOrders();	
+		updateOrders();
 		return false;
 	});
 
@@ -97,17 +97,17 @@ $(document).ready(function(){
 		updateCataloging();
 		return false;
 	});
-	 
+
 
     $("#resourceAcquisitionSelect").change(function () {
         var newLoc = location.search;
         if (newLoc.includes('resourceAcquisitionID')) {
             newLoc = newLoc.replace(/resourceAcquisitionID=[^&$]*/i, 'resourceAcquisitionID=' + $(this).val());
         } else {
-           newLoc += "&resourceAcquisitionID=" + $(this).val(); 
+           newLoc += "&resourceAcquisitionID=" + $(this).val();
         }
         if (newLoc.includes('showTab')) {
-            newLoc = newLoc.replace(/showTab=[^&$]*/i, 'showTab=' + currentTab);    
+            newLoc = newLoc.replace(/showTab=[^&$]*/i, 'showTab=' + currentTab);
         } else {
             newLoc += "&showTab=" + currentTab;
         }
@@ -121,12 +121,12 @@ $(document).ready(function(){
  	updateAttachmentsNumber();
 
 
-	$(".issuesBtn").on("click", function(e) {
+  $(document).on('click' , '.issuesBtn', function(e) {
 		e.preventDefault();
 		getIssues($(this));
 	});
 
-	$(".downtimeBtn").on("click", function(e) {
+  $(document).on('click', '.downtimeBtn', function (e) {
 		e.preventDefault();
 		getDowntime($(this));
 	});
@@ -220,7 +220,7 @@ $(document).ready(function(){
 		});
 	});
 
-	$("#createContact").on("click",function(e) {
+  $(document).on('click', '#createContact', function (e) {
 		e.preventDefault();
 
 		var errors = [];
@@ -293,7 +293,7 @@ $(document).ready(function(){
 		$(this).hide();
 	});
 
-	
+
 	$(function(){
 		$('.date-pick').datePicker({startDate:'01/01/1996'});
 	});
@@ -487,7 +487,7 @@ function getInlineContactForm() {
 }
 
 function updateIssues(){
-  currentTab = "Issues"; 
+  currentTab = "Issues";
   $.ajax({
 	 type:       "GET",
 	 url:        "ajax_htmldata.php",

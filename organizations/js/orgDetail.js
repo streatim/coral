@@ -204,7 +204,7 @@
 
 	});
 
-	$(".issuesBtn").click(function(e) {
+	$(document).on('click' , '.issuesBtn', function(e) {
 		e.preventDefault();
 		getResourceIssues($(this));
 	});
