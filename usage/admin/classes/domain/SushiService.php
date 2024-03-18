@@ -384,7 +384,10 @@ class SushiService extends DatabaseObject
     $trailingSlash = substr($this->serviceURL, -1) == '/' ? '' : '/';
     $endpoint = $this->serviceURL . $trailingSlash . 'reports/' . strtolower($reportLayout) . '?' . http_build_query($params);
     $ch = curl_init($endpoint);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'Content-Type: application/json',
+      'Accept: application/json'
+    ));
     if ($this->security) {
       if (preg_match("/http/i", $this->security)) {
         curl_setopt($ch, CURLOPT_USERPWD, $this->login . ":" . $this->password);
@@ -397,28 +400,18 @@ class SushiService extends DatabaseObject
     $this->log("Connecting to $this->serviceURL");
 
     // try executing curl
-    try {
-      $response = curl_exec($ch);
-    } catch (Exception $e) {
-      $error = $e->getMessage();
+    $response = curl_exec($ch);
+    if ($response === false) {
+      $error = curl_error($ch);
       $this->logStatus("Exception performing curl request with connection to $serviceProvider: $error");
-      $this->saveLogAndExit($reportLayout);
-    }
-
-    // check for curl errors
-    if (curl_errno($ch)) {
-      $this->logStatus("Request Error with connection to $serviceProvider:" . curl_error($ch));
       $this->saveLogAndExit($reportLayout);
     }
     curl_close($ch);
 
-
-    // Check for errors
-    try {
-      $json = json_decode($response);
-    } catch (Exception $e) {
-      $error = $e->getMessage();
-      $this->logStatus("There was an error trying to parse the SUSHI report from $serviceProvider. This could be due to a malformed response from the sushi service. Error: $error");
+    $response = mb_convert_encoding($response, 'UTF-8', 'UTF-8');
+    $json = json_decode($response);
+    if (json_last_error() !== JSON_ERROR_NONE) {
+      $this->logStatus('JSON decoding error: ' . json_last_error_msg());
       $this->saveLogAndExit($reportLayout);
     }
 
