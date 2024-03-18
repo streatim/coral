@@ -103,7 +103,7 @@ $licenseArray = $resourceAcquisition->getLicenseArray();
       <span style='float:left;vertical-align:bottom;'><?php echo _("Cataloging");?></span>
 
       <?php if ($user->canEdit()){ ?>
-      	<span style='float:right;vertical-align:bottom;'><a href='javascript:void(0)' onclick='javascript:myDialog("resources/cataloging_edit.php?resourceID=<?php echo $resourceID; ?>", 400,800)' class='thickbox' id='editOrder'><img src='images/edit.gif' alt='edit' title='<?php echo _("edit order information");?>'></a></span>
+      	<span style='float:right;vertical-align:bottom;'><a href='javascript:void(0)' onclick='javascript:myDialog("resources/cataloging_edit.php?resourceID=<?php echo $resourceID; ?>&resourceAcquisitionID=<?php echo $resourceAcquisitionID; ?>", 400,800)' class='thickbox'><img src='images/edit.gif' alt='edit' title='<?php echo _("edit cataloging details");?>'></a></span>
       <?php } ?>
 
     </th>
