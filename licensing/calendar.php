@@ -206,7 +206,11 @@ $result = mysqli_query($link, $query) or die(_("Bad Query Failure: ".mysqli_erro
 						} else {
 							$html = $html . "<a href='license.php?licenseID=" . $row["licenseID"] . "'>". $row["shortName"] . "</a>";
 						}
-					$html = $html . " ] - " . $row["resourceTypeName"] . " ";
+          if (mb_check_encoding($row["resourceTypeName"], 'UTF-8')) {
+            $html = $html . " ] - " . mb_convert_encoding($row["resourceTypeName"], "UTF-8", "ISO-8859-1") . " ";
+          } else {
+            $html = $html . " ] - " . $row["resourceTypeName"] . " ";
+          }
                     if ($interval->invert) {
                         $html = $html . "- <strong style='color:red'>"._("Expired ").$num_days._(" days ago")."</strong>";
                     } else {
