@@ -481,7 +481,7 @@ switch ($action) {
 
 
 		echo "<br /><br /><img src='images/help.gif' style='float:left;'>&nbsp;&nbsp;";
-		echo _("Visit the ") . "<a href='https://groups.niso.org/workrooms/sushi/registry_server/' target='_blank'>" . _("SUSHI Server Registry") . "</a>" . _(" for information about adding your provider.");
+		echo _("Visit the ") . "<a href='https://registry.projectcounter.org' target='_blank'>" . _("SUSHI Server Registry") . "</a>" . _(" for information about adding your provider.");
 
         break;
 
