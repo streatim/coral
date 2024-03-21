@@ -100,17 +100,12 @@
 		return false;
 	 });
 
+  $(document).on('click', '#createDowntimeBtn', function () {
+    $(".downtimeList").slideUp(250);
+  });
 
-	$("#createIssueBtn").click(function() {
-		$(".issueList").slideUp(250);
-	});
-
-	$("#createDowntimeBtn").click(function() {
-		$(".downtimeList").slideUp(250);
-	});
-
-	$(".showResourceIssues").click(function () {
-		if (viewAll == 0){
+   $(document).on('click', '.showResourceIssues', function () {
+		if (viewAll === 0){
 			$('#div_organization').hide();
 			$('#div_aliases').hide();
 			$('#div_contacts').hide();
@@ -145,7 +140,7 @@
 		$('.date-pick').datePicker({startDate:'01/01/1996'});
 	});
 
-	$("#submitCloseResourceIssue").click(function() {
+   $(document).on('click', '#submitCloseResourceIssue', function () {
 		submitCloseResourceIssue();
 	});
 
@@ -178,31 +173,30 @@
     }
   });
 
-	$("#submitUpdatedDowntime").click(function(e) {
-		e.preventDefault();
+  $(document).on('click', '#submitUpdatedDowntime', function (e) {
+    e.preventDefault();
 
-		var errors = [];
+    var errors = [];
 
-		if($("#endDate").val()=="") {
-			errors.push({
-				message: _("Must set an end date."),
-				target: '#span_error_endDate'
-			});
-		}
+    if($("#endDate").val()=="") {
+      errors.push({
+        message: _("Must set an end date."),
+        target: '#span_error_endDate'
+      });
+    }
 
-		if(errors.length == 0) {
-			submitUpdatedDowntime();
-		} else {
+    if(errors.length == 0) {
+      submitUpdatedDowntime();
+    } else {
 
-			$(".updateDowntimeError").html("");
+      $(".updateDowntimeError").html("");
 
-			for(var index in errors) {
-				error = errors[index];
-				$(error.target).html(error.message);
-			}
-		}
-
-	});
+      for(var index in errors) {
+        error = errors[index];
+        $(error.target).html(error.message);
+      }
+    }
+  });
 
 	$(document).on('click' , '.issuesBtn', function(e) {
 		e.preventDefault();

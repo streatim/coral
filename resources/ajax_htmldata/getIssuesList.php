@@ -10,7 +10,7 @@ $util = new Utility();
 
 //shared html template for organization and resource issues
 function generateIssueHTML($issue,$associatedEntities=null) {
-	$html = "
+	$html = "<div id='openIssues'>
 	<div class=\"issue\">";
 	if (!$issue->dateClosed) {
 		$html .= "
@@ -49,8 +49,8 @@ function generateIssueHTML($issue,$associatedEntities=null) {
 	}
 
 
-	$html .= "	</dd> 
-	  		<dt>" . _("Applies to:") . "</dt> 
+	$html .= "	</dd>
+	  		<dt>" . _("Applies to:") . "</dt>
 	  		<dd>";
 	if ($associatedEntities) {
 		$temp ='';
@@ -66,7 +66,7 @@ function generateIssueHTML($issue,$associatedEntities=null) {
         <dt class=\"block\">" . _("Body:") . "</dt>
         <dd>{$issue->bodyText}</dd>
         </dl>
-    </div>";
+    </div></div>";
 	return $html;
 }
 

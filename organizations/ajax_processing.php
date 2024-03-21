@@ -367,6 +367,7 @@ switch ($_GET['action']) {
 		}
 	break;
 	case 'insertDowntime':
+    global $user;
 		$newDowntime = new Downtime();
 		$newDowntime->entityID = $_POST['sourceOrganizationID'];
 		$newDowntime->creatorID = $user->loginID;

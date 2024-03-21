@@ -1589,6 +1589,7 @@ a.showResourceIssues:before {
 
 div#openIssues {
     margin: 8px;
+    text-align: left;
 }
 
 div#archivedIssues {
@@ -2071,4 +2072,12 @@ div.downtime, div.issue {
 
 .max-with-100 {
   max-width: 100%;
+}
+
+.my-dialog {
+  top: 100px !important;
+}
+
+.my-dialog .issue {
+  border-bottom: 1px solid #eee;
 }

@@ -15,353 +15,353 @@
 **************************************************************************************************************************
 */
 
-$.urlParam = function(name){
-    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    return (results) ? results[1] : 0;
+$.urlParam = function (name) {
+  var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+  return (results) ? results[1] : 0;
 }
 
 var currentTab = 'Product';
 
-$(document).ready(function(){
+$(document).ready(function () {
 
-	$(".showProduct").click(function () {
-	  $('.resource_tab_content').hide();
-		$('#div_product').show();
-		$('#div_fullRightPanel').show();
-		updateProduct();
-		return false;
-	});
+  $(".showProduct").click(function () {
+    $('.resource_tab_content').hide();
+    $('#div_product').show();
+    $('#div_fullRightPanel').show();
+    updateProduct();
+    return false;
+  });
 
-	$(".showOrders").click(function () {
-	  $('.resource_tab_content').hide();
-		$('#div_orders').show();
-		$('#div_fullRightPanel').show();
-		updateOrders();
-		return false;
-	});
+  $(".showOrders").click(function () {
+    $('.resource_tab_content').hide();
+    $('#div_orders').show();
+    $('#div_fullRightPanel').show();
+    updateOrders();
+    return false;
+  });
 
-	$(".showAcquisitions").click(function () {
-	  $('.resource_tab_content').hide();
-		$('#div_acquisitions').show();
-		$('#div_fullRightPanel').show();
-		updateAcquisitions();
-		return false;
-	});
+  $(".showAcquisitions").click(function () {
+    $('.resource_tab_content').hide();
+    $('#div_acquisitions').show();
+    $('#div_fullRightPanel').show();
+    updateAcquisitions();
+    return false;
+  });
 
-	$(".showAccess").click(function () {
-	  $('.resource_tab_content').hide();
-		$('#div_access').show();
-		$('#div_fullRightPanel').show();
-		updateAccess();
-		return false;
-	 });
+  $(".showAccess").click(function () {
+    $('.resource_tab_content').hide();
+    $('#div_access').show();
+    $('#div_fullRightPanel').show();
+    updateAccess();
+    return false;
+  });
 
-	$(".showContacts").click(function () {
-	  $('.resource_tab_content').hide();
-		$('#div_contacts').show();
-		$('#div_fullRightPanel').show();
-		updateContacts();
-		updateArchivedContacts(0);
-		return false;
-	});
+  $(".showContacts").click(function () {
+    $('.resource_tab_content').hide();
+    $('#div_contacts').show();
+    $('#div_fullRightPanel').show();
+    updateContacts();
+    updateArchivedContacts(0);
+    return false;
+  });
 
-	$(".showIssues").click(function () {
-	    $('.resource_tab_content').hide();
-		$('#div_issues').show();
-		$('#div_fullRightPanel').show();
-		updateIssues();
-		return false;
-	});
+  $(".showIssues").click(function () {
+    $('.resource_tab_content').hide();
+    $('#div_issues').show();
+    $('#div_fullRightPanel').show();
+    updateIssues();
+    return false;
+  });
 
-	$(".showAttachments").click(function () {
-	  $('.resource_tab_content').hide();
-		$('#div_attachments').show();
-		$('#div_fullRightPanel').show();
-		updateAttachments();
-		return false;
-	});
+  $(".showAttachments").click(function () {
+    $('.resource_tab_content').hide();
+    $('#div_attachments').show();
+    $('#div_fullRightPanel').show();
+    updateAttachments();
+    return false;
+  });
 
-    $(".showWorkflow").click(function () {
-	  $('.resource_tab_content').hide();
-		$('#div_workflow').show();
-		$('#div_fullRightPanel').hide();
-		updateWorkflow();
-        $('#restartWorkflowDiv').hide();
-		return false;
-	});
+  $(".showWorkflow").click(function () {
+    $('.resource_tab_content').hide();
+    $('#div_workflow').show();
+    $('#div_fullRightPanel').hide();
+    updateWorkflow();
+    $('#restartWorkflowDiv').hide();
+    return false;
+  });
 
-	$(".showCataloging").click(function () {
-	  $('.resource_tab_content').hide();
-		$('#div_cataloging').show();
-		$('#div_fullRightPanel').show();
-		updateCataloging();
-		return false;
-	});
-
-
-    $("#resourceAcquisitionSelect").change(function () {
-        var newLoc = location.search;
-        if (newLoc.includes('resourceAcquisitionID')) {
-            newLoc = newLoc.replace(/resourceAcquisitionID=[^&$]*/i, 'resourceAcquisitionID=' + $(this).val());
-        } else {
-           newLoc += "&resourceAcquisitionID=" + $(this).val();
-        }
-        if (newLoc.includes('showTab')) {
-            newLoc = newLoc.replace(/showTab=[^&$]*/i, 'showTab=' + currentTab);
-        } else {
-            newLoc += "&showTab=" + currentTab;
-        }
-        location.search = newLoc;
-    });
-
-    currentTab = $.urlParam('showTab') || "Product";
-    $(".show" + currentTab).click();
-
- 	updateRightPanel();
- 	updateAttachmentsNumber();
+  $(".showCataloging").click(function () {
+    $('.resource_tab_content').hide();
+    $('#div_cataloging').show();
+    $('#div_fullRightPanel').show();
+    updateCataloging();
+    return false;
+  });
 
 
-  $(document).on('click' , '.issuesBtn', function(e) {
-		e.preventDefault();
-		getIssues($(this));
-	});
+  $("#resourceAcquisitionSelect").change(function () {
+    var newLoc = location.search;
+    if (newLoc.includes('resourceAcquisitionID')) {
+      newLoc = newLoc.replace(/resourceAcquisitionID=[^&$]*/i, 'resourceAcquisitionID=' + $(this).val());
+    } else {
+      newLoc += "&resourceAcquisitionID=" + $(this).val();
+    }
+    if (newLoc.includes('showTab')) {
+      newLoc = newLoc.replace(/showTab=[^&$]*/i, 'showTab=' + currentTab);
+    } else {
+      newLoc += "&showTab=" + currentTab;
+    }
+    location.search = newLoc;
+  });
+
+  currentTab = $.urlParam('showTab') || "Product";
+  $(".show" + currentTab).click();
+
+  updateRightPanel();
+  updateAttachmentsNumber();
+
+
+  $(document).on('click', '.issuesBtn', function (e) {
+    e.preventDefault();
+    getIssues($(this));
+  });
 
   $(document).on('click', '.downtimeBtn', function (e) {
-		e.preventDefault();
-		getDowntime($(this));
-	});
+    e.preventDefault();
+    getDowntime($(this));
+  });
 
-	$("#submitCloseIssue").on("click", function() {
-		submitCloseIssue();
-	});
+  $(document).on('click', '#submitCloseIssue', function (e) {
+    submitCloseIssue();
+  });
 
-	$("#submitNewIssue").on("click", function(e) {
-		e.preventDefault();
-		submitNewIssue();
-	});
+  $(document).on('click', '#submitNewIssue', function (e) {
+    e.preventDefault();
+    submitNewIssue();
+  });
 
-	$("#submitNewDowntime").on("click", function(e) {
-		e.preventDefault();
+  $(document).on('click', '#submitNewDowntime', function (e) {
+    e.preventDefault();
 
-		var errors = [];
+    var errors = [];
 
-		if($("#startDate").val()=="") {
-			errors.push({
-				message: _("Must set a date."),
-				target: '#span_error_startDate'
-			});
-		}
+    if ($("#startDate").val() == "") {
+      errors.push({
+        message: _("Must set a date."),
+        target: '#span_error_startDate'
+      });
+    }
 
-		if(errors.length == 0) {
-			submitNewDowntime();
-		} else {
+    if (errors.length == 0) {
+      submitNewDowntime();
+    } else {
 
-			$(".addDowntimeError").html("");
+      $(".addDowntimeError").html("");
 
-			for(var index in errors) {
-				error = errors[index];
-				$(error.target).html(error.message);
-			}
-		}
+      for (var index in errors) {
+        error = errors[index];
+        $(error.target).html(error.message);
+      }
+    }
 
-	});
+  });
 
-	$("#submitUpdatedDowntime").on("click", function(e) {
-		e.preventDefault();
+  $("#submitUpdatedDowntime").on("click", function (e) {
+    e.preventDefault();
 
-		var errors = [];
+    var errors = [];
 
-		if($("#endDate").val()=="") {
-			errors.push({
-				message: _("Must set an end date."),
-				target: '#span_error_endDate'
-			});
-		}
+    if ($("#endDate").val() == "") {
+      errors.push({
+        message: _("Must set an end date."),
+        target: '#span_error_endDate'
+      });
+    }
 
-		if(errors.length == 0) {
-			submitUpdatedDowntime();
-		} else {
+    if (errors.length == 0) {
+      submitUpdatedDowntime();
+    } else {
 
-			$(".updateDowntimeError").html("");
+      $(".updateDowntimeError").html("");
 
-			for(var index in errors) {
-				error = errors[index];
-				$(error.target).html(error.message);
-			}
-		}
+      for (var index in errors) {
+        error = errors[index];
+        $(error.target).html(error.message);
+      }
+    }
 
-	});
+  });
 
-	$(".issueResources").on("click", function() {
+  $(".issueResources").on("click", function () {
 
-		$(".issueResources").attr("checked", false);
-		$(this).attr("checked", true);
+    $(".issueResources").attr("checked", false);
+    $(this).attr("checked", true);
 
-		if($(this).attr("id") == "otherResources") {
-			$("#resourceIDs").fadeIn(250)
-		} else {
-			$("#resourceIDs").fadeOut(250)
-		}
+    if ($(this).attr("id") == "otherResources") {
+      $("#resourceIDs").fadeIn(250)
+    } else {
+      $("#resourceIDs").fadeOut(250)
+    }
 
-	});
+  });
 
-	$("#createIssueBtn").on("click", function() {
-		$(".issueList").slideUp(250);
-	});
+  $(document).on('click', '#createIssueBtn', function () {
+    $(".issueList").slideUp(250);
+  });
 
-	$("#createDowntimeBtn").on("click", function() {
-		$(".downtimeList").slideUp(250);
-	});
+  $(document).on('click', '#createDowntimeBtn', function () {
+    $(".downtimeList").slideUp(250);
+  });
 
-	$("#getCreateContactForm").on("click",function(e) {
-		e.preventDefault();
-		$(this).fadeOut(250, function() {
-			getInlineContactForm();
-		});
-	});
+  $("#getCreateContactForm").on("click", function (e) {
+    e.preventDefault();
+    $(this).fadeOut(250, function () {
+      getInlineContactForm();
+    });
+  });
 
   $(document).on('click', '#createContact', function (e) {
-		e.preventDefault();
+    e.preventDefault();
 
-		var errors = [];
+    var errors = [];
 
-		if($("#contactAddName").val() == "") {
-			errors.push({
-				message: _("New contact must have a name."),
-				target: '#span_error_contactAddName'
-			});
-		}
+    if ($("#contactAddName").val() == "") {
+      errors.push({
+        message: _("New contact must have a name."),
+        target: '#span_error_contactAddName'
+      });
+    }
 
-		if(!validateEmail($("#emailAddress").val())) {
-			errors.push({
-				message: _("CC must be a valid email."),
-				target: '#span_error_contactEmailAddress'
-			});
-		}
+    if (!validateEmail($("#emailAddress").val())) {
+      errors.push({
+        message: _("CC must be a valid email."),
+        target: '#span_error_contactEmailAddress'
+      });
+    }
 
-		if(errors.length == 0) {
-			var roles = new Array();
-			$(".check_roles:checked").each(function() {
-				roles.push($(this).val());
-			});
-			//create the contact and update the contact list
-			createOrganizationContact({"organizationID":$("#organizationID").val(),"name":$("#contactAddName").val(),"emailAddress":$("#emailAddress").val(),"contactRoles":roles});
-		} else {
+    if (errors.length == 0) {
+      var roles = new Array();
+      $(".check_roles:checked").each(function () {
+        roles.push($(this).val());
+      });
+      //create the contact and update the contact list
+      createOrganizationContact({"organizationID": $("#organizationID").val(), "name": $("#contactAddName").val(), "emailAddress": $("#emailAddress").val(), "contactRoles": roles});
+    } else {
 
-			$(".addContactError").html("");
+      $(".addContactError").html("");
 
-			for(var index in errors) {
-				error = errors[index];
-				$(error.target).html(error.message);
-			}
-		}
+      for (var index in errors) {
+        error = errors[index];
+        $(error.target).html(error.message);
+      }
+    }
 
-	});
+  });
 
-	$("#addEmail").on("click", function(e) {
-		e.preventDefault();
-		var inputEmail = $("#inputEmail").val();
-		var valid = validateEmail(inputEmail);
-		if (valid) {
-			var currentVal = $("#ccEmails").val();
+  $("#addEmail").on("click", function (e) {
+    e.preventDefault();
+    var inputEmail = $("#inputEmail").val();
+    var valid = validateEmail(inputEmail);
+    if (valid) {
+      var currentVal = $("#ccEmails").val();
 
-			$("#currentEmails").append(inputEmail+", ");
+      $("#currentEmails").append(inputEmail + ", ");
 
-			if (!currentVal) {
-				$("#ccEmails").val(inputEmail);
-			} else {
-				$("#ccEmails").val(currentVal+','+inputEmail);
-			}
+      if (!currentVal) {
+        $("#ccEmails").val(inputEmail);
+      } else {
+        $("#ccEmails").val(currentVal + ',' + inputEmail);
+      }
 
-			$("#inputEmail").val('');
-			$('#span_error_contactIDs').html('');
-		} else {
-			$('#span_error_contactIDs').html(_('CC must be a valid email.'));
-		}
-	});
+      $("#inputEmail").val('');
+      $('#span_error_contactIDs').html('');
+    } else {
+      $('#span_error_contactIDs').html(_('CC must be a valid email.'));
+    }
+  });
 
-	$(".showAccounts").click(function () {
-	  $('.resource_tab_content').hide();
-		$('#div_accounts').show();
-		$('#div_fullRightPanel').show();
-		updateAccounts();
-		return false;
-	});
+  $(".showAccounts").click(function () {
+    $('.resource_tab_content').hide();
+    $('#div_accounts').show();
+    $('#div_fullRightPanel').show();
+    updateAccounts();
+    return false;
+  });
 
-	$("#showAllChildResources").on('click', function () {
-		$('.helpfulLink__hidden').removeClass('helpfulLink__hidden');
-		$(this).hide();
-	});
-
-
-	$(function(){
-		$('.date-pick').datePicker({startDate:'01/01/1996'});
-	});
+  $("#showAllChildResources").on('click', function () {
+    $('.helpfulLink__hidden').removeClass('helpfulLink__hidden');
+    $(this).hide();
+  });
 
 
-	// empty the new message span in 10 seconds
-	setTimeout("emptyNewMessage();",10000);
+  $(function () {
+    $('.date-pick').datePicker({startDate: '01/01/1996'});
+  });
 
 
- });
+  // empty the new message span in 10 seconds
+  setTimeout("emptyNewMessage();", 10000);
+
+
+});
 
 
 var showArchivedContacts = 0;
 
-function updateProduct(){
+function updateProduct() {
   currentTab = "Product";
   $("#icon_product").html("<img src='images/littlecircle.gif' />");
 
   $.ajax({
-	 type:       "GET",
-	 url:        "ajax_htmldata.php",
-	 cache:      false,
-	 data:       "action=getProductDetails&resourceID=" + $("#resourceID").val(),
-	 success:    function(html) {
-		$("#div_product .div_mainContent").html(html);
-		bind_removes();
-		$("#icon_product").html("<img src='images/butterflyfishicon.jpg' />");
-	 }
+    type: "GET",
+    url: "ajax_htmldata.php",
+    cache: false,
+    data: "action=getProductDetails&resourceID=" + $("#resourceID").val(),
+    success: function (html) {
+      $("#div_product .div_mainContent").html(html);
+      bind_removes();
+      $("#icon_product").html("<img src='images/butterflyfishicon.jpg' />");
+    }
 
 
   });
 
 }
 
-function updateOrders(){
+function updateOrders() {
   currentTab = "Orders";
   $("#icon_orders").html("<img src='images/littlecircle.gif' />");
 
   $.ajax({
-	 type:       "GET",
-	 url:        "ajax_htmldata.php",
-	 cache:      false,
-	 data:       "action=getOrdersDetails&resourceID=" + $("#resourceID").val() + "&resourceAcquisitionID=" + $("#resourceAcquisitionSelect").val(),
-	 success:    function(html) {
-		$("#div_orders .div_mainContent").html(html);
-		bind_removes();
-		$("#icon_orders").html("<img src='images/orders.gif' />");
-	 }
+    type: "GET",
+    url: "ajax_htmldata.php",
+    cache: false,
+    data: "action=getOrdersDetails&resourceID=" + $("#resourceID").val() + "&resourceAcquisitionID=" + $("#resourceAcquisitionSelect").val(),
+    success: function (html) {
+      $("#div_orders .div_mainContent").html(html);
+      bind_removes();
+      $("#icon_orders").html("<img src='images/orders.gif' />");
+    }
 
 
   });
 
 }
 
-function updateAcquisitions(){
+function updateAcquisitions() {
   currentTab = "Acquisitions";
   $("#icon_acquisitions").html("<img src='images/littlecircle.gif' />");
 
   $.ajax({
-	 type:       "GET",
-	 url:        "ajax_htmldata.php",
-	 cache:      false,
-	 data:       "action=getAcquisitionsDetails&resourceID=" + $("#resourceID").val() + "&resourceAcquisitionID=" + $("#resourceAcquisitionSelect").val(),
-	 success:    function(html) {
-		$("#div_acquisitions .div_mainContent").html(html);
-		bind_removes();
-		$("#icon_acquisitions").html("<img src='images/acquisitions.gif' />");
-	 }
+    type: "GET",
+    url: "ajax_htmldata.php",
+    cache: false,
+    data: "action=getAcquisitionsDetails&resourceID=" + $("#resourceID").val() + "&resourceAcquisitionID=" + $("#resourceAcquisitionSelect").val(),
+    success: function (html) {
+      $("#div_acquisitions .div_mainContent").html(html);
+      bind_removes();
+      $("#icon_acquisitions").html("<img src='images/acquisitions.gif' />");
+    }
 
 
   });
@@ -369,20 +369,20 @@ function updateAcquisitions(){
 }
 
 
-function updateAccess(){
+function updateAccess() {
   currentTab = "Access";
   $("#icon_access").html("<img src='images/littlecircle.gif' />");
 
   $.ajax({
-	 type:       "GET",
-	 url:        "ajax_htmldata.php",
-	 cache:      false,
-	 data:       "action=getAccessDetails&resourceID=" + $("#resourceID").val() + "&resourceAcquisitionID=" + $("#resourceAcquisitionSelect").val(),
-	 success:    function(html) {
-		$("#div_access .div_mainContent").html(html);
-		bind_removes();
-		$("#icon_access").html("<img src='images/key.gif' />");
-	 }
+    type: "GET",
+    url: "ajax_htmldata.php",
+    cache: false,
+    data: "action=getAccessDetails&resourceID=" + $("#resourceID").val() + "&resourceAcquisitionID=" + $("#resourceAcquisitionSelect").val(),
+    success: function (html) {
+      $("#div_access .div_mainContent").html(html);
+      bind_removes();
+      $("#icon_access").html("<img src='images/key.gif' />");
+    }
 
 
   });
@@ -390,22 +390,20 @@ function updateAccess(){
 }
 
 
-
-
-function updateContacts(){
+function updateContacts() {
   currentTab = "Contacts";
   $("#icon_contacts").html("<img src='images/littlecircle.gif' />");
 
   $.ajax({
-	 type:       "GET",
-	 url:        "ajax_htmldata.php",
-	 cache:      false,
-	 data:       "action=getContactDetails&resourceID=" + $("#resourceID").val() + "&resourceAcquisitionID=" + $("#resourceAcquisitionSelect").val(),
-	 success:    function(html) {
-		$("#div_contacts .div_mainContent").html(html);
-		bind_removes();
-		$("#icon_contacts").html("<img src='images/contacts.gif' />");
-	 }
+    type: "GET",
+    url: "ajax_htmldata.php",
+    cache: false,
+    data: "action=getContactDetails&resourceID=" + $("#resourceID").val() + "&resourceAcquisitionID=" + $("#resourceAcquisitionSelect").val(),
+    success: function (html) {
+      $("#div_contacts .div_mainContent").html(html);
+      bind_removes();
+      $("#icon_contacts").html("<img src='images/contacts.gif' />");
+    }
 
 
   });
@@ -413,23 +411,22 @@ function updateContacts(){
 }
 
 
-
-function updateArchivedContacts(showArchivedPassed){
-  if (typeof(showArchivedPassed) != 'undefined'){
-	showArchivedContacts = showArchivedPassed;
+function updateArchivedContacts(showArchivedPassed) {
+  if (typeof (showArchivedPassed) != 'undefined') {
+    showArchivedContacts = showArchivedPassed;
   }
 
 
-  $("#div_archivedContactDetails").append("<img src='images/circle.gif' />  "+_("Refreshing Contents..."));
+  $("#div_archivedContactDetails").append("<img src='images/circle.gif' />  " + _("Refreshing Contents..."));
   $.ajax({
-	 type:       "GET",
-	 url:        "ajax_htmldata.php",
-	 cache:      false,
-	 data:       "action=getContactDetails&resourceID=" + $("#resourceID").val() + "&resourceAcquisitionID=" + $("#resourceAcquisitionSelect").val() + "&archiveInd=1&showArchivesInd=" + showArchivedContacts,
-	 success:    function(html) {
-		$("#div_archivedContactDetails").html(html);
-		bind_removes();
-	 }
+    type: "GET",
+    url: "ajax_htmldata.php",
+    cache: false,
+    data: "action=getContactDetails&resourceID=" + $("#resourceID").val() + "&resourceAcquisitionID=" + $("#resourceAcquisitionSelect").val() + "&archiveInd=1&showArchivesInd=" + showArchivedContacts,
+    success: function (html) {
+      $("#div_archivedContactDetails").html(html);
+      bind_removes();
+    }
 
 
   });
@@ -437,227 +434,227 @@ function updateArchivedContacts(showArchivedPassed){
 }
 
 function createOrganizationContact(contact) {
-	var baseUrl = $("#orgModuleUrl").val();
-	contact.contactRoles = contact.contactRoles.join();
-	$.ajax({
-		type:       "POST",
-		url:        baseUrl+"ajax_processing.php?action=submitContact",
-		cache:      false,
-		data:       contact,
-		success:    function(res) {
-
-			var data = {};
-			data.contactIDs = [];
-
-			$("#contactIDs option:selected").each(function() {
-				data.contactIDs.push($(this).val());
-			});
-
-			data.action = "getOrganizationContacts";
-			data.organizationID = contact.organizationID;
-			data.contactIDs.push(res);
-
-			$.ajax({
-				type:       "GET",
-				url:        baseUrl+"ajax_htmldata.php",
-				cache:      false,
-				data:       $.param(data),
-				success:    function(html) {
-					$("#inlineContact").html(html).slideUp(250, function() {
-						$("#getCreateContactForm").fadeIn(250);
-					});
-					$("#contactIDs").html(html);
-				}
-			});
-		}
-	});
-}
-
-function getInlineContactForm() {
-	var baseUrl = $("#orgModuleUrl").val();
-	$.ajax({
-		 type:       "GET",
-		 url:        baseUrl+"ajax_forms.php",
-		 cache:      false,
-		 data:       "action=getInlineContactForm",
-		 success:    function(html) {
-			$("#inlineContact").html(html).slideDown(250);
-		 }
-	  });
-}
-
-function updateIssues(){
-  currentTab = "Issues";
+  var baseUrl = $("#orgModuleUrl").val();
+  contact.contactRoles = contact.contactRoles.join();
   $.ajax({
-	 type:       "GET",
-	 url:        "ajax_htmldata.php",
-	 cache:      false,
-	 data:       "action=getIssues&resourceID=" + $("#resourceID").val() + "&resourceAcquisitionID=" + $("#resourceAcquisitionSelect").val(),
-	 success:    function(html) {
-		$("#div_issues .div_mainContent").html(html);
-		bind_removes();
-	 }
+    type: "POST",
+    url: baseUrl + "ajax_processing.php?action=submitContact",
+    cache: false,
+    data: contact,
+    success: function (res) {
+
+      var data = {};
+      data.contactIDs = [];
+
+      $("#contactIDs option:selected").each(function () {
+        data.contactIDs.push($(this).val());
+      });
+
+      data.action = "getOrganizationContacts";
+      data.organizationID = contact.organizationID;
+      data.contactIDs.push(res);
+
+      $.ajax({
+        type: "GET",
+        url: baseUrl + "ajax_htmldata.php",
+        cache: false,
+        data: $.param(data),
+        success: function (html) {
+          $("#inlineContact").html(html).slideUp(250, function () {
+            $("#getCreateContactForm").fadeIn(250);
+          });
+          $("#contactIDs").html(html);
+        }
+      });
+    }
   });
 }
 
-function validateNewIssue () {
-	$(".error").html("");
+function getInlineContactForm() {
+  var baseUrl = $("#orgModuleUrl").val();
+  $.ajax({
+    type: "GET",
+    url: baseUrl + "ajax_forms.php",
+    cache: false,
+    data: "action=getInlineContactForm",
+    success: function (html) {
+      $("#inlineContact").html(html).slideDown(250);
+    }
+  });
+}
 
- 	var errorFlag = 0;
-	var organization = $('#sourceOrganizationID').val();
-	var contact = $('#contactIDs').val();
-	var subject = $('#subjectText').val();
-	var body = $('#bodyText').val();
-	var appliesTo = false;
+function updateIssues() {
+  currentTab = "Issues";
+  $.ajax({
+    type: "GET",
+    url: "ajax_htmldata.php",
+    cache: false,
+    data: "action=getIssues&resourceID=" + $("#resourceID").val() + "&resourceAcquisitionID=" + $("#resourceAcquisitionSelect").val(),
+    success: function (html) {
+      $("#div_issues .div_mainContent").html(html);
+      bind_removes();
+    }
+  });
+}
 
-	if (organization == '' || organization == null) {
-		$('#span_error_organizationId').html(_('Opening an issue requires a resource to be associated with an organization. Please contact your IT department.'));
-		errorFlag=1;
-	}
+function validateNewIssue() {
+  $(".error").html("");
 
-	if (contact == null || contact.length == 0) {
-		$('#span_error_contactName').html(_('A contact must be selected to continue.'));
-		errorFlag=1;
-	}
+  var errorFlag = 0;
+  var organization = $('#sourceOrganizationID').val();
+  var contact = $('#contactIDs').val();
+  var subject = $('#subjectText').val();
+  var body = $('#bodyText').val();
+  var appliesTo = false;
 
-	if (subject == '' || subject == null) {
-		$('#span_error_subjectText').html(_('A subject must be entered to continue.'));
-		errorFlag=1;
-	}
+  if (organization == '' || organization == null) {
+    $('#span_error_organizationId').html(_('Opening an issue requires a resource to be associated with an organization. Please contact your IT department.'));
+    errorFlag = 1;
+  }
 
-	if (body == '' || body == null) {
-		$('#span_error_bodyText').html(_('A body must be entered to continue.'));
-		errorFlag=1;
-	}
+  if (contact == null || contact.length == 0) {
+    $('#span_error_contactName').html(_('A contact must be selected to continue.'));
+    errorFlag = 1;
+  }
 
-	$('.entityArray').each(function() {
-		if($(this).is(':checked') || $(this).is(':selected')) {
-			appliesTo = true;
-			return false;
-		}
-	});
+  if (subject == '' || subject == null) {
+    $('#span_error_subjectText').html(_('A subject must be entered to continue.'));
+    errorFlag = 1;
+  }
 
-	if(!appliesTo) {
-		errorFlag=1;
-		$('#span_error_entities').html(_('An issue must be associated with an organization or resource(s).'));
-	}
+  if (body == '' || body == null) {
+    $('#span_error_bodyText').html(_('A body must be entered to continue.'));
+    errorFlag = 1;
+  }
 
- 	if (errorFlag == 0){
-		return true;
-	}
-	return false;
+  $('.entityArray').each(function () {
+    if ($(this).is(':checked') || $(this).is(':selected')) {
+      appliesTo = true;
+      return false;
+    }
+  });
+
+  if (!appliesTo) {
+    errorFlag = 1;
+    $('#span_error_entities').html(_('An issue must be associated with an organization or resource(s).'));
+  }
+
+  if (errorFlag == 0) {
+    return true;
+  }
+  return false;
 }
 
 function submitNewIssue() {
 
-	if(validateNewIssue()) {
-		$.ajax({
-			type:       "POST",
-			url:        "ajax_processing.php?action=insertIssue",
-			cache:      false,
-			data:       $("#newIssueForm").serialize(),
-			success:    function(res) {
-				updateIssues();
-				myDialogPOST();
-			}
-		});
-	}
+  if (validateNewIssue()) {
+    $.ajax({
+      type: "POST",
+      url: "ajax_processing.php?action=insertIssue",
+      cache: false,
+      data: $("#newIssueForm").serialize(),
+      success: function (res) {
+        updateIssues();
+        myDialogPOST();
+      }
+    });
+  }
 }
 
 function submitNewDowntime() {
 
-	var data = $("#newDowntimeForm").serialize();
+  var data = $("#newDowntimeForm").serialize();
 
-	$.ajax({
-		 type:       "POST",
-		 url:        "ajax_processing.php?action=insertDowntime",
-		 cache:      false,
-		 data:       data,
-		 success:    function(res) {
-			updateIssues();
-			myDialogPOST();
-		 }
+  $.ajax({
+    type: "POST",
+    url: "ajax_processing.php?action=insertDowntime",
+    cache: false,
+    data: data,
+    success: function (res) {
+      updateIssues();
+      myDialogPOST();
+    }
 
 
-	  });
+  });
 }
 
 function submitUpdatedDowntime() {
 
-	var data = $("#resolveDowntimeForm").serialize();
+  var data = $("#resolveDowntimeForm").serialize();
 
-	$.ajax({
-		 type:       "POST",
-		 url:        "ajax_processing.php?action=updateDowntime",
-		 cache:      false,
-		 data:       data,
-		 success:    function(res) {
-			updateIssues();
-			myDialogPOST();
-		 }
+  $.ajax({
+    type: "POST",
+    url: "ajax_processing.php?action=updateDowntime",
+    cache: false,
+    data: data,
+    success: function (res) {
+      updateIssues();
+      myDialogPOST();
+    }
 
 
-	  });
+  });
 }
 
 function getIssues(element) {
-	var data = element.attr("href");
-	$.ajax({
-		url:        "ajax_htmldata.php",
-		data: 		data,
-		cache:      false,
-		success:    function(html) {
-			element.siblings(".issueList").html(html).slideToggle(250);
-		}
-	});
+  var data = element.attr("href");
+  $.ajax({
+    url: "ajax_htmldata.php",
+    data: data,
+    cache: false,
+    success: function (html) {
+      element.siblings(".issueList").html(html).slideToggle(250);
+    }
+  });
 
 }
 
 function getDowntime(element) {
-	var data = element.attr("href");
-	$.ajax({
-		url:        "ajax_htmldata.php",
-		data: 		data,
-		cache:      false,
-		success:    function(html) {
-			element.siblings(".downtimeList").html(html).slideToggle(250);
-		}
-	});
+  var data = element.attr("href");
+  $.ajax({
+    url: "ajax_htmldata.php",
+    data: data,
+    cache: false,
+    success: function (html) {
+      element.siblings(".downtimeList").html(html).slideToggle(250);
+    }
+  });
 
 }
 
 function submitCloseIssue() {
-	$('#submitCloseIssue').attr("disabled", "disabled");
-	$.ajax({
-		type:       "POST",
-		url:        "ajax_processing.php?action=submitCloseIssue",
-		cache:      false,
-		data:       { "issueID": $("#issueID").val(), "resolutionText":$("#resolutionText").val() },
-		success:    function(html) {
-			if (html.length > 1) {
-				$("#submitCloseIssue").removeAttr("disabled");
-			} else {
-				myDialogPOST();
-				updateIssues();
-				return false;
-			}
-		}
-	});
+  $('#submitCloseIssue').attr("disabled", "disabled");
+  $.ajax({
+    type: "POST",
+    url: "ajax_processing.php?action=submitCloseIssue",
+    cache: false,
+    data: {"issueID": $("#issueID").val(), "resolutionText": $("#resolutionText").val()},
+    success: function (html) {
+      if (html.length > 1) {
+        $("#submitCloseIssue").removeAttr("disabled");
+      } else {
+        myDialogPOST();
+        updateIssues();
+        return false;
+      }
+    }
+  });
 }
 
-function updateAccounts(){
+function updateAccounts() {
   currentTab = "Accounts";
   $("#icon_accounts").html("<img src='images/littlecircle.gif' />");
   $.ajax({
-	 type:       "GET",
-	 url:        "ajax_htmldata.php",
-	 cache:      false,
-	 data:       "action=getAccountDetails&resourceID=" + $("#resourceID").val(),
-	 success:    function(html) {
-		$("#div_accounts .div_mainContent").html(html);
-		bind_removes();
-		$("#icon_accounts").html("<img src='images/lock.gif' />");
-	 }
+    type: "GET",
+    url: "ajax_htmldata.php",
+    cache: false,
+    data: "action=getAccountDetails&resourceID=" + $("#resourceID").val(),
+    success: function (html) {
+      $("#div_accounts .div_mainContent").html(html);
+      bind_removes();
+      $("#icon_accounts").html("<img src='images/lock.gif' />");
+    }
 
 
   });
@@ -665,19 +662,19 @@ function updateAccounts(){
 }
 
 
-function updateAttachments(){
+function updateAttachments() {
   currentTab = "Attachments";
   $("#icon_attachments").html("<img src='images/littlecircle.gif' />");
   $.ajax({
-	 type:       "GET",
-	 url:        "ajax_htmldata.php",
-	 cache:      false,
-	 data:       "action=getAttachmentDetails&resourceID=" + $("#resourceID").val() + "&resourceAcquisitionID=" + $("#resourceAcquisitionSelect").val(),
-	 success:    function(html) {
-		$("#div_attachments .div_mainContent").html(html);
-		bind_removes();
-		$("#icon_attachments").html("<img src='images/attachment.gif' />");
-	 }
+    type: "GET",
+    url: "ajax_htmldata.php",
+    cache: false,
+    data: "action=getAttachmentDetails&resourceID=" + $("#resourceID").val() + "&resourceAcquisitionID=" + $("#resourceAcquisitionSelect").val(),
+    success: function (html) {
+      $("#div_attachments .div_mainContent").html(html);
+      bind_removes();
+      $("#icon_attachments").html("<img src='images/attachment.gif' />");
+    }
 
 
   });
@@ -685,71 +682,71 @@ function updateAttachments(){
 }
 
 
-function updateAttachmentsNumber(){
+function updateAttachmentsNumber() {
   $.ajax({
-	 type:       "GET",
-	 url:        "ajax_htmldata.php",
-	 cache:      false,
-	 data:       "action=getAttachmentsNumber&resourceAcquisitionID=" + $("#resourceAcquisitionSelect").val(),
-	 success:    function(remaining) {
-		if (remaining == "1"){
-			$(".span_AttachmentNumber").html("(" + remaining + _(" record)"));
-		}else{
-			$(".span_AttachmentNumber").html("(" + remaining + _(" records)"));
-		}
-	 }
- });
+    type: "GET",
+    url: "ajax_htmldata.php",
+    cache: false,
+    data: "action=getAttachmentsNumber&resourceAcquisitionID=" + $("#resourceAcquisitionSelect").val(),
+    success: function (remaining) {
+      if (remaining == "1") {
+        $(".span_AttachmentNumber").html("(" + remaining + _(" record)"));
+      } else {
+        $(".span_AttachmentNumber").html("(" + remaining + _(" records)"));
+      }
+    }
+  });
 }
 
 
-function updateWorkflow(){
+function updateWorkflow() {
   $("#icon_workflow").html("<img src='images/littlecircle.gif' />");
   $.ajax({
-	 type:       "GET",
-	 url:        "ajax_htmldata.php",
-	 cache:      false,
-	 data:       "action=getWorkflowDetails&resourceID=" + $("#resourceID").val() + "&resourceAcquisitionID=" + $("#resourceAcquisitionSelect").val(),
-	 success:    function(html) {
-		$("#div_workflow .div_mainContent").html(html);
-		bind_workflow();
-		$("#icon_workflow").html("<img src='images/workflow.gif' />");
-	 }
+    type: "GET",
+    url: "ajax_htmldata.php",
+    cache: false,
+    data: "action=getWorkflowDetails&resourceID=" + $("#resourceID").val() + "&resourceAcquisitionID=" + $("#resourceAcquisitionSelect").val(),
+    success: function (html) {
+      $("#div_workflow .div_mainContent").html(html);
+      bind_workflow();
+      $("#icon_workflow").html("<img src='images/workflow.gif' />");
+    }
 
 
   });
 
 }
 
-function updateCataloging(){
+function updateCataloging() {
   currentTab = "Cataloging";
   $("#icon_accounts").html("<img src='images/littlecircle.gif' />");
   $.ajax({
-	 type:       "GET",
-	 url:        "resources/cataloging.php",
-	 cache:      false,
-	 data:       "resourceID=" + $("#resourceID").val() + "&resourceAcquisitionID=" + $("#resourceAcquisitionSelect").val(),
-	 success:    function(html) {
-		$("#div_cataloging .div_mainContent").html(html);
-		bind_removes();
-		$("#icon_cataloging").html("<img src='images/cataloging.gif' />");
-	 }
+    type: "GET",
+    url: "resources/cataloging.php",
+    cache: false,
+    data: "resourceID=" + $("#resourceID").val() + "&resourceAcquisitionID=" + $("#resourceAcquisitionSelect").val(),
+    success: function (html) {
+      $("#div_cataloging .div_mainContent").html(html);
+      bind_removes();
+      $("#icon_cataloging").html("<img src='images/cataloging.gif' />");
+    }
 
   });
 
 }
 
 
-function updateRightPanel(){
-  $("#div_rightPanel").append("<img src='images/circle.gif' />  "+_("Refreshing Contents..."));
+function updateRightPanel() {
+  $("#div_rightPanel").append("<img src='images/circle.gif' />  " + _("Refreshing Contents..."));
   $.ajax({
-	 type:       "GET",
-	 url:        "ajax_htmldata.php",
-	 cache:      false,
-	 data:       "action=getRightPanel&resourceID=" + $("#resourceID").val() + "&resourceAcquisitionID=" + $("#resourceAcquisitionSelect").val(),
-	 success:    function(html) {
-		$("#div_rightPanel").html(html + "&nbsp;");
+    type: "GET",
+    url: "ajax_htmldata.php",
+    cache: false,
+    data: "action=getRightPanel&resourceID=" + $("#resourceID").val() + "&resourceAcquisitionID=" + $("#resourceAcquisitionSelect").val(),
+    success: function (html) {
+      $("#div_rightPanel").html(html + "&nbsp;");
 
-	 }
+    }
 
 
   });
@@ -757,17 +754,15 @@ function updateRightPanel(){
 }
 
 
-
-
-function updateTitle(){
+function updateTitle() {
   $.ajax({
-	 type:       "GET",
-	 url:        "ajax_htmldata.php",
-	 cache:      false,
-	 data:       "action=getTitle&resourceID=" + $("#resourceID").val(),
-	 success:    function(html) {
-		$("#span_resourceName").html(html);
-	 }
+    type: "GET",
+    url: "ajax_htmldata.php",
+    cache: false,
+    data: "action=getTitle&resourceID=" + $("#resourceID").val(),
+    success: function (html) {
+      $("#span_resourceName").html(html);
+    }
 
 
   });
@@ -775,257 +770,247 @@ function updateTitle(){
 }
 
 
-function bind_removes(){
+function bind_removes() {
 
 
-
-   $(".removeContact").unbind('click').click(function () {
-	  if (confirm(_("Do you really want to delete this contact?")) == true) {
-		  $.ajax({
-			 type:       "GET",
-			 url:        "ajax_processing.php",
-			 cache:      false,
-			 data:       "action=deleteInstance&class=Contact&id=" + $(this).attr("id"),
-			 success:    function(html) {
-				updateContacts();
- 				updateArchivedContacts();
-			 }
-
-
-		 });
-	  }
-
-   });
-
-   $(".removeAccount").unbind('click').click(function () {
-	  if (confirm(_("Do you really want to delete this account?")) == true) {
-		  $.ajax({
-			 type:       "GET",
-			 url:        "ajax_processing.php",
-			 cache:      false,
-			 data:       "action=deleteInstance&class=ExternalLogin&id=" + $(this).attr("id"),
-			 success:    function(html) {
-				updateAccounts();
-			 }
-
-
-		 });
-	  }
-
-   });
-
-
-   $(".removeAttachment").unbind('click').click(function () {
-	  if (confirm(_("Do you really want to delete this attachment?")) == true) {
-		  $.ajax({
-			 type:       "GET",
-			 url:        "ajax_processing.php",
-			 cache:      false,
-			 data:       "action=deleteInstance&class=Attachment&id=" + $(this).attr("id"),
-			 success:    function(html) {
-				updateAttachments();
-			 }
-
-
-		 });
-	  }
-
-   });
-
-
-
-
-   $(".removeResource").unbind('click').click(function () {
-	  if (confirm(_("Do you really want to delete this resource?")) == true) {
-		  $.ajax({
-			 type:       "GET",
-			 url:        "ajax_processing.php",
-			 cache:      false,
-			 data:       "action=deleteResource&resourceID=" + $(this).attr("id"),
-			 success:    function(html) {
-				 //post return message to index
-				postwith('index.php',{message:html});
-			 }
-
-
-
-		 });
-	  }
-   });
-
-    $(".removeOrder").unbind('click').click(function () {
-      if (confirm(_("Do you really want to delete this order?")) == true) {
-          $.ajax({
-             type:       "GET",
-             url:        "ajax_processing.php",
-             cache:      false,
-             data:       "action=deleteOrder&resourceAcquisitionID=" + $(this).attr("id"),
-             success:    function(html) {
-                 //post return message to index
-                postwith('resource.php?resourceID=' + $("#resourceID").val(), {message:html});
-             }
-         });
-      }
-   });
-
-    $(".removeResourceAndChildren").unbind('click').click(function () {
-	  if (confirm(_("Do you really want to delete this resource and all its children?")) == true) {
-		  $.ajax({
-			 type:       "GET",
-			 url:        "ajax_processing.php",
-			 cache:      false,
-			 data:       "action=deleteResourceAndChildren&resourceID=" + $(this).attr("id"),
-			 success:    function(html) {
-				 //post return message to index
-				postwith('index.php',{message:html});
-			 }
-
-
-
-		 });
-	  }
-   });
-
-   $(".removeResourceSubjectRelationship").unbind('click').click(function () {
-
-   	  tabName = $(this).attr("tab");
-
-	  if (confirm(_("Do you really want to remove this Subject?")) == true) {
-		  $.ajax({
-			 type:       "GET",
-			 url:        "ajax_processing.php",
-			 cache:      false,
-			 data:       "action=removeResourceSubjectRelationship&generalDetailSubjectID=" + $(this).attr("generalDetailSubjectID") + "&resourceID=" + $(this).attr("resourceID"),
-			 success:    function(html) {
-				eval("update" + tabName + "();");
-			 }
-
-		 });
-	  }
-   });
-
-   $(".removeNote").unbind('click').click(function () {
-
-   	  tabName = $(this).attr("tab");
-
-	  if (confirm(_("Do you really want to delete this note?")) == true) {
-		  $.ajax({
-			 type:       "GET",
-			 url:        "ajax_processing.php",
-			 cache:      false,
-			 data:       "action=deleteResourceNote&resourceNoteID=" + $(this).attr("id"),
-			 success:    function(html) {
-				eval("update" + tabName + "();");
-			 }
-
-
-		 });
-	  }
-
-   });
-
-
-}
-
-
-
-function bind_workflow(){
-
-
-
-   $(".markComplete").unbind('click').click(function () {
-	  $.ajax({
-		 type:       "GET",
-		 url:        "ajax_processing.php",
-		 cache:      false,
-		 data:       "action=markComplete&resourceStepID=" + $(this).attr("id"),
-		 success:    function(html) {
-			updateWorkflow();
-		 }
-
-
-	 });
-   });
-
-
-   $(".restartWorkflow").unbind('click').click(function() {
-        $('#restartWorkflowDiv').show();
-   });
-
-
-   $(".restartWorkflowSubmit").unbind('click').click(function () {
-	  if (confirm(_("Warning!  You are about to remove any steps that have been started and completed.  Are you sure you wish to continue?")) == true) {
-		  $.ajax({
-			 type:       "GET",
-			 url:        "ajax_processing.php",
-			 cache:      false,
-			 data:       "action=restartWorkflow&resourceAcquisitionID=" + $(this).attr("id") + "&deleteWorkflow=" + $("#deleteWorkflow").is(':checked') + "&workflow=" + $("#workflowArchivingDate").val(),
-			 success:    function(html) {
-				updateWorkflow();
-			 }
-
-
-		 });
-	  }
-   });
-
-   $(".displayArchivedWorkflows").unbind('click').click(function () {
-      $(".archivedWorkflow").toggle();
-      if ($(".archivedWorkflow").is(":visible")) {
-        $(this).html(_("hide archived workflows"));
-        $("#displayArchivedWorkflowsIcon").attr("src", "images/minus_12.gif");
-      } else {
-        $(this).html(_("display archived workflows"));
-        $("#displayArchivedWorkflowsIcon").attr("src", "images/plus_12.gif");
-      }
-   });
-
-   $(".markResourceComplete").unbind('click').click(function () {
-	  if (confirm(_("Do you really want to mark this resource complete?  This action cannot be undone.")) == true) {
-		  $.ajax({
-			 type:       "GET",
-			 url:        "ajax_processing.php",
-			 cache:      false,
-			 data:       "action=markResourceComplete&resourceAcquisitionID=" + $(this).attr("id"),
-			 success:    function(html) {
-				updateWorkflow();
-			 }
-		 });
-	 }
-   });
-
-   $(".removeResourceStep").unbind('click').click(function () {
-        if (confirm(_("Do you really want to delete this step? If other steps depended on this one, they will be started upon deletion. This action cannot be undone")) == true) {
-            $.ajax({
-                type:       "GET",
-                url:        "ajax_processing.php",
-                cache:      false,
-                data:       "action=deleteResourceStep&resourceStepID=" + $(this).attr("id"),
-                success:    function(html) {
-                    updateWorkflow();
-                }
-
-
-            });
+  $(".removeContact").unbind('click').click(function () {
+    if (confirm(_("Do you really want to delete this contact?")) == true) {
+      $.ajax({
+        type: "GET",
+        url: "ajax_processing.php",
+        cache: false,
+        data: "action=deleteInstance&class=Contact&id=" + $(this).attr("id"),
+        success: function (html) {
+          updateContacts();
+          updateArchivedContacts();
         }
 
-   });
+
+      });
+    }
+
+  });
+
+  $(".removeAccount").unbind('click').click(function () {
+    if (confirm(_("Do you really want to delete this account?")) == true) {
+      $.ajax({
+        type: "GET",
+        url: "ajax_processing.php",
+        cache: false,
+        data: "action=deleteInstance&class=ExternalLogin&id=" + $(this).attr("id"),
+        success: function (html) {
+          updateAccounts();
+        }
+
+
+      });
+    }
+
+  });
+
+
+  $(".removeAttachment").unbind('click').click(function () {
+    if (confirm(_("Do you really want to delete this attachment?")) == true) {
+      $.ajax({
+        type: "GET",
+        url: "ajax_processing.php",
+        cache: false,
+        data: "action=deleteInstance&class=Attachment&id=" + $(this).attr("id"),
+        success: function (html) {
+          updateAttachments();
+        }
+
+
+      });
+    }
+
+  });
+
+
+  $(".removeResource").unbind('click').click(function () {
+    if (confirm(_("Do you really want to delete this resource?")) == true) {
+      $.ajax({
+        type: "GET",
+        url: "ajax_processing.php",
+        cache: false,
+        data: "action=deleteResource&resourceID=" + $(this).attr("id"),
+        success: function (html) {
+          //post return message to index
+          postwith('index.php', {message: html});
+        }
+
+
+      });
+    }
+  });
+
+  $(".removeOrder").unbind('click').click(function () {
+    if (confirm(_("Do you really want to delete this order?")) == true) {
+      $.ajax({
+        type: "GET",
+        url: "ajax_processing.php",
+        cache: false,
+        data: "action=deleteOrder&resourceAcquisitionID=" + $(this).attr("id"),
+        success: function (html) {
+          //post return message to index
+          postwith('resource.php?resourceID=' + $("#resourceID").val(), {message: html});
+        }
+      });
+    }
+  });
+
+  $(".removeResourceAndChildren").unbind('click').click(function () {
+    if (confirm(_("Do you really want to delete this resource and all its children?")) == true) {
+      $.ajax({
+        type: "GET",
+        url: "ajax_processing.php",
+        cache: false,
+        data: "action=deleteResourceAndChildren&resourceID=" + $(this).attr("id"),
+        success: function (html) {
+          //post return message to index
+          postwith('index.php', {message: html});
+        }
+
+
+      });
+    }
+  });
+
+  $(".removeResourceSubjectRelationship").unbind('click').click(function () {
+
+    tabName = $(this).attr("tab");
+
+    if (confirm(_("Do you really want to remove this Subject?")) == true) {
+      $.ajax({
+        type: "GET",
+        url: "ajax_processing.php",
+        cache: false,
+        data: "action=removeResourceSubjectRelationship&generalDetailSubjectID=" + $(this).attr("generalDetailSubjectID") + "&resourceID=" + $(this).attr("resourceID"),
+        success: function (html) {
+          eval("update" + tabName + "();");
+        }
+
+      });
+    }
+  });
+
+  $(".removeNote").unbind('click').click(function () {
+
+    tabName = $(this).attr("tab");
+
+    if (confirm(_("Do you really want to delete this note?")) == true) {
+      $.ajax({
+        type: "GET",
+        url: "ajax_processing.php",
+        cache: false,
+        data: "action=deleteResourceNote&resourceNoteID=" + $(this).attr("id"),
+        success: function (html) {
+          eval("update" + tabName + "();");
+        }
+
+
+      });
+    }
+
+  });
+
 
 }
 
 
-
-function emptyDiv(divName){
- 	$('#' + divName).html("");
-}
+function bind_workflow() {
 
 
+  $(".markComplete").unbind('click').click(function () {
+    $.ajax({
+      type: "GET",
+      url: "ajax_processing.php",
+      cache: false,
+      data: "action=markComplete&resourceStepID=" + $(this).attr("id"),
+      success: function (html) {
+        updateWorkflow();
+      }
 
 
- function emptyNewMessage(){
-
-    $('#div_new').fadeTo(1000, 0, function () {
-	$('#div_new').html("");
     });
+  });
 
- }
+
+  $(".restartWorkflow").unbind('click').click(function () {
+    $('#restartWorkflowDiv').show();
+  });
+
+
+  $(".restartWorkflowSubmit").unbind('click').click(function () {
+    if (confirm(_("Warning!  You are about to remove any steps that have been started and completed.  Are you sure you wish to continue?")) == true) {
+      $.ajax({
+        type: "GET",
+        url: "ajax_processing.php",
+        cache: false,
+        data: "action=restartWorkflow&resourceAcquisitionID=" + $(this).attr("id") + "&deleteWorkflow=" + $("#deleteWorkflow").is(':checked') + "&workflow=" + $("#workflowArchivingDate").val(),
+        success: function (html) {
+          updateWorkflow();
+        }
+
+
+      });
+    }
+  });
+
+  $(".displayArchivedWorkflows").unbind('click').click(function () {
+    $(".archivedWorkflow").toggle();
+    if ($(".archivedWorkflow").is(":visible")) {
+      $(this).html(_("hide archived workflows"));
+      $("#displayArchivedWorkflowsIcon").attr("src", "images/minus_12.gif");
+    } else {
+      $(this).html(_("display archived workflows"));
+      $("#displayArchivedWorkflowsIcon").attr("src", "images/plus_12.gif");
+    }
+  });
+
+  $(".markResourceComplete").unbind('click').click(function () {
+    if (confirm(_("Do you really want to mark this resource complete?  This action cannot be undone.")) == true) {
+      $.ajax({
+        type: "GET",
+        url: "ajax_processing.php",
+        cache: false,
+        data: "action=markResourceComplete&resourceAcquisitionID=" + $(this).attr("id"),
+        success: function (html) {
+          updateWorkflow();
+        }
+      });
+    }
+  });
+
+  $(".removeResourceStep").unbind('click').click(function () {
+    if (confirm(_("Do you really want to delete this step? If other steps depended on this one, they will be started upon deletion. This action cannot be undone")) == true) {
+      $.ajax({
+        type: "GET",
+        url: "ajax_processing.php",
+        cache: false,
+        data: "action=deleteResourceStep&resourceStepID=" + $(this).attr("id"),
+        success: function (html) {
+          updateWorkflow();
+        }
+
+
+      });
+    }
+
+  });
+
+}
+
+
+function emptyDiv(divName) {
+  $('#' + divName).html("");
+}
+
+
+function emptyNewMessage() {
+
+  $('#div_new').fadeTo(1000, 0, function () {
+    $('#div_new').html("");
+  });
+
+}
