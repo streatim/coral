@@ -602,7 +602,7 @@ switch ($_GET['action']) {
 		<tr>
 			<td><label><?php echo _("Contact:");?>&nbsp;&nbsp;<span class='bigDarkRedText'>*</span></label></td>
 			<td>
-				<select multiple style="min-height: 60px;" type='text' id='contactIDs' name='contactIDs[]'>
+				<select multiple style="min-height: 60px;width: 100%" type='text' id='contactIDs' name='contactIDs[]'>
 <?php
 
 		foreach ($organizationContactsArray as $contact) {

@@ -10,6 +10,7 @@ $resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)))
 $organizationArray = $resource->getOrganizationArray();
 $organizationData = $organizationArray[0];
 
+$config = new Configuration();
 //the issues feature currently support org or resource contacts, but not both
 $moduleFilter = ($config->settings->organizationsModule == 'Y') ? 'organizations':'resources';
 $contactsArray = $resourceAcquisition->getUnarchivedContacts($moduleFilter);
@@ -148,12 +149,6 @@ if ($config->settings->organizationsModule == 'Y') {
 			<td style='text-align:right'><input type='button' value='<?php echo _("cancel");?>' onclick="myCloseDialog()" class='cancel-button'></td>
 		</tr>
 	</table>
-    <script>
-    $("#submitNewIssue").on("click", function(e) {
-        e.preventDefault();
-        submitNewIssue();
-    });
-	</script>
 
 </form>
 

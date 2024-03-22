@@ -283,23 +283,31 @@ function postwith (to,p) {
 }
 
 function myDialog(loadForm, h,w){
-       if (w < 800) w = w * 1.2;
-
-       $('<div/>').dialog({
-            modal: true,
-            open: function ()
-            {
-            if ($(this).is(':empty')) {
-                $(this).load(loadForm);
-                setTimeout(() => {
-                  $('.date-pick').datePicker({startDate:'01/01/1996'});
-                }, 100)
-                }
-            },
-            height: h,
-            width: w,
-           dialogClass: "no-titlebar"
+  if (h < 800) h = 'auto';
+  if (w < 800) w = w * 1.2;
+  const el = $('<div/>');
+  el.dialog({
+    modal: true,
+    position: {my: "center top", at: "center top"},
+    classes: {
+      "ui-dialog": "my-dialog"
+    },
+    open: function () {
+      if ($(this).is(':empty')) {
+        $(this).load(loadForm, function () {
+          $('.date-pick').datePicker({startDate: '01/01/1996'});
         });
+      }
+      $('.ui-widget-overlay').bind('click', function()
+      {
+        el.dialog('close');
+      });
+    },
+    height: h,
+    width: w,
+    //    title:"JQuery Dialog"
+    dialogClass: "no-titlebar"
+  });
 }
 
 function myCloseDialog(formName){

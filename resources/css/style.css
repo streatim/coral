@@ -2354,6 +2354,7 @@ a.showIssues:before {
 
 div#openIssues {
     margin: 8px;
+    text-align: left;
 }
 
 div#archivedIssues {
@@ -3330,4 +3331,12 @@ div.downtime, div.issue {
 
 .no-titlebar .ui-dialog-titlebar {
    display: none;
+}
+
+.my-dialog {
+  top: 100px !important;
+}
+
+.my-dialog .issue {
+  border-bottom: 1px solid #eee;
 }
