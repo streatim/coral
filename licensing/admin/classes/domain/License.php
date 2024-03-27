@@ -397,6 +397,27 @@ class License extends DatabaseObject {
 	public function getInProgressLicenses(){
 		$config = new Configuration;
 
+    $inProgressStatuses = $config->settings->inProgressStatuses ?? null;
+    $statuses = [
+      'Editing Expressions',
+      'Awaiting Document'
+    ];
+    if ($inProgressStatuses) {
+      $statusesArray = explode(',', $inProgressStatuses);
+      if (is_array($statusesArray)) {
+        foreach ($statusesArray as $status) {
+          if (!empty($status)) {
+            $value = trim($status);
+            if (!in_array($value, $statuses)) {
+              $statuses[] = $value;
+            }
+          }
+        }
+      }
+    }
+
+    $statusesIn = implode("', '", $statuses);
+
 		//if the org module is installed get the org name from org database
 		if ($config->settings->organizationsModule == 'Y'){
 			$dbName = $config->settings->organizationsDatabaseName;
@@ -407,7 +428,7 @@ class License extends DatabaseObject {
 								LEFT JOIN " . $dbName . ".Organization O2 ON (O2.organizationID = L.consortiumID)
 								LEFT JOIN Status S ON (S.statusID = L.statusID)
 								WHERE O.organizationID = L.organizationID
-								AND (S.shortName in ('Editing Expressions','Awaiting Document') OR L.statusID IS NULL)
+								AND (S.shortName in ('".$statusesIn."') OR L.statusID IS NULL)
 								ORDER BY L.shortName";
 		}else{
 
@@ -417,7 +438,7 @@ class License extends DatabaseObject {
 								LEFT JOIN Consortium C ON (C.consortiumID = L.consortiumID)
 								LEFT JOIN Status S ON (S.statusID = L.statusID)
 								WHERE O.organizationID = L.organizationID
-								AND (S.shortName in ('Editing Expressions','Awaiting Document') OR L.statusID IS NULL)
+								AND (S.shortName in ('".$statusesIn."') OR L.statusID IS NULL)
 								ORDER BY L.shortName";
 
 		}

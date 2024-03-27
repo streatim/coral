@@ -47,7 +47,7 @@ switch ($_GET['action']) {
 		<?php
 
 		if ($user->canEdit()){?>
-		<a href='javascript:void(0)' onclick='javascript:myDialog("ajax_forms.php?action=getLicenseForm&licenseID=<?php echo $licenseID; ?>",260,280)' class='thickbox'><?php echo _("edit license");?></a>  |  <a href='javascript:deleteLicense("<?php echo $licenseID; ?>");'><?php echo _("remove license");?></a> 
+		<a href='javascript:void(0)' onclick='javascript:myDialog("ajax_forms.php?action=getLicenseForm&licenseID=<?php echo $licenseID; ?>",260,280)' class='thickbox'><?php echo _("edit license");?></a>  |  <a href='javascript:deleteLicense("<?php echo $licenseID; ?>");'><?php echo _("remove license");?></a>
 		<?php }
 
 		echo "<div style='margin-top:10px;margin-bottom:20px;'>";
@@ -157,7 +157,7 @@ switch ($_GET['action']) {
 
 		if ($user->canEdit()){
 			 echo "<br /><br /><a href='javascript:void(0)' onclick='javascript:myDialog(\"ajax_forms.php?action=getSFXForm&licenseID=" . $licenseID . "\", 210, 320)' class='thickbox' id='addSFXResource'>"._("add terms tool resource link")."</a>";
-			
+
 		}
 
 		break;
@@ -1147,11 +1147,11 @@ switch ($_GET['action']) {
 					}
 
 					echo "</td>";
-					
+
 					if ($user->canEdit()){
       						echo "<td class='alt' style='text-align:center;'><a href='javascript:void(0)' onclick='javascript:myDialog(\"ajax_forms.php?action=getExpressionForm&licenseID=" . $licenseID . "&expressionID=" . $expressionIns['expressionID'] . "\",420,375)' class='thickbox'><img id='Edit' src='images/edit.gif' title= '"._("Edit")."' /></a>&nbsp;&nbsp;<a href='javascript:deleteExpression(" . $expressionIns['expressionID'] . ");'><img id='Remove' class='removeIcon' src='images/cross.gif' title= '"._("Remove")."' /></a></td>";
 					}
-					
+
 					echo "</tr>";
 
 					if ($user->canEdit()){
@@ -1399,17 +1399,17 @@ switch ($_GET['action']) {
 							$resourceType = new ResourceType();
 							$siteCount = 0;
 								foreach($resourceType->getAllResourceType() as $display) {
-									
-								if(isset($display['resourceTypeID'])){									
+
+								if(isset($display['resourceTypeID'])){
 									if (in_array($display['resourceTypeID'], explode(",", $instance['value']))) {
 										if ($siteCount > 0) {
 											echo ", ";
 										}
 										echo $display['shortName'];
 										$siteCount = $siteCount + 1;
-									}									
+									}
 								}
-									
+
 								}
 						} else {
 							echo $instance['value'];
@@ -1430,6 +1430,21 @@ switch ($_GET['action']) {
 		}
 
 		break;
+
+  case 'getInProgressStatuses':
+    $config = new Configuration();
+    $statuses = $config->settings->inProgressStatuses ?? null;
+    if ($statuses) {
+      $output = explode(',', $statuses);
+      if (is_array($output)) {
+        echo '<table class="dataTable" style="width: 400px;">';
+        foreach($output as $v) {
+          echo sprintf('<tr><td>%s</td></tr>', $v);
+        }
+        echo '<table>';
+      }
+    }
+    break;
 
     case 'getTermsToolSettings':
         $config = new Configuration();
@@ -1506,12 +1521,12 @@ switch ($_GET['action']) {
 			$reset = '';
 
 			if (isset($_GET['page'])){
-				
+
 				if(isset($_SESSION['license_qualifierID'])){
 					$selectedValue = $_SESSION['license_qualifierID'];
 				}
-				
-				
+
+
 				$reset = $_GET['reset'];
 			}
 
