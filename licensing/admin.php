@@ -110,6 +110,18 @@ if ($user->isAdmin()){
 </div>
 </td></tr>
 </table>
+  <br />
+  <br />
+  <table class="headerTable">
+    <tr><td>
+        <span class="headerText"><?php echo _("In Progress Statuses");?></span>&nbsp;&nbsp;<span id='span_InProgressStatuses_response'></span>
+        <br /><a href="javascript:void(0)" onclick='javascript:myDialog("ajax_forms.php?action=getInProgressStatusesForm&",225,350)' class="thickbox"><?php echo _("edit"); ?></a>
+        <br /><br />
+        <div id='div_InProgressStatuses'>
+          <img src = "images/circle.gif"><?php echo _("Loading...");?>
+        </div>
+      </td></tr>
+  </table>
 
 <?php
 

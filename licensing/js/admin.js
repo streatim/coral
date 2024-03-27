@@ -25,12 +25,23 @@
       updateExpressionTypeList();
       updateForm('SignatureType');
       updateForm('Status');
+      updateInProgressStatuses();
       updateCalendarSettingsList();
       updateQualifierList();
       updateTermsToolSettings();
  });
 
 
+ function updateInProgressStatuses() {
+   $.ajax({
+     type:       "GET",
+     url:        "ajax_htmldata.php",
+     cache:      false,
+     data:       "action=getInProgressStatuses",
+     success:    function(html) { $('#div_InProgressStatuses').html(html);
+     }
+   });
+ }
 
 
  function updateForm(tableName){
@@ -252,6 +263,21 @@ function submitQualifier(){
             }
         });
     }
+}
+
+function submitInProgressStatusesSettings(){
+  $.ajax({
+    type:       "POST",
+    url:        "ajax_processing.php?action=submitInProgressStatusesSettings",
+    cache:      false,
+    data:       {
+      statuses: $('#inProgressStatuses').val()
+    },
+    success:    function() {
+      updateInProgressStatuses();
+      myCloseDialog();
+    }
+  });
 }
 
 function submitTermsToolSettings(){

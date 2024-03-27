@@ -639,7 +639,7 @@ switch ($_GET['action']) {
 
 		<tr style="vertical-align:middle;">
 		<td style="width:60px;"><input type='button' value='<?php echo _("submit");?>' name='submitExpression' onclick='myDialogPOST("")' id='submitExpression' class='submit-button'></td>
-		<td><input type='button' value='<?php echo _("cancel");?>' onclick="myCloseDialog('#submitExpression')" class='cancel-button'></td>	
+		<td><input type='button' value='<?php echo _("cancel");?>' onclick="myCloseDialog('#submitExpression')" class='cancel-button'></td>
 		</tr>
 		</table>
 		</div>
@@ -1193,6 +1193,46 @@ switch ($_GET['action']) {
 		<?php
 
 		break;
+
+  case 'getInProgressStatusesForm':
+    $config = new Configuration();
+    ?>
+    <div id='div_updateInProgressStatusesForm'>
+      <table class="thickboxTable" style="width:290px;padding:2px;">
+        <tr>
+          <td colspan="2">
+            <span class='headerText'><?php echo _("Update In Progress Statuses"); ?></span>
+            <br /><span id='span_errors' style='color:#F00;'></span><br />
+          </td>
+        </tr>
+        <tr class="tt-option-SFX">
+          <td><label for="inProgressStatuses"><?php echo _('In Progress Statuses'); ?></label></td>
+          <td><textarea style="width: 100%" type="text" name="in_progress_statuses" id="inProgressStatuses"><?php echo $config->settings->inProgressStatuses ?? ''; ?></textarea></td>
+        </tr>
+        <tr>
+          <td style="width:60px;"><input type="button" value="<?php echo _('Save'); ?>" onclick='javascript:window.parent.submitInProgressStatusesSettings();myDialogPOST("")' id="submitInProgressStatusesSettings" class="submit-button"></td>
+          <td><input type="button" value="<?php echo _("cancel");?>" onclick="myCloseDialog(''); return false" class="cancel-button"></td>
+        </tr>
+      </table>
+    </div>
+
+
+    <script type="text/javascript">
+      $('#termsToolResolver').change(function(e) {
+        var selected = $(this).val();
+        var sidText = selected === 'EBSCO' ? '<?php echo _('Api Key'); ?>' : 'SID';
+        var clientIdText = selected === 'EBSCO' ? '<?php echo _('Customer ID'); ?>' : '<?php echo _('Client ID'); ?>';
+        $('tr[class*="tt-option"]').hide();
+        $('.tt-option-'+selected).css('display', 'table-row');
+        $('label[for="termsToolSID"]').html(sidText);
+        $('label[for="termsToolClientId"]').html(clientIdText);
+      }).trigger('change');
+
+    </script>
+
+    <?php
+
+    break;
 
     case 'getTermsToolSettingsForm':
         $config = new Configuration();
