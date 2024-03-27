@@ -1216,20 +1216,6 @@ switch ($_GET['action']) {
       </table>
     </div>
 
-
-    <script type="text/javascript">
-      $('#termsToolResolver').change(function(e) {
-        var selected = $(this).val();
-        var sidText = selected === 'EBSCO' ? '<?php echo _('Api Key'); ?>' : 'SID';
-        var clientIdText = selected === 'EBSCO' ? '<?php echo _('Customer ID'); ?>' : '<?php echo _('Client ID'); ?>';
-        $('tr[class*="tt-option"]').hide();
-        $('.tt-option-'+selected).css('display', 'table-row');
-        $('label[for="termsToolSID"]').html(sidText);
-        $('label[for="termsToolClientId"]').html(clientIdText);
-      }).trigger('change');
-
-    </script>
-
     <?php
 
     break;
