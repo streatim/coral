@@ -27,6 +27,6 @@ if (count($exportDowntimes) > 0) {
 		fputcsv($out, $issue);
 	}
 	fclose($out);
+} else {
+  echo 'No record found.';
 }
-
-?>

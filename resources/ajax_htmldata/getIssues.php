@@ -28,7 +28,7 @@ if (count($organizationArray) > 0) {
 
       $exportDowntimesArchived = array_merge($exportDowntimesArchived, $organization->getExportableDowntimes(true));
       $exportDowntimesArchived = array_merge($exportDowntimesArchived, $resource->getExportableDowntimes(true));
-      
+
       $issuedOrgs[] = $orgData['organizationID'];
     }
   }
