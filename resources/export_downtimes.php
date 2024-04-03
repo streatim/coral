@@ -27,17 +27,19 @@ if (count($organizationArray) > 0) {
 
 $exportDowntimes = array_merge($exportDowntimes,$resource->getExportableDowntimes($archivedFlag));
 
-header("Pragma: public");
-header("Content-type: text/csv");
-header("Content-Disposition: attachment; filename=\"downtimes.csv\"");
+if (count($exportDowntimes)) {
+  header("Pragma: public");
+  header("Content-type: text/csv");
+  header("Content-Disposition: attachment; filename=\"downtimes.csv\"");
 
-$out = fopen('php://output', 'w');
+  $out = fopen('php://output', 'w');
 
-fputcsv($out,array_keys($exportDowntimes[0]));
+  fputcsv($out, array_keys($exportDowntimes[0]));
 
-foreach ($exportDowntimes as $downtime) {
-	fputcsv($out, $downtime);
+  foreach ($exportDowntimes as $downtime) {
+    fputcsv($out, $downtime);
+  }
+  fclose($out);
+} else {
+  echo 'No records found.';
 }
-fclose($out);
-
-?>

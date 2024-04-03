@@ -27,18 +27,19 @@ if (count($organizationArray) > 0) {
 }
 
 $exportIssues = array_merge($exportIssues,$resource->getExportableIssues($archivedFlag));
+if (count($exportIssues)) {
+  header("Pragma: public");
+  header("Content-type: text/csv");
+  header("Content-Disposition: attachment; filename=\"issues.csv\"");
 
-header("Pragma: public");
-header("Content-type: text/csv");
-header("Content-Disposition: attachment; filename=\"issues.csv\"");
+  $out = fopen('php://output', 'w');
 
-$out = fopen('php://output', 'w');
+  fputcsv($out, array_keys($exportIssues[0]));
 
-fputcsv($out,array_keys($exportIssues[0]));
-
-foreach ($exportIssues as $issue) {
-	fputcsv($out, $issue);
+  foreach ($exportIssues as $issue) {
+    fputcsv($out, $issue);
+  }
+  fclose($out);
+} else {
+  echo 'No records found.';
 }
-fclose($out);
-
-?>
