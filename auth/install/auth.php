@@ -372,7 +372,7 @@ function register_auth_provider()
                 }
             ];
 
-        case "2022.04":
+        case "2024.04":
             return [
                 "function" => function($shared_module_info) {
                     $return = new stdClass();

@@ -178,7 +178,7 @@ function register_usage_provider()
 				}
 			];
 
-        case "2022.04":
+        case "2024.04":
                 $conf_data = parse_ini_file($protected_module_data["config_file_path"], true);
                 return [
                         "dependencies_array" => [ "db_tools", "have_read_write_access_to_config" ],
