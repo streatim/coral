@@ -118,26 +118,32 @@ class Utility {
 
 	static public function utf8_fopen_read($fileName, $isSushiFile) {
 
+		$handle=fopen("php://memory", "rw");
+
+		// If we were passed a URL, just send back an empty file handle.
+		if (preg_match("/^[^:]+:\/\//", $fileName)){ // starts with a URL scheme...
+			return $handle;
+		}
+
 		//if the string isn't already ut8
 		if ($isSushiFile){
 			$fc = file_get_contents($fileName);
 		}else{
-      $fc = file_get_contents($fileName);
-      // remove a UTF-8 BOM
-      if(substr($fc,0,3)==chr(hexdec('EF')).chr(hexdec('BB')).chr(hexdec('BF'))){
-        $fc = substr($fc,3);
-      } else {
-        $fc = iconv('windows-1250', 'utf-8', file_get_contents($fileName));
-        if(empty($fc)){
-          $fc = mb_convert_encoding(file_get_contents($fileName),'utf-8');
-        }
-      }
+			$fc = file_get_contents($fileName);
+			// remove a UTF-8 BOM
+			if(substr($fc,0,3)==chr(hexdec('EF')).chr(hexdec('BB')).chr(hexdec('BF'))){
+				$fc = substr($fc,3);
+			} else {
+				$fc = iconv('windows-1250', 'utf-8', file_get_contents($fileName));
+				if(empty($fc)){
+					$fc = mb_convert_encoding(file_get_contents($fileName),'utf-8');
+				}
+			}
 		}
 
-    $handle=fopen("php://memory", "rw");
-    fwrite($handle, $fc);
-    fseek($handle, 0);
-    return $handle;
+		fwrite($handle, $fc);
+		fseek($handle, 0);
+		return $handle;
 	}
 
 }

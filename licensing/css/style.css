@@ -434,6 +434,7 @@ table.thickboxTable{
 }
 
 table.thickboxTable td{
+    text-align: left;
 	padding:1px;
 	vertical-align:top;
 }
@@ -1830,3 +1831,9 @@ td.helpfulLinks {
 .icon{
 	text-align: center;
 }
+
+
+.no-titlebar .ui-dialog-titlebar {
+	          display: none;
+		    }
+

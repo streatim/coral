@@ -236,6 +236,9 @@ class SushiService extends DatabaseObject
     return implode("\r\n", $detailsForOutput);
   }
 
+  /**
+   * @throws Exception
+   */
   public function run($reportLayout, $serviceProvider, $overwritePlatform) {
     $this->statusLog = array();
     $this->detailLog = array();
@@ -284,7 +287,7 @@ class SushiService extends DatabaseObject
     },$report['header']['months']);
     $header = array_merge($layoutColumns,$monthColumns);
 
-    $txtOut .= implode($header, "\t") . "\n";
+    $txtOut .= implode("\t", $header) . "\n";
     $this->log("Layout validated successfully against layouts.ini : " . $layoutCode);
 
 
@@ -298,7 +301,7 @@ class SushiService extends DatabaseObject
       foreach($row['months'] as $m) {
         $finalArray[] = $m;
       }
-      $txtOut .= implode($finalArray,"\t") . "\n";
+      $txtOut .= implode("\t", $finalArray) . "\n";
     }
 
     #Save final text delimited "file" and log output on server
@@ -381,9 +384,14 @@ class SushiService extends DatabaseObject
     $trailingSlash = substr($this->serviceURL, -1) == '/' ? '' : '/';
     $endpoint = $this->serviceURL . $trailingSlash . 'reports/' . strtolower($reportLayout) . '?' . http_build_query($params);
     $ch = curl_init($endpoint);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-    if (preg_match("/http/i", $this->security)) {
-      curl_setopt($ch, CURLOPT_USERPWD, $this->login . ":" . $this->password);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'Content-Type: application/json',
+      'Accept: application/json'
+    ));
+    if ($this->security) {
+      if (preg_match("/http/i", $this->security)) {
+        curl_setopt($ch, CURLOPT_USERPWD, $this->login . ":" . $this->password);
+      }
     }
     curl_setopt($ch, CURLOPT_TIMEOUT, 600);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
@@ -392,28 +400,18 @@ class SushiService extends DatabaseObject
     $this->log("Connecting to $this->serviceURL");
 
     // try executing curl
-    try {
-      $response = curl_exec($ch);
-    } catch (Exception $e) {
-      $error = $e->getMessage();
+    $response = curl_exec($ch);
+    if ($response === false) {
+      $error = curl_error($ch);
       $this->logStatus("Exception performing curl request with connection to $serviceProvider: $error");
-      $this->saveLogAndExit($reportLayout);
-    }
-
-    // check for curl errors
-    if (curl_errno($ch)) {
-      $this->logStatus("Request Error with connection to $serviceProvider:" . curl_error($ch));
       $this->saveLogAndExit($reportLayout);
     }
     curl_close($ch);
 
-
-    // Check for errors
-    try {
-      $json = json_decode($response);
-    } catch (Exception $e) {
-      $error = $e->getMessage();
-      $this->logStatus("There was an error trying to parse the SUSHI report from $serviceProvider. This could be due to a malformed response from the sushi service. Error: $error");
+    $response = mb_convert_encoding($response, 'UTF-8', 'UTF-8');
+    $json = json_decode($response);
+    if (json_last_error() !== JSON_ERROR_NONE) {
+      $this->logStatus('JSON decoding error: ' . json_last_error_msg());
       $this->saveLogAndExit($reportLayout);
     }
 
@@ -835,8 +833,10 @@ class SushiService extends DatabaseObject
       }
 
       // Publisher ID
-      if (is_array($resource['Publisher_ID']) && count($resource['Publisher_ID'] > 0)) {
-        $row['publisherID'] = strtolower($resource['Publisher_ID'][0]['Type']) . '=' . $resource['Publisher_ID'][0]['Value'];
+      if (is_array($resource) && array_key_exists('Publisher_ID', $resource)) {
+        if (count($resource['Publisher_ID'])) {
+          $row['publisherID'] = strtolower($resource['Publisher_ID'][0]['Type']) . '=' . $resource['Publisher_ID'][0]['Value'];
+        }
       }
 
       // all string values
@@ -902,10 +902,11 @@ class SushiService extends DatabaseObject
         }
       }
 
-
-      // identifiers
-      foreach ($resource['Item_ID'] as $id) {
-        $row[$this->r5Attr($id['Type'])] = $id['Value'];
+      if (array_key_exists('Item_ID', $resource)) {
+        // identifiers
+        foreach ($resource['Item_ID'] as $id) {
+          $row[$this->r5Attr($id['Type'])] = $id['Value'];
+        }
       }
 
       // Get all possible metric types for the resource
@@ -1046,8 +1047,10 @@ class SushiService extends DatabaseObject
     //Determine the Start Date
     //first, get this publisher/platform's last day of import
     $lastImportDate = $this->getPublisherOrPlatform->getLastImportDate();
-    $lastImportDate = date_create_from_format("Y-m-d", $lastImportDate);
-    date_add($lastImportDate, date_interval_create_from_date_string('1 month'));
+    if ($lastImportDate) {
+      $lastImportDate = date_create_from_format("Y-m-d", $lastImportDate);
+      date_add($lastImportDate, date_interval_create_from_date_string('1 month'));
+    }
 
     //if that date is set and it's sooner than the first of this year, default it to that date
     if (($lastImportDate) && (date_format($lastImportDate, "Y-m-d") > date_format($endDate, "Y") . "-01-01")) {
@@ -1107,7 +1110,7 @@ class SushiService extends DatabaseObject
       'Print_ISSN' => 'issn',
       'Online_ISSN' => 'eissn',
       'URI' => 'uri',
-      'YOP' => 'yop', 
+      'YOP' => 'yop',
       'Section_Type' => 'sectionType',
       'Access_Type' => 'accessType',
       'Publication_Date' => 'publicationDate',

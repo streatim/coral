@@ -33,8 +33,9 @@ header("Content-type: text/csv");
 header("Content-Disposition: attachment; filename=\"issues.csv\"");
 
 $out = fopen('php://output', 'w');
-
-fputcsv($out,array_keys($exportIssues[0]));
+if (isset($exportIssues[0])) {
+  fputcsv($out, array_keys($exportIssues[0]));
+}
 
 foreach ($exportIssues as $issue) {
 	fputcsv($out, $issue);

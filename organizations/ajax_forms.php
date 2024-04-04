@@ -152,7 +152,7 @@ switch ($_GET['action']) {
 			<table class='noBorderTable' style='width:100%;'>
 				<tr>
 					<td style='width:60px'><input type='button' value='<?php echo _("submit");?>' name='submitOrganizationChanges' id ='submitOrganizationChanges' class='submit-button'></td>
-					<td><input type='button' value='<?php echo _("cancel");?>' onclick="tb_remove()" class='cancel-button'></td>
+					<td><input type='button' value='<?php echo _("cancel");?>' onclick="myCloseDialog()" class='cancel-button'></td>
 				</tr>
 			</table>
 		</td>
@@ -229,7 +229,7 @@ switch ($_GET['action']) {
 			<table class='noBorderTable' style='width:100%;'>
 				<tr>
 					<td style='width:60px'><input type='button' value='<?php echo _("submit");?>' name='submitAliasForm' id ='submitAliasForm' class='cancel-button'></td>
-					<td><input type='button' value='<?php echo _("cancel");?>' onclick="tb_remove()" class='cancel-button'></td>
+					<td><input type='button' value='<?php echo _("cancel");?>' onclick="myCloseDialog()" class='cancel-button'></td>
 				</tr>
 			</table>
 		</td>
@@ -258,12 +258,12 @@ switch ($_GET['action']) {
 		<div style="display:inline-block;vertical-align:top;width:42%;">
 			<div class="form-element">
 				<label for="contactAddName">Name</label>
-				<input type='text' id='contactAddName' name='contactName' /><br />
+				<input type='text' id='contactAddName' class='max-with-100' name='contactName' /><br />
 				<span id='span_error_contactAddName' class='smallDarkRedText'></span>
 			</div>
 			<div class="form-element">
 				<label for="emailAddress">Email</label>
-				<input type='text' id='emailAddress' name='emailAddress' />
+				<input type='text' id='emailAddress' class='max-with-100' name='emailAddress' />
 				<span id='span_error_contactEmailAddress' class='smallDarkRedText'></span>
 			</div>
 		</div>
@@ -423,7 +423,7 @@ switch ($_GET['action']) {
 			<table class='noBorderTable' style='width:100%;'>
 				<tr>
 					<td style='width:60px'><input type='button' value='<?php echo _("submit");?>' name='submitContactForm' id ='submitContactForm' class='submit-button'></td>
-					<td><input type='button' value='<?php echo _("cancel");?>' onclick="tb_remove()" class='cancel-button'></td>
+					<td><input type='button' value='<?php echo _("cancel");?>' onclick="myCloseDialog()" class='cancel-button'></td>
 				</tr>
 			</table>
 		</td>
@@ -527,7 +527,7 @@ switch ($_GET['action']) {
 			<table class='noBorderTable' style='width:100%;'>
 				<tr>
 					<td style='width:60px'><input type='button' value='<?php echo _("submit");?>' name='submitExternalLoginForm' id ='submitExternalLoginForm' class='submit-button'></td>
-					<td><input type='button' value='<?php echo _("cancel");?>' onclick="tb_remove()" class='cancel-button'></td>
+					<td><input type='button' value='<?php echo _("cancel");?>' onclick="myCloseDialog()" class='cancel-button'></td>
 				</tr>
 			</table>
 		</td>
@@ -567,7 +567,7 @@ switch ($_GET['action']) {
 				<table class='noBorderTable' style='width:125px;'>
 					<tr>
 						<td style='width:60px'><input type="button" value="submit" name="submitCloseResourceIssue" id="submitCloseResourceIssue" class='submit-button'></td>
-						<td><input type='button' value='cancel' onclick="tb_remove();" class='cancel-button'></td>
+						<td><input type='button' value='cancel' onclick="myCloseDialog();" class='cancel-button'></td>
 					</tr>
 				</table>
 
@@ -602,7 +602,7 @@ switch ($_GET['action']) {
 		<tr>
 			<td><label><?php echo _("Contact:");?>&nbsp;&nbsp;<span class='bigDarkRedText'>*</span></label></td>
 			<td>
-				<select multiple style="min-height: 60px;" type='text' id='contactIDs' name='contactIDs[]'>
+				<select multiple style="min-height: 60px;width: 100%" type='text' id='contactIDs' name='contactIDs[]'>
 <?php
 
 		foreach ($organizationContactsArray as $contact) {
@@ -655,7 +655,7 @@ switch ($_GET['action']) {
 		<tr>
 			<td><label><?php echo _("Body:");?>&nbsp;&nbsp;<span class='bigDarkRedText'>*</span></label></td>
 			<td>
-				<textarea id='bodyText' name='issue[bodyText]' value='' />
+        <textarea id='bodyText' name='issue[bodyText]' class="max-with-100"></textarea>
 				<span id='span_error_bodyText' class='error smallDarkRedText'></span>
 			</td>
 		</tr>
@@ -691,7 +691,7 @@ switch ($_GET['action']) {
 	<table class='noBorderTable' style='width:125px;'>
 		<tr>
 			<td style='width:60px;padding:0;'><input type='button' value='<?php echo _("submit");?>' name='submitNewResourceIssue' id='submitNewResourceIssue' class='submit-button'></td>
-			<td style='padding:0;'><input type='button' value='<?php echo _("cancel");?>' onclick="tb_remove();" class='cancel-button'></td>
+			<td style='padding:0;'><input type='button' value='<?php echo _("cancel");?>' onclick="myCloseDialog();" class='cancel-button'></td>
 		</tr>
 	</table>
 
@@ -743,7 +743,7 @@ echo buildTimeForm("endTime");
 	<table class='noBorderTable' style='width:125px;'>
 		<tr>
 			<td style='text-align:left'><input type='button' value='submit' name='submitUpdatedDowntime' id='submitUpdatedDowntime'></td>
-			<td style='text-align:right'><input type='button' value='cancel' onclick="tb_remove();"></td>
+			<td style='text-align:right'><input type='button' value='cancel' onclick="myCloseDialog();"></td>
 		</tr>
 	</table>
 </form>
@@ -755,7 +755,7 @@ echo buildTimeForm("endTime");
 		</div>
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:right'><input type='button' value='cancel' onclick="tb_remove();"></td>
+				<td style='text-align:right'><input type='button' value='cancel' onclick="myCloseDialog();"></td>
 			</tr>
 		</table>
 <?php
@@ -859,7 +859,7 @@ if ($issues) {
 	<table class='noBorderTable' style='width:125px;'>
 		<tr>
 			<td style='width:60px;padding:0;'><input type='button' value='<?php echo _("submit");?>' name='submitNewDowntime' id='submitNewDowntime' class='submit-button'></td>
-			<td style='padding:0;'><input type='button' value='<?php echo _("cancel");?>' onclick="tb_remove();" class='cancel-button'></td>
+			<td style='padding:0;'><input type='button' value='<?php echo _("cancel");?>' onclick="myCloseDialog();" class='cancel-button'></td>
 		</tr>
 	</table>
 
@@ -873,13 +873,13 @@ if ($issues) {
     	if (isset($_GET['issueLogID'])) $issueLogID = $_GET['issueLogID']; else $issueLogID = '';
     	$issueLog = new IssueLog(new NamedArguments(array('primaryKey' => $issueLogID)));
 
-		if (($issueLog->issueStartDate != '') && ($issueLog->issueStartDate != "0000-00-00")) {
+		if (($issueLog->issueStartDate) && ($issueLog->issueStartDate != "0000-00-00")) {
 			$issueStartDate=format_date($issueLog->issueStartDate);
 		}else{
 			$issueStartDate='';
 		}
 
-    if (($issueLog->issueEndDate != '') && ($issueLog->issueEndDate != "0000-00-00")) {
+    if (($issueLog->issueEndDate) && ($issueLog->issueEndDate != "0000-00-00")) {
 			$issueEndDate=format_date($issueLog->issueEndDate);
 		}else{
 			$issueEndDate='';
@@ -946,7 +946,7 @@ if ($issues) {
 			<table class='noBorderTable' style='width:100%;'>
 				<tr>
 					<td style='width:60px'><input type='button' value='<?php echo _("submit");?>' name='submitIssueLogForm' id ='submitIssueLogForm' class='submit-button'></td>
-					<td><input type='button' value='<?php echo _("cancel");?>' onclick="tb_remove()" class='cancel-button'></td>
+					<td><input type='button' value='<?php echo _("cancel");?>' onclick="myCloseDialog()" class='cancel-button'></td>
 				</tr>
 			</table>
 		</td>
@@ -986,7 +986,7 @@ if ($issues) {
 				foreach($instanceArray as $instance) {
 					echo "<tr>";
 					echo "<td>" . $instance['shortName'] . "</td>";
-					echo "<td style='width:30px'><a href='ajax_forms.php?action=getAdminUpdateForm&className=" . $className . "&updateId=" . $instance[lcfirst($className) . 'ID'] . "&height=130&width=250&modal=true' class='thickbox' id='expression'><img id='Edit' class='editIcon' src='images/edit.gif' title= '"._("Edit")."' /></a></td>";
+					echo "<td style='width:30px'><a href='javascript:void(0)' onclick='myDialog(\"ajax_forms.php?action=getAdminUpdateForm&className=" . $className . "&updateId=" . $instance[lcfirst($className) . 'ID'] . "&height=130&width=250&modal=true\",180,350)' class='thickbox' id='expression'><img id='Edit' class='editIcon' src='images/edit.gif' title= '"._("Edit")."' /></a></td>";
 					echo "<td style='width:50px'><a href='javascript:deleteData(\"" . $className . "\",\"" . $instance[lcfirst($className) . 'ID'] . "\")'><img id='Remove' class='removeIcon' src='images/cross.gif' title= '"._("Remove")."' /></a></td>";
 					echo "</tr>";
 				}
@@ -1030,7 +1030,7 @@ if ($issues) {
 
 
 		</td>
-		<td colspan='2'><p><a href='#' onclick='window.parent.tb_remove(); return false' id='closeButton' class='cancel-button'><?php echo _("Close");?></a></td>
+		<td colspan='2'><p><a href='#' onclick='myCloseDialog(); return false' id='closeButton' class='cancel-button'><?php echo _("Close");?></a></td>
 		</tr>
 		</table>
 		</div>
@@ -1092,7 +1092,7 @@ if ($issues) {
 					echo "<td>" . $instance['firstName'] . "</td>";
 					echo "<td>" . $instance['lastName'] . "</td>";
 					echo "<td>" . $instance['priv'] . "</td>";
-					echo "<td><a href='ajax_forms.php?action=getAdminUserUpdateForm&loginID=" . $instance['loginID'] . "&height=185&width=250&modal=true' class='thickbox' id='expression'><img id='Edit' src='images/edit.gif' title= '"._("Edit")."' /></a></td>";
+					echo "<td><a href='javascript:void(0)' onclick='myDialog(\"ajax_forms.php?action=getAdminUserUpdateForm&loginID=" . $instance['loginID'] . "&height=185&width=250&modal=true\",250,350)' class='thickbox' id='expression'><img id='Edit' src='images/edit.gif' title= '"._("Edit")."' /></a></td>";
 					echo "<td class='icon'><a href='javascript:deleteUser(\"" . $instance['loginID'] . "\")'><img id='Remove'  src='images/cross.gif' title= '"._("Remove")."' /></a></td>";
 					echo "</tr>";
 				}
@@ -1156,7 +1156,7 @@ if ($issues) {
 
 		<tr>
 		<td style='width:60px'><input type='button' value='<?php echo $update; ?>' onclick='javascript:window.parent.submitUserData("<?php echo $loginID; ?>");' class='submit-button' /></td>
-		<td><input type='button' value='<?php echo _("Close");?>' onclick="window.parent.tb_remove(); return false" class='cancel-button' /></td>
+		<td><input type='button' value='<?php echo _("Close");?>' onclick="myCloseDialog(); return false" class='cancel-button' /></td>
 		</tr>
 		</table>
 		</div>

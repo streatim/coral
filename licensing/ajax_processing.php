@@ -256,6 +256,8 @@ switch ($_GET['action']) {
 	//add/update expression
     case 'submitExpression':
 
+		$expressionID = "";
+
     	//if expressionID is sent then this is an update
     	if ((isset($_POST['expressionID'])) && ($_POST['expressionID'] != '')){
     		$expressionID = $_POST['expressionID'];
@@ -276,8 +278,10 @@ switch ($_GET['action']) {
 		try {
 			$expression->save();
 
-			if (!$expressionID){
-				$expressionID=$expression->primaryKey;
+			if(isset($expressionID)){
+				if (!$expressionID){
+					$expressionID=$expression->primaryKey;
+				}
 			}
 
 			//first remove all qualifiers, then we'll add them back
@@ -500,7 +504,7 @@ switch ($_GET['action']) {
 				<td colspan='2'><br /><span class='headerText'><?php echo $response; ?></span><br /></td>
 				</tr>
 				<tr>
-				<td colspan='2'><p><a href='#' onclick='window.parent.tb_remove(); window.parent.location=("license.php?licenseID=<?php echo $licenseID; ?>"); return false'><?php echo _("Continue");?></a></td>
+			-	<td colspan='2'><p><a href='javascript:void(0)' onclick='myCloseDialog("#newlicnese"); window.parent.location=("license.php?licenseID=<?php echo $licenseID; ?>"); return false'><?php echo _("Continue");?></a></td>
 				</tr>
 
 				</table>
@@ -512,7 +516,7 @@ switch ($_GET['action']) {
 				<td colspan='2'><br /><span class='headerText'><?php echo _("SQL Insert Failed.");?> <?php echo $e->getMessage(); ?>  <?php echo _("Please make sure everything is filled out correctly.");?></span><br /></td>
 				</tr>
 				<tr>
-				<td colspan='2'><p><a href='#' onclick='window.parent.tb_remove(); return false'><?php echo _("Continue");?></a></td>
+				<td colspan='2'><p><a href='javascript:void(0)' onclick='myCloseDialog(""); return false'><?php echo _("Continue");?></a></td>
 				</tr>
 
 				</table>
@@ -525,7 +529,7 @@ switch ($_GET['action']) {
 			<td colspan='2'><br /><span class='headerText'><?php echo _("SQL Insert Failed.");?> <?php echo $e->getMessage(); ?>  <?php echo _("Please make sure everything is filled out correctly.");?></span><br /></td>
 			</tr>
 			<tr>
-			<td colspan='2'><p><a href='#' onclick='window.parent.tb_remove(); return false'><?php echo _("Continue");?></a></td>
+			<td colspan='2'><p><a href='javascript:void(0)' onclick='myCloseDialog(""); return false'><?php echo _("Continue");?></a></td>
 			</tr>
 
 			</table>
@@ -1168,6 +1172,27 @@ switch ($_GET['action']) {
 		echo $exists;
 
 		break;
+
+  //used to verify organization name isn't already being used as it's added
+  case 'submitInProgressStatusesSettings':
+
+    $safePost = filter_input_array(INPUT_POST, array(
+      'statuses' => FILTER_SANITIZE_STRING
+    ));
+    $ini_file = BASE_DIR . "/admin/configuration.ini";
+    require_once BASE_DIR."../common/write_php_ini.php";
+
+    $ini_array = parse_ini_file($ini_file, true);
+
+    $ini_array['settings']['inProgressStatuses'] = $safePost['statuses'];
+    try {
+      write_php_ini($ini_file, $ini_array);
+    } catch (Exception $e) {
+      http_response_code(500);
+      echo $e->getMessage();
+    }
+
+    break;
 
     //used to verify organization name isn't already being used as it's added
     case 'submitTermsToolSettings':

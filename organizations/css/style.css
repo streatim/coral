@@ -647,6 +647,7 @@ table.thickboxTable{
 }
 
 table.thickboxTable td{
+    text-align: left;
 	padding: 2px;
 }
 
@@ -1588,6 +1589,7 @@ a.showResourceIssues:before {
 
 div#openIssues {
     margin: 8px;
+    text-align: left;
 }
 
 div#archivedIssues {
@@ -2062,4 +2064,20 @@ dt:first-child {
 
 div.downtime, div.issue {
     padding-bottom: 1em;
+}
+
+.no-titlebar .ui-dialog-titlebar {
+    display: none;
+}
+
+.max-with-100 {
+  max-width: 100%;
+}
+
+.my-dialog {
+  top: 100px !important;
+}
+
+.my-dialog .issue {
+  border-bottom: 1px solid #eee;
 }
