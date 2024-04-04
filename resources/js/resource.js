@@ -166,19 +166,19 @@ $(document).ready(function () {
 
   });
 
-  $("#submitUpdatedDowntime").on("click", function (e) {
+  $(document).on('click', '#submitUpdatedDowntime', function (e) {
     e.preventDefault();
 
     var errors = [];
 
-    if ($("#endDate").val() == "") {
+    if ($("#endDate").val() === "") {
       errors.push({
         message: _("Must set an end date."),
         target: '#span_error_endDate'
       });
     }
 
-    if (errors.length == 0) {
+    if (errors.length === 0) {
       submitUpdatedDowntime();
     } else {
 
@@ -192,12 +192,11 @@ $(document).ready(function () {
 
   });
 
-  $(".issueResources").on("click", function () {
-
+  $(document).on('click', '.issueResources', function (e) {
     $(".issueResources").attr("checked", false);
     $(this).attr("checked", true);
 
-    if ($(this).attr("id") == "otherResources") {
+    if ($(this).attr("id") === "otherResources") {
       $("#resourceIDs").fadeIn(250)
     } else {
       $("#resourceIDs").fadeOut(250)
