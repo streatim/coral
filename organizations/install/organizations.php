@@ -191,6 +191,17 @@ function register_organizations_provider()
                 }
             ];
 
+        case "2024.04":
+            return [
+                "function" => function($shared_module_info) {
+                    $return = new stdClass();
+                    $return->yield = new stdClass();
+                    $return->success = true;
+                    $return->yield->title = _("Organizations Module");
+                    return $return;
+                }
+            ];
+
 				default:
 					return null;
 			}

@@ -21,7 +21,7 @@ function register_auth_provider()
 								"default_value" => "coral_auth"
 							],
 							"config_file" => [
-								"path" => $protected_module_data{"config_file_path"},
+								"path" => $protected_module_data["config_file_path"],
 							]
 						],
 						"function" => function($shared_module_info) use ($MODULE_VARS, $protected_module_data, $version) {
@@ -362,6 +362,17 @@ function register_auth_provider()
             ];
 
         case "2020.09":
+            return [
+                "function" => function($shared_module_info) {
+                    $return = new stdClass();
+                    $return->yield = new stdClass();
+                    $return->success = true;
+                    $return->yield->title = _("Auth Module");
+                    return $return;
+                }
+            ];
+
+        case "2024.04":
             return [
                 "function" => function($shared_module_info) {
                     $return = new stdClass();

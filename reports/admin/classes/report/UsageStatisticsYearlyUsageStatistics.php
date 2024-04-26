@@ -18,7 +18,7 @@ class UsageStatisticsYearlyUsageStatistics extends Report {
 
     public function sql($isArchive) {
         $yearFields = '';
-        for ($y = 2015; $y >= 2008; $y--) {
+        for ($y = date("Y"); $y >= date("Y", strtotime("-84 months")); $y--) {
             $yearFields .= "max(IF(year=$y, totalCount, null)) '{$y}_ytd',";
         }
 

@@ -51,11 +51,11 @@
 
 function validateExternalLogin() {
     if($("#username").val() == ''){
-        $("#span_errors").html('<br />' + _('Please enter a username to continue');
+        $("#span_errors").html('<br />' + _('Please enter a username to continue'));
         $("#username").focus();
         return false;
     }else if($("#password").val() == ''){
-        $("#span_errors").html('<br />' + _('For security, please enter a password');
+        $("#span_errors").html('<br />' + _('For security, please enter a password'));
         $("#password").focus();
         return false;
     }else{
@@ -72,7 +72,7 @@ function submitExternalLogin(){
             cache:      false,
             data:       { externalLoginID: $("#editExternalLoginID").val(), publisherPlatformID: $("#publisherPlatformID").val(), platformID: $("#platformID").val(), username: $("#username").val(), password: $("#password").val(), loginURL: $("#loginURL").val(), noteText: $("#noteText").val() },
             success:    function(html) {
-                window.parent.tb_remove();
+                myCloseDialog();
                 window.parent.updateLoginDetails();
                 return false;
             }

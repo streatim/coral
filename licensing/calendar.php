@@ -39,6 +39,7 @@ $password = $config->database->password;
 $license_databaseName = $config->database->name;
 $resource_databaseName = $config->settings->resourcesDatabaseName;
 $link = mysqli_connect($host, $username, $password) or die(_("Could not connect to host."));
+mysqli_set_charset($link, 'utf8');
 mysqli_select_db($link, $license_databaseName) or die(_("Could not find License database."));
 mysqli_select_db($link, $resource_databaseName) or die(_("Could not find Resource database."));
 $display = array();
@@ -206,7 +207,7 @@ $result = mysqli_query($link, $query) or die(_("Bad Query Failure: ".mysqli_erro
 						} else {
 							$html = $html . "<a href='license.php?licenseID=" . $row["licenseID"] . "'>". $row["shortName"] . "</a>";
 						}
-					$html = $html . " ] - " . $row["resourceTypeName"] . " ";
+          $html = $html . " ] - " . $row["resourceTypeName"] . " ";
                     if ($interval->invert) {
                         $html = $html . "- <strong style='color:red'>"._("Expired ").$num_days._(" days ago")."</strong>";
                     } else {

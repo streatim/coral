@@ -1,0 +1,1 @@
+ALTER TABLE SushiService ADD COLUMN platform VARCHAR(300) NULL;

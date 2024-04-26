@@ -820,7 +820,7 @@ table.surroundBox {
 	border-color: #e6e5e9;
 	border-collapse: collapse;
 	border-spacing: 0;
-	font-size:100%;
+	font-size:90%;
 	width: 370px !important;
 }
 
@@ -968,6 +968,7 @@ table.thickboxTable{
 }
 
 table.thickboxTable td{
+    text-align: left;
 	padding:1px;
 }
 
@@ -2353,6 +2354,7 @@ a.showIssues:before {
 
 div#openIssues {
     margin: 8px;
+    text-align: left;
 }
 
 div#archivedIssues {
@@ -3317,12 +3319,24 @@ input#archiveInd {
 	vertical-align: 3px;
 }
 
-/*--- Add space before and after each downtime definition ---*/
+/*--- Add space before and after each issue and downtime definition ---*/
 
 dt:first-child {
     padding-top: .5em;
 }
 
-div.downtime {
+div.downtime, div.issue {
     padding-bottom: 1em;
+}
+
+.no-titlebar .ui-dialog-titlebar {
+   display: none;
+}
+
+.my-dialog {
+  top: 100px !important;
+}
+
+.my-dialog .issue {
+  border-bottom: 1px solid #eee;
 }

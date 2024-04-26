@@ -17,27 +17,26 @@
 
  $(function(){
 
-
-	 $("#submitPublisherNoteForm").click(function () {
-	 	submitPublisherNote();
-	 });
+   $(document).on('click', '#submitPublisherNoteForm', function (e) {
+     submitPublisherNote();
+   });
 
 
 
 	//do submit if enter is hit
-	$('#startYear').keyup(function(e) {
-	      if(e.keyCode == 13) {
-		submitPublisherNote();
-	      }
+   $(document).on('keyup', '#startYear', function (e) {
+     if(e.keyCode === 13) {
+       submitPublisherNote();
+     }
 	});
 
 
 	//do submit if enter is hit
-	$('#endYear').keyup(function(e) {
-	      if(e.keyCode == 13) {
-		submitPublisherNote();
-	      }
-	});
+   $(document).on('keyup', '#endYear', function (e) {
+     if(e.keyCode === 13) {
+       submitPublisherNote();
+     }
+   });
 
 
 
@@ -71,8 +70,7 @@ function submitPublisherNote(){
 		 cache:      false,
 		 data:       { publisherPlatformNoteID: $("#editPublisherPlatformNoteID").val(), publisherPlatformID: $("#publisherPlatformID").val(), startYear: $("#startYear").val(), endYear: $("#endYear").val(), noteText: $("#noteText").val() },
 		 success:    function(html) {
-				window.parent.tb_remove();
-				window.parent.updateNotesDetails();
+				myCloseDialog();
 				return false;
 		 }
 

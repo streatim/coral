@@ -561,7 +561,7 @@ table.surroundBox {
 	border-color: #e6e5e9;
 	border-collapse: collapse;
 	border-spacing: 0;
-	font-size:100%;
+	font-size:90%;
 }
 
 table.surroundBox td {
@@ -598,6 +598,7 @@ table.thickboxTable{
 }
 
 table.thickboxTable td{
+    text-align: left;
 	padding:1px;
 }
 
@@ -1108,7 +1109,7 @@ table.surroundBox {
 	border-color: #e6e5e9;
 	border-collapse: collapse;
 	border-spacing: 0;
-	font-size:100%;
+	font-size:90%;
 }
 
 table.surroundBox td {
@@ -2600,4 +2601,8 @@ table.titleTable {
 
 .addIcon {
 	vertical-align: -2px;
+}
+
+.no-titlebar .ui-dialog-titlebar {
+    display: none;
 }

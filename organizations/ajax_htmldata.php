@@ -23,12 +23,12 @@ include_once 'user.php';
 
 //shared html template for organization and resource issues
 function generateIssueHTML($issue,$associatedEntities=null) {
-	$html = "
+	$html = "<div id='openIssues'>
 	<div class=\"issue\">";
 	if (!$issue->dateClosed) {
 		$html .= "
-		<a class=\"thickbox action closeResourceIssueBtn\" href=\"ajax_forms.php?action=getCloseResourceIssueForm&issueID={$issue->issueID}&height=120&width=345&modal=true\">close</a>
-		<a class=\"thickbox action\" href=\"ajax_forms.php?action=getNewDowntimeForm&organizationID={$GLOBALS['organizationID']}&issueID={$issue->issueID}&height=200&width=390&modal=true\">downtime</a>";
+		<a class=\"thickbox action closeResourceIssueBtn\" href='javascript:void(0)' onclick='myDialog(\"ajax_forms.php?action=getCloseResourceIssueForm&issueID={$issue->issueID}\",140,345)'>close</a>
+		<a class=\"thickbox action\" href='javascript:void(0)' onclick='myDialog(\"ajax_forms.php?action=getNewDowntimeForm&organizationID={$GLOBALS['organizationID']}&issueID={$issue->issueID}\",220,390)'>downtime</a>";
 	}
 	$html .= "
 	  	<dl>
@@ -48,7 +48,11 @@ function generateIssueHTML($issue,$associatedEntities=null) {
 	if ($contacts) {
 		$html .= "<ul class=\"contactList\">";
 		foreach($contacts as $contact) {
-			$html .= "<li><a href=\"mailto:".urlencode($contact['emailAddress'])."?Subject=RE: {$issue->subjectText}\">{$contact['name']}</a></li>";
+			if(!empty($contact['name'])) {
+				$html .= "<li><a href=\"mailto:".urlencode($contact['emailAddress'])."?Subject=RE: {$issue->subjectText}\">{$contact['name']}</a></li>";
+			} else {
+				$html .= "<li><a href=\"mailto:".urlencode($contact['emailAddress'])."?Subject=RE: {$issue->subjectText}\">{$contact['emailAddress']}</a></li>";
+			}
 		}
 		$html .= "</ul>";
 	}
@@ -71,7 +75,7 @@ function generateIssueHTML($issue,$associatedEntities=null) {
 	  		<dt class=\"block\">Body:</dt>
 	  		<dd>{$issue->bodyText}</dd>
 	  	</dl>
-	</div>";
+	</div></div>";
 	return $html;
 }
 
@@ -94,7 +98,7 @@ function generateDowntimeHTML($downtime) {
 	if ($downtime->endDate != null) {
 		$html .= $downtime->endDate;
 	} else {
-		$html .= "<a class=\"thickbox\" href=\"ajax_forms.php?action=getResolveDowntimeForm&height=363&width=345&modal=true&downtimeID={$downtime->downtimeID}\">Resolve</a>";
+		$html .= "<a class=\"thickbox\" href='javascript:void(0)' onclick='myDialog(\"ajax_forms.php?action=getResolveDowntimeForm&downtimeID={$downtime->downtimeID}\",383,345)'>Resolve</a>";
 	}
 	$html .= "</dd>";
 
@@ -191,7 +195,7 @@ switch ($_GET['action']) {
 		<th colspan='2'>
 
 			<span style='float:left; max-width:400px;'>&nbsp;<?php echo $organization->name; ?></span>
-			<span style='float:right; vertical-align:top;'><?php if ($user->canEdit()){ ?><a href='ajax_forms.php?action=getOrganizationForm&height=363&width=345&modal=true&organizationID=<?php echo $organizationID; ?>' class='thickbox' id='editOrganization'><img src='images/edit.gif' alt='<?php echo _("edit");?>' title='<?php echo _("edit resource");?>'></a><?php } ?>  <?php if ($user->isAdmin){ ?><a href='javascript:removeOrganization(<?php echo $organizationID; ?>);'><img src='images/cross.gif' alt='<?php echo _("remove resource");?>' title='<?php echo _("remove resource");?>'></a><?php } ?></span>
+			<span style='float:right; vertical-align:top;'><?php if ($user->canEdit()){ ?><a href='javascript:void(0)' onclick='myDialog("ajax_forms.php?action=getOrganizationForm&organizationID=<?php echo $organizationID; ?>",383,345)' class='thickbox' id='editOrganization'><img src='images/edit.gif' alt='<?php echo _("edit");?>' title='<?php echo _("edit resource");?>'></a><?php } ?>  <?php if ($user->isAdmin){ ?><a href='javascript:removeOrganization(<?php echo $organizationID; ?>)'><img src='images/cross.gif' alt='<?php echo _("remove resource");?>' title='<?php echo _("remove resource");?>'></a><?php } ?></span>
 		</th>
 		</tr>
 
@@ -261,7 +265,7 @@ switch ($_GET['action']) {
 		<?php
 		}
 
-        if ($organization->ilsID){ 
+        if ($organization->ilsID){
             $ilsClient = (new ILSClientSelector())->select();
         ?>
 			<tr>
@@ -347,7 +351,7 @@ switch ($_GET['action']) {
 				echo "<td>" . $organizationAlias['name'] . "</td>\n";
 				echo "<td>" . $organizationAlias['aliasTypeShortName'];
 				if ($user->canEdit()){
-					echo "<span style='float:right; vertical-align:top;'><a href='ajax_forms.php?action=getAliasForm&height=124&width=285&modal=true&organizationID=" .  $organizationID . "&aliasID=" . $organizationAlias['aliasID'] . "' class='thickbox'><img src='images/edit.gif' alt='"._("edit")."' title='"._("edit alias")."'></a>";
+					echo "<span style='float:right; vertical-align:top;'><a href='javascript:void(0)' onclick='myDialog(\"ajax_forms.php?action=getAliasForm&height=124&width=285&modal=true&organizationID=" .  $organizationID . "&aliasID=" . $organizationAlias['aliasID'] . "\",250,285)' class='thickbox'><img src='images/edit.gif' alt='"._("edit")."' title='"._("edit alias")."'></a>";
 					echo "&nbsp;<a href='javascript:removeAlias(" . $organizationAlias['aliasID'] . ")'><img src='images/cross.gif' alt='"._("remove alias")."' title='"._("remove alias")."'></a>";
 					echo "</span>";
 				}
@@ -365,7 +369,7 @@ switch ($_GET['action']) {
 		?>
 
 		<?php if ($user->canEdit()){ ?>
-			<a href='ajax_forms.php?action=getAliasForm&height=124&width=285&modal=true&organizationID=<?php echo $organizationID; ?>' class='thickbox' id='newAlias'><?php echo _("add a new alias");?></a>
+			<a href='javascript:void(0)' onclick='myDialog("ajax_forms.php?action=getAliasForm&height=124&width=285&modal=true&organizationID=<?php echo $organizationID; ?>",250,285)' class='thickbox' id='newAlias'><?php echo _("add a new alias");?></a>
 		<?php } ?>
 
 		<?php
@@ -435,7 +439,7 @@ switch ($_GET['action']) {
 				}
 
 				if ($user->canEdit()){
-					echo "<span style='float:right; vertical-align:top;'><a href='ajax_forms.php?action=getContactForm&height=463&width=345&modal=true&organizationID=" . $organizationID . "&contactID=" . $contact['contactID'] . "' class='thickbox'><img src='images/edit.gif' alt='"._("edit")."' title='"._("edit contact")."'></a>";
+					echo "<span style='float:right; vertical-align:top;'><a href='javascript:void(0)' onclick='myDialog(\"ajax_forms.php?action=getContactForm&height=463&width=345&modal=true&organizationID=" . $organizationID . "&contactID=" . $contact['contactID'] . "\",500,354)' class='thickbox'><img src='images/edit.gif' alt='"._("edit")."' title='"._("edit contact")."'></a>";
 					echo "&nbsp;<a href='javascript:removeContact(" . $contact['contactID'] . ")'><img src='images/cross.gif' alt='"._("remove contact")."' title='"._("remove contact")."'></a>";
 					echo "</span>";
 				}
@@ -570,7 +574,7 @@ switch ($_GET['action']) {
 				<th>
 				<?php
 					if ($user->canEdit()){
-						echo "<span style='float:right; vertical-align:top;'><a href='ajax_forms.php?action=getAccountForm&height=254&width=342&modal=true&organizationID=" . $organizationID . "&externalLoginID=" . $externalLogin['externalLoginID'] . "' class='thickbox'><img src='images/edit.gif' alt='"._("edit")."' title='"._("edit external login")."'></a>";
+						echo "<span style='float:right; vertical-align:top;'><a href='javascript:void(0)' onclick='myDialog(\"ajax_forms.php?action=getAccountForm&height=254&width=342&modal=true&organizationID=" . $organizationID . "&externalLoginID=" . $externalLogin['externalLoginID'] . "\",300,342)' class='thickbox'><img src='images/edit.gif' alt='"._("edit")."' title='"._("edit external login")."'></a>";
 						echo "&nbsp;<a href='javascript:removeExternalLogin(" . $externalLogin['externalLoginID'] . ")'><img src='images/cross.gif' alt='"._("remove external login")."' title='"._("remove external login")."'></a>";
 						echo "</span>";
 					}
@@ -642,7 +646,7 @@ switch ($_GET['action']) {
 
 		if ($user->canEdit()){
 		?>
-		<a href='ajax_forms.php?action=getAccountForm&height=254&width=342&modal=true&organizationID=<?php echo $organizationID; ?>' class='thickbox' id='newAlias'><?php echo _("add new external login");?></a><br />
+		<a href='javascript:void(0)' onclick='myDialog("ajax_forms.php?action=getAccountForm&height=254&width=342&modal=true&organizationID=<?php echo $organizationID; ?>",300,342)' class='thickbox' id='newAlias'><?php echo _("add new external login");?></a><br />
 		<?php
 		}
 
@@ -662,18 +666,18 @@ switch ($_GET['action']) {
 				<th><?php echo _("Issues/Problems");?></th>
 			</tr>
 			<tr>
-				<td><a id="createIssueBtn" class="thickbox" href="ajax_forms.php?action=getNewIssueForm&organizationID=<?php echo $organizationID; ?>&modal=true"><?php echo _("report new issue");?></a></td>
+				<td><a id="createIssueBtn" class="thickbox" href="javascript:void(0)" onclick='myDialog("ajax_forms.php?action=getNewIssueForm&organizationID=<?php echo $organizationID; ?>&modal=true",600,500)'><?php echo _("report new issue");?></a></td>
 			</tr>
 			<tr>
 				<td>
-					<a href="<?php echo $getIssuesFormData; ?>" class="issuesBtn" id="openIssuesBtn"><?php echo _("view open issues");?></a>
+          <a href='javascript:void(0);' onclick='javascript:myDialog("ajax_htmldata.php?<?php echo $getIssuesFormData; ?>",500,500)'><?php echo _("view open issues");?></a>
 					<a target="_blank" href="<?php echo $exportIssueUrl;?>"><img src="images/xls.gif" /></a>
 					<div class="issueList" id="openIssues" style="display:none;"></div>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<a href="<?php echo $getIssuesFormData."&archived=1"; ?>" class="issuesBtn" id="archivedIssuesBtn"><?php echo _("view archived issues");?></a>
+          <a href='javascript:void(0);' onclick='javascript:myDialog("ajax_htmldata.php?<?php echo $getIssuesFormData; ?>&archived=1",500,500)'><?php echo _("view archived issues");?></a>
 					<a target="_blank" href="<?php echo $exportIssueUrl;?>&archived=1"><img src="images/xls.gif" /></a>
 					<div class="issueList" id="archivedIssues"></div>
 				</td>
@@ -685,18 +689,18 @@ switch ($_GET['action']) {
 				<th><?php echo _("Downtime");?></th>
 			</tr>
 			<tr>
-				<td><a id="createDowntimeBtn" class="thickbox" href="ajax_forms.php?action=getNewDowntimeForm&organizationID=<?php echo $_GET['organizationID']; ?>&height=264&width=390&modal=true"><?php echo _("report new Downtime");?></a></td>
+				<td><a id="createDowntimeBtn" class="thickbox" href="javascript:void(0)" onclick='myDialog("ajax_forms.php?action=getNewDowntimeForm&organizationID=<?php echo $_GET['organizationID']; ?>&height=264&width=390&modal=true",300,390)'><?php echo _("report new Downtime");?></a></td>
 			</tr>
 			<tr>
 				<td>
-					<a href="<?php echo $getDowntimeFormData; ?>" class="downtimeBtn" id="openDowntimeBtn"><?php echo _("view current/upcoming downtime");?></a>
+          <a href='javascript:void(0);' onclick='javascript:myDialog("ajax_htmldata.php?<?php echo $getDowntimeFormData; ?>",500,500)'><?php echo _("view current/upcoming downtime");?></a>
 					<a target="_blank" href="<?php echo $exportDowntimeUrl;?>"><img src="images/xls.gif" /></a>
 					<div class="downtimeList" id="currentDowntime" style="display:none;"></div>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<a href="<?php echo $getDowntimeFormData."&archived=1"; ?>" class="downtimeBtn" id="archiveddowntimeBtn"><?php echo _("view archived downtime");?></a>
+          <a href='javascript:void(0);' onclick='javascript:myDialog("ajax_htmldata.php?<?php echo $getDowntimeFormData; ?>&archived=1",500,500)'><?php echo _("view archived downtime");?></a>
 					<a target="_blank" href="<?php echo $exportDowntimeUrl;?>&archived=1"><img src="images/xls.gif" /></a>
 					<div class="downtimeList" id="archivedDowntime"></div>
 				</td>
@@ -775,12 +779,12 @@ switch ($_GET['action']) {
 		</tr>
 
 		<?php foreach ($issueLogArray as $issueLog){
-			if (($issueLog['issueStartDate'] != '') && ($issueLog['issueStartDate'] != "0000-00-00")) {
+			if (($issueLog['issueStartDate']) && ($issueLog['issueStartDate'] != "0000-00-00")) {
 				$issueStartDate= format_date($issueLog['issueStartDate']);
 			}else{
 				$issueStartDate='';
 			}
-      if (($issueLog['issueEndDate'] != '') && ($issueLog['issueEndDate'] != "0000-00-00")) {
+      if (($issueLog['issueEndDate']) && ($issueLog['issueEndDate'] != "0000-00-00")) {
 				$issueEndDate= format_date($issueLog['issueEndDate']);
 			}else{
 				$issueEndDate='';
@@ -803,7 +807,7 @@ switch ($_GET['action']) {
 			<td style='width:360px;'><?php echo nl2br(str_replace($charsToRemove, "", $issueLog['noteText'])); ?>
 			<?php
 			if ($user->canEdit()){
-				echo "<span style='float:right; vertical-align:top;'><a href='ajax_forms.php?action=getIssueLogForm&height=250&width=265&modal=true&organizationID=" . $organizationID . "&issueLogID=" . $issueLog['issueLogID'] . "' class='thickbox'><img src='images/edit.gif' alt='"._("edit")."' title='"._("edit issue")."'></a>";
+				echo "<span style='float:right; vertical-align:top;'><a href='javascript:void(0)' onclick='myDialog(\"ajax_forms.php?action=getIssueLogForm&height=250&width=265&modal=true&organizationID=" . $organizationID . "&issueLogID=" . $issueLog['issueLogID'] . "\",300,265)' class='thickbox'><img src='images/edit.gif' alt='"._("edit")."' title='"._("edit issue")."'></a>";
 				echo "&nbsp;<a href='javascript:removeIssueLog(" . $issueLog['issueLogID'] . ")'><img src='images/cross.gif' alt='"._("remove issue")."' title='"._("remove issue")."'></a>";
 				echo "</span>";
 			}
@@ -820,7 +824,7 @@ switch ($_GET['action']) {
 
 		if ($user->canEdit()){
 		?>
-			<a href='ajax_forms.php?action=getIssueLogForm&height=250&width=265&modal=true&organizationID=<?php echo $organizationID; ?>' class='thickbox' id='newIssue'><?php echo _("add new issue");?></a> -
+			<a href='javascript:void(0)' onclick='myDialog("ajax_forms.php?action=getIssueLogForm&height=250&width=265&modal=true&organizationID=<?php echo $organizationID; ?>",300,265)' class='thickbox' id='newIssue'><?php echo _("add new issue");?></a> -
 		<?php
 		}
     ?>
@@ -1096,4 +1100,3 @@ switch ($_GET['action']) {
 
 
 ?>
-

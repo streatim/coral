@@ -50,18 +50,18 @@ switch ($_GET['action']) {
 					echo "<tr>";
 					echo "<td>" . $userArray['loginID'] . "</td>";
 					echo "<td>" . $isAdmin . "</td>";
-					echo "<td><a href='ajax_forms.php?action=getAdminUserUpdateForm&loginID=" . $userArray['loginID'] . "&height=230&width=315&modal=true' class='thickbox'><img src='images/edit.gif' alt='"._("edit password or admin status")."' title='"._("edit password or admin status")."'></a></td>";
+					echo "<td><a href='javascript:void(0)' onclick='javascript:myDialog(\"ajax_forms.php?action=getAdminUserUpdateForm&loginID=" . $userArray['loginID'] . "&height=230&width=315&modal=true\",400,350)' class='thickbox'><img src='images/edit.gif' alt='"._("edit password or admin status")."' title='"._("edit password or admin status")."'></a></td>";
 					echo "<td><a href='javascript:void(0);' class='deleteUser' id='" . $userArray['loginID'] . "'><img src='images/cross.gif' alt='"._("remove")."' title='"._("remove")."'></a></td>";
 					echo "</tr>";
 				}
 
 				?>
 			</table>
-			<a href='ajax_forms.php?action=getAdminUserUpdateForm&loginID=&height=215&width=315&modal=true' class='thickbox' id='addUser'><?php echo _("add new user")?></a>
+			<a href='javascript:void(0)' onclick='javascript:myDialog("ajax_forms.php?action=getAdminUserUpdateForm&loginID=&height=215&width=315&modal=true",400,350)' class='thickbox' id='addUser'><?php echo _("add new user")?></a>
 			<?php
 
 		}else{
-			echo "(none found)<br /><a href='ajax_forms.php?action=getUserUpdateForm&loginID=&height=275&width=315&modal=true' class='thickbox' id='addUser'>"._("add new user")."</a>";
+			echo "(none found)<br /><a href='javascript:void(0)' onclick='javascript:myDialog(\"ajax_forms.php?action=getUserUpdateForm&loginID=&height=275&width=315&modal=true\",300,350)' class='thickbox' id='addUser'>"._("add new user")."</a>";
 		}
 
 		break;

@@ -61,7 +61,7 @@ switch ($action) {
 		<td>
 		<a href='javascript:doSubmitLogEmailAddress();' id='addButton' class='submit-button'><?php echo ($addUpdate); ?></a>
 		</td>
-		<td colspan='2'><p><a href='#' onclick='window.parent.tb_remove(); return false' id='closeButton' class='cancel-button'><?php echo _("Close");?></a></td>
+		<td colspan='2'><p><a href='#' onclick='myCloseDialog(); return false' id='closeButton' class='cancel-button'><?php echo _("Close");?></a></td>
 		</tr>
 		</table>
 		</div>
@@ -125,7 +125,7 @@ switch ($action) {
 						<table class='noBorderTable' style='width:100%;'>
 							<tr>
 								<td style='width:60px;'><input type='submit' value='<?php echo _("submit for processing");?>' name='submitSushiRun' id ='submitSushiRun' class='submit-button'></td>
-								<td><input type='button' value='<?php echo _("cancel");?>' onclick="tb_remove()" class='cancel-button'></td>
+								<td><input type='button' value='<?php echo _("cancel");?>' onclick="myCloseDialog()" class='cancel-button'></td>
 							</tr>
 						</table>
 					</td>
@@ -165,7 +165,7 @@ switch ($action) {
 
 		<tr style="vertical-align:middle;">
 		<td style="width:60px;"><input type='button' value='<?php echo _("Edit");?>' onclick='javascript:window.parent.updateOutlier();' class='submit-button'></td>
-		<td><input type='button' value='<?php echo _("cancel");?>' onclick="window.parent.tb_remove(); return false" class='cancel-button'></td>
+		<td><input type='button' value='<?php echo _("cancel");?>' onclick="myCloseDialog(); return false" class='cancel-button'></td>
 		</tr>
 
 		</table>
@@ -225,7 +225,7 @@ switch ($action) {
 
 		</td>
 
-		<td colspan='2'><a href='#' onclick='window.parent.tb_remove(); return false' class='cancel-button'><?php echo _("Close");?></a></td>
+		<td colspan='2'><a href='#' onclick='myCloseDialog(); return false' class='cancel-button'><?php echo _("Close");?></a></td>
 		</tr>
 		</table>
 		</div>
@@ -322,7 +322,7 @@ switch ($action) {
 					<table class='noBorderTable' style='width:100%;'>
 						<tr>
 							<td style='width:60px;'><input type='button' value='<?php echo _("submit");?>' name='submitPlatformNoteForm' id ='submitPlatformNoteForm' class='submit-button'></td>
-							<td><input type='button' value='<?php echo _("cancel");?>' onclick="tb_remove()" id='interface-cancel' class='cancel-button'></td>
+							<td><input type='button' value='<?php echo _("cancel");?>' onclick="myCloseDialog()" id='interface-cancel' class='cancel-button'></td>
 						</tr>
 					</table>
 				</td>
@@ -391,7 +391,7 @@ switch ($action) {
 					<table class='noBorderTable' style='width:100%;'>
 						<tr>
 							<td style='width:60px;'><input type='button' value='<?php echo _("submit");?>' name='submitPublisherNoteForm' id ='submitPublisherNoteForm' class='submit-button'></td>
-							<td><input type='button' value='<?php echo _("cancel");?>' onclick="tb_remove()" class='cancel-button'></td>
+							<td><input type='button' value='<?php echo _("cancel");?>' onclick="myCloseDialog()" class='cancel-button'></td>
 						</tr>
 					</table>
 				</td>
@@ -458,7 +458,7 @@ switch ($action) {
 					<table class='noBorderTable' style='width:100%;'>
 						<tr>
 							<td style='width:60px;'><input type='button' value='<?php echo _("submit");?>' name='submitExternalLoginForm' id ='submitExternalLoginForm' class='submit-button'></td>
-							<td><input type='button' value='<?php echo _("cancel");?>' onclick="tb_remove()" class='cancel-button'></td>
+							<td><input type='button' value='<?php echo _("cancel");?>' onclick="myCloseDialog()" class='cancel-button'></td>
 						</tr>
 					</table>
 				</td>
@@ -539,6 +539,11 @@ switch ($action) {
 				<td><input type='text' id='customerID' name='customerID' value="<?php if ($sushiServiceID) echo $sushiService->customerID; ?>" style='width:330px;' /></td>
 			</tr>
 			<tr>
+				<td style='vertical-align:top;text-align:right;width:135px;'><label for='platform'><b><?php echo _("Platform:");?></b></label></td>
+				<td><input type='text' id='platform' name='platform' value="<?php if ($sushiServiceID) echo $sushiService->platform; ?>" style='width:330px;' />
+					<span class="smallDarkRedText"><?php echo _("(optional)") . " " . _("only needed when required by vendor");?></span></td>
+			</tr>
+			<tr>
 				<td style='vertical-align:top;text-align:right;width:135px;'><label for='security'><b><?php echo _("Security Type:");?></b></label></td>
 				<td><input type='text' id='security' name='security' value="<?php if ($sushiServiceID) echo $sushiService->security; ?>" style='width:150px;' />
 					<span class="smallDarkRedText"><?php echo _("(optional)");?><br /><?php echo _("can be: HTTP Basic, WSSE Authentication");?></span>
@@ -576,7 +581,7 @@ switch ($action) {
 					<table class='noBorderTable' style='width:100%;'>
 						<tr>
 							<td style='width:60px;'><input type='button' value='submit' name='submitSushiForm' id ='submitSushiForm' class='submit-button'></td>
-							<td><input type='button' value='cancel' onclick="tb_remove()" class='cancel-button'></td>
+							<td><input type='button' value='cancel' onclick="myCloseDialog()" class='cancel-button'></td>
 						</tr>
 					</table>
 				</td>
@@ -630,7 +635,7 @@ switch ($action) {
 
 		<tr style="vertical-align:middle;">
 		<td style="width:60px;"><input type='button' value='<?php echo _("submit");?>' name='submitOrganization' id ='submitOrganization' class='submit-button'></td>
-		<td><input type='button' value='<?php echo _("cancel");?>' onclick="tb_remove()" class='cancel-button'></td>
+		<td><input type='button' value='<?php echo _("cancel");?>' onclick="myCloseDialog()" class='cancel-button'></td>
 		</tr>
 		</table>
 
@@ -705,7 +710,7 @@ switch ($action) {
 
 		</table>
 		</tr>
-		<tr><td style='text-align:center;width:100%;'><br /><br /><a href='#' onclick='window.parent.updateFullStatsDetails(); window.parent.tb_remove(); return false'><?php echo _("Close");?></a></td></tr>
+		<tr><td style='text-align:center;width:100%;'><br /><br /><a href='#' onclick='window.parent.updateFullStatsDetails(); myCloseDialog(); return false'><?php echo _("Close");?></a></td></tr>
 		</table>
 		<input type="hidden" id='platformID' name='platformID' value='<?php echo $platformID; ?>'>
 		<input type="hidden" id='publisherPlatformID' name='publisherPlatformID' value='<?php echo $publisherPlatformID; ?>'>
@@ -799,7 +804,7 @@ switch ($action) {
 
 		</table>
 		</tr>
-		<tr><td style='text-align:center;width:100%;'><br /><br /><a href='#' onclick='window.parent.tb_remove(); return false'><?php echo _("Close");?></a></td></tr>
+		<tr><td style='text-align:center;width:100%;'><br /><br /><a href='#' onclick='myCloseDialog(); return false'><?php echo _("Close");?></a></td></tr>
 		</table>
 		<input type="hidden" id='platformID' name='platformID' value='<?php echo $platformID; ?>'>
 		<input type="hidden" id='publisherPlatformID' name='publisherPlatformID' value='<?php echo $publisherPlatformID; ?>'>
@@ -834,7 +839,7 @@ switch ($action) {
 				<table class='noBorderTable' style='width:100%;'>
 					<tr>
 						<td style="width:60px;"><input type='button' value='<?php echo _("submit");?>' name='submitPlatformForm' id ='submitPlatformForm' class='submit-button'></td>
-						<td><input type='button' value='<?php echo _("cancel");?>' onclick="tb_remove()" id='cancel-button' class='cancel-button'></td>
+						<td><input type='button' value='<?php echo _("cancel");?>' onclick="myCloseDialog()" id='cancel-button' class='cancel-button'></td>
 					</tr>
 				</table>
 			</td>
@@ -888,7 +893,7 @@ switch ($action) {
 				<table class='noBorderTable' style='width:100%;'>
 					<tr>
 						<td><input type='button' value='<?php echo _("submit");?>' name='submitIdentifierForm' id ='submitIdentifierForm' class='submit-button'></td>
-						<td><input type='button' value='<?php echo _("cancel");?>' onclick="tb_remove()" class='cancel-button'></td>
+						<td><input type='button' value='<?php echo _("cancel");?>' onclick="myCloseDialog()" class='cancel-button'></td>
 					</tr>
 				</table>
 			</td>
@@ -956,7 +961,7 @@ switch ($action) {
 		</tr>
 
 		<tr>
-		<td style='text-align:center;width:100%;'><br /><br /><a href='#' onclick='window.parent.tb_remove(); return false' class='cancel-button'><?php echo _("Close");?></a>
+		<td style='text-align:center;width:100%;'><br /><br /><a href='#' onclick='myCloseDialog(); return false' class='cancel-button'><?php echo _("Close");?></a>
 		</td>
 		</tr>
 
@@ -1026,7 +1031,7 @@ switch ($action) {
 		</tr>
 		<tr style="vertical-align:middle;">
 		<td style="width:60px;"><input type='button' value='<?php echo $update; ?>' onclick='javascript:window.parent.submitUserData("<?php echo $loginID; ?>");' class='submit-button'></td>
-		<td><input type='button' value='<?php echo _("Close");?>' onclick="window.parent.tb_remove(); return false" id='update-user-cancel' class='cancel-button'></td>
+		<td><input type='button' value='<?php echo _("Close");?>' onclick="myCloseDialog(); return false" id='update-user-cancel' class='cancel-button'></td>
 		</tr>
 
 		</table>
@@ -1057,7 +1062,7 @@ switch ($action) {
             <table class='noBorderTable' style='width:100%;'>
               <tr>
                 <td style="width:60px;"><input type='button' value='<?php echo _("submit");?>' name='updatePlatformFrom' id ='updatePlatformForm' class='submit-button'></td>
-                <td><input type='button' value='<?php echo _("cancel");?>' onclick="tb_remove()" id='cancel-button' class='cancel-button'></td>
+                <td><input type='button' value='<?php echo _("cancel");?>' onclick="myCloseDialog()" id='cancel-button' class='cancel-button'></td>
               </tr>
             </table>
           </td>

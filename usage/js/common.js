@@ -110,7 +110,7 @@ function replaceSpecial(myString)
 
 function getCheckboxValue(field)
 {
-    if ($('#' + field + ':checked').attr('checked'))
+    if ($('#' + field)[0].checked)
     {
         return 1;
     }
@@ -294,3 +294,30 @@ function isNumber(value)
     return (objRegExp.test(value));
 
 }
+
+function myDialog(loadForm, h,w){
+       if (h < 800) h = 'auto';
+       if (w < 800) w = w * 1.2;
+
+       $('<div/>').dialog({
+            modal: true,
+            open: function ()
+            {
+            if ($(this).is(':empty')) {
+                $(this).load(loadForm);
+                }
+            },
+            height: h,
+            width: w,
+           dialogClass: "no-titlebar"
+        });
+}
+
+function myCloseDialog(formName){
+     $('.ui-dialog-content').dialog('destroy');
+}
+
+function myDialogPOST(ajaxcall){
+     return setTimeout(function(){$('.ui-dialog-content').dialog('destroy')},0);
+}
+

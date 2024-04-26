@@ -10,6 +10,7 @@ $resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)))
 $organizationArray = $resource->getOrganizationArray();
 $organizationData = $organizationArray[0];
 
+$config = new Configuration();
 //the issues feature currently support org or resource contacts, but not both
 $moduleFilter = ($config->settings->organizationsModule == 'Y') ? 'organizations':'resources';
 $contactsArray = $resourceAcquisition->getUnarchivedContacts($moduleFilter);
@@ -42,7 +43,11 @@ if ($organizationData['organizationID']) {
 <?php
 
 	foreach ($contactsArray as $contact) {
-		echo "		<option value=\"{$contact['contactID']}\">{$contact['name']}</option>";
+		if (!empty($contact['name'])) {
+			echo "		<option value=\"{$contact['contactID']}\">{$contact['name']}</option>";
+		} else {
+			echo "		<option value=\"{$contact['contactID']}\">{$contact['emailAddress']}</option>";
+		}
 	}
 
 ?>
@@ -59,6 +64,14 @@ if ($config->settings->organizationsModule == 'Y') {
 				<input type="hidden" name="orgModuleUrl" id="orgModuleUrl" value="<?php echo $util->getCoralUrl();?>organizations/" />
 				<a id="getCreateContactForm" href="#"><?php echo _("add contact");?></a>
 				<div id="inlineContact"></div>
+                <script>
+				    $("#getCreateContactForm").on("click",function(e) {
+				        e.preventDefault();
+				        $(this).fadeOut(250, function() {
+				            getInlineContactForm();
+				        });
+				    });
+				</script>
 			</td>
 		</tr>
 <?php
@@ -93,7 +106,7 @@ if ($config->settings->organizationsModule == 'Y') {
 		<tr>
 			<td><label><?php echo _("Body:");?>&nbsp;&nbsp;<span class='bigDarkRedText'>*</span></label></td>
 			<td>
-				<textarea id='bodyText' name='issue[bodyText]' value='' />
+				<textarea id='bodyText' name='issue[bodyText]' value=''></textarea>
 				<span id='span_error_bodyText' class='error smallDarkRedText'></span>
 			</td>
 		</tr>
@@ -133,7 +146,7 @@ if ($config->settings->organizationsModule == 'Y') {
 	<table class='noBorderTable' style='width:125px;'>
 		<tr>
 			<td style='text-align:left'><input type='button' value='<?php echo _("submit");?>' name='submitNewIssue' id='submitNewIssue' class='submit-button'></td>
-			<td style='text-align:right'><input type='button' value='<?php echo _("cancel");?>' onclick="tb_remove();" class='cancel-button'></td>
+			<td style='text-align:right'><input type='button' value='<?php echo _("cancel");?>' onclick="myCloseDialog()" class='cancel-button'></td>
 		</tr>
 	</table>
 
@@ -142,7 +155,7 @@ if ($config->settings->organizationsModule == 'Y') {
 <?php
 } else {
 	echo '<p>' . _("Opening an issue requires a resource to be associated with an organization.") . '</p>';
-	echo '<input type="button" value="' . _("cancel") . '" onclick="tb_remove();">';
+	echo '<input type="button" value="' . _("cancel") . '" onclick="myCloseDialog();">';
 }
 ?>
 

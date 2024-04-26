@@ -10,15 +10,15 @@ $util = new Utility();
 
 //shared html template for organization and resource issues
 function generateIssueHTML($issue,$associatedEntities=null) {
-	$html = "
+	$html = "<div id='openIssues'>
 	<div class=\"issue\">";
 	if (!$issue->dateClosed) {
 		$html .= "
-		<a class=\"thickbox action closeIssueBtn\" href=\"ajax_forms.php?action=getCloseIssueForm&issueID={$issue->issueID}&height=120&width=345&modal=true\">" . _("close") . "</a>";
+		<a class=\"thickbox action closeIssueBtn\" href='javascript:void(0)' onclick='javascript:myDialog(\"ajax_forms.php?action=getCloseIssueForm&issueID={$issue->issueID}&height=120&width=345&modal=true\",150,400)'>" . _("close") . "</a>";
 		if ($associatedEntities && $associatedEntities[0]['entityType']==1) {
-			$html .= "<a class=\"thickbox action\" href=\"ajax_forms.php?action=getNewDowntimeForm&organizationID={$associatedEntities[0]['id']}&issueID={$issue->issueID}&height=200&width=390&modal=true\">" . _("downtime") . "</a>";
+			$html .= "<a class=\"thickbox action\" href='javascript:void(0)' onclick='javascript:myDialog(\"ajax_forms.php?action=getNewDowntimeForm&organizationID={$associatedEntities[0]['id']}&issueID={$issue->issueID}&height=200&width=390&modal=true\",25,420)'>" . _("downtime") . "</a>";
 		} else {
-			$html .= "<a class=\"thickbox action\" href=\"ajax_forms.php?action=getNewDowntimeForm&resourceID={$GLOBALS['resourceID']}&issueID={$issue->issueID}&height=200&width=390&modal=true\">" . _("downtime") . "</a>";
+			$html .= "<a class=\"thickbox action\" href='javascript:void(0)' onclick='javascript:myDialog(\"ajax_forms.php?action=getNewDowntimeForm&resourceID={$GLOBALS['resourceID']}&issueID={$issue->issueID}&height=200&width=390&modal=true\",250,420)'>" . _("downtime") . "</a>";
 		}
 	}
 	$html .= "
@@ -39,14 +39,18 @@ function generateIssueHTML($issue,$associatedEntities=null) {
 	if ($contacts) {
 		$html .= "<ul class=\"contactList\">";
 		foreach($contacts as $contact) {
-			$html .= "<li><a href=\"mailto:".urlencode($contact['emailAddress'])."?Subject=RE: {$issue->subjectText}\">{$contact['name']}</a></li>";
+			if (!empty($contact['name'])) {
+				$html .= "<li><a href=\"mailto:".urlencode($contact['emailAddress'])."?Subject=RE: {$issue->subjectText}\">{$contact['name']}</a></li>";
+			} else {
+				$html .= "<li><a href=\"mailto:".urlencode($contact['emailAddress'])."?Subject=RE: {$issue->subjectText}\">{$contact['emailAddress']}</a></li>";
+			}
 		}
 		$html .= "</ul>";
 	}
 
 
-	$html .= "	</dd> 
-	  		<dt>" . _("Applies to:") . "</dt> 
+	$html .= "	</dd>
+	  		<dt>" . _("Applies to:") . "</dt>
 	  		<dd>";
 	if ($associatedEntities) {
 		$temp ='';
@@ -62,7 +66,7 @@ function generateIssueHTML($issue,$associatedEntities=null) {
         <dt class=\"block\">" . _("Body:") . "</dt>
         <dd>{$issue->bodyText}</dd>
         </dl>
-    </div>";
+    </div></div>";
 	return $html;
 }
 

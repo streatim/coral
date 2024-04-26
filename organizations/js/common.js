@@ -175,7 +175,7 @@ if (!Array.prototype.indexOf)
 }
 
 function getCheckboxValue(field){
-	if ($('#' + field + ':checked').attr('checked')) {
+	if ($('#' + field)[0].checked) {
 		return 1;
 	}else{
 		return 0;
@@ -280,4 +280,40 @@ function postwith (to,p) {
   document.body.appendChild(myForm) ;
   myForm.submit() ;
   document.body.removeChild(myForm) ;
+}
+
+function myDialog(loadForm, h,w){
+  if (h < 800) h = 'auto';
+  if (w < 800) w = w * 1.2;
+  const el = $('<div/>');
+  el.dialog({
+    modal: true,
+    position: {my: "center top", at: "center top"},
+    classes: {
+      "ui-dialog": "my-dialog"
+    },
+    open: function () {
+      if ($(this).is(':empty')) {
+        $(this).load(loadForm, function () {
+          $('.date-pick').datePicker({startDate: '01/01/1996'});
+        });
+      }
+      $('.ui-widget-overlay').bind('click', function()
+      {
+        el.dialog('close');
+      });
+    },
+    height: h,
+    width: w,
+    //    title:"JQuery Dialog"
+    dialogClass: "no-titlebar"
+  });
+}
+
+function myCloseDialog(formName){
+     $('.ui-dialog-content').dialog('destroy');
+}
+
+function myDialogPOST(ajaxcall){
+     return setTimeout(function(){$('.ui-dialog-content').dialog('destroy')},0);
 }
