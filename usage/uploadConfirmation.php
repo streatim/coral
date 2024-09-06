@@ -106,7 +106,7 @@ if ($fromSushi) {
     header("Location: import.php?fileerror={$errorMessage}");
     exit;
   }
-  exit;
+  
   // check that the doc is the correct mimetype. If the file wasn't uploaded, there's no path, so this has to be checked after checking the file upload errors.
   $finfo = finfo_open(FILEINFO_MIME_TYPE);
   $mtype = finfo_file($finfo, $_FILES['usageFile']['tmp_name']);
